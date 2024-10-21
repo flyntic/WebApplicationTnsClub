@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 using System.Numerics;
+using System.Reflection.Metadata;
 
 namespace WebApplicationTnsClub.Models
 {
@@ -15,8 +16,9 @@ namespace WebApplicationTnsClub.Models
         [Key]
         public int Id { get; set; }
 
-        [Column("avatar", TypeName = "json")]
-        public String? avatar { get; set; }
+        [Column("avatar", TypeName = "blob")]
+        public Blob? avatar { get; set; }
+        public String? avatarfile {  get; set; }
         public String name { get; set; }
         public String? second_name { get; set; }
         public String? last_name { get; set; }

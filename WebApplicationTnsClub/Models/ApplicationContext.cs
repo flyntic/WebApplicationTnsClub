@@ -28,10 +28,10 @@ namespace WebApplicationTnsClub.Models
           {
               Database.EnsureCreated();
           }*/
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=tennisclub;Username=postgres;Password=09870");
-        }
+     //   protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+     //   {
+     //       optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=tennisclub;Username=postgres;Password=09870");
+     //   }
       /*  protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()
