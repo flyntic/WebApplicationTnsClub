@@ -27,6 +27,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Startup.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="ClientApp\src\app\data.service.ts" />
     <None Remove="ClientApp\src\app\htmlpage.html" />
     <None Remove="ClientApp\src\app\not-found.component.ts" />
