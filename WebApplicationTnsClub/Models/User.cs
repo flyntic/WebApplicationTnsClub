@@ -13,9 +13,9 @@ namespace WebApplicationTnsClub.Models
         [Column(@"id", TypeName = "bigint")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public int  Id { get; set; }
+        public int Id { get; set; }
 
-        [Column("avatar",TypeName = "json")]
+        [Column("avatar", TypeName = "json")]
         public String? avatar { get; set; }
         public String name { get; set; }
         public String? second_name { get; set; }
