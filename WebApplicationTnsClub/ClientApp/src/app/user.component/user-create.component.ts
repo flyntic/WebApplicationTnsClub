@@ -13,4 +13,5 @@ export class UserCreateComponent {
     save() {
         this.dataService.createUser(this.user).subscribe(data => this.router.navigateByUrl("/"));
     }
+
 }

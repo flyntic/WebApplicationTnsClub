@@ -4,6 +4,7 @@
 <table class="table table-striped">
     <thead>
         <tr>
+            <td>    </td>
             <td>Имя</td>
             <td>Фамилия</td>
             <td>Логин</td>
@@ -12,6 +13,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let u of users">
+            <td><img [src]="u?.avatartfile" alt="preview" class="rounded shadow w-100"></td>
             <td>{{u?.name}}</td>
             <td>{{u?.last_name}}</td>
             <td>{{u?.login}}</td>

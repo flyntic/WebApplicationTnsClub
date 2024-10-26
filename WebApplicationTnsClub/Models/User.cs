@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.SqlServer.Server;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 using System.Numerics;
 using System.Reflection.Metadata;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WebApplicationTnsClub.Models
 {
@@ -16,17 +18,29 @@ namespace WebApplicationTnsClub.Models
         [Key]
         public int Id { get; set; }
 
-        [Column("avatar", TypeName = "blob")]
-        public Blob? avatar { get; set; }
-        public String? avatarfile {  get; set; }
-        public String name { get; set; }
-        public String? second_name { get; set; }
-        public String? last_name { get; set; }
-        public String login { get; set; }
-        public String? phone { get; set; }
-        public String? email { get; set; }
-        public int? role { get; set; }
-        public String? parole { get; set; }
-        public String? comment { get; set; }
+        //[Column("avatar")]
+        //  public Blob? Avatar { get; set; }
+        [Column("avatarfile")]
+        public string? Avatarfile {  get; set; }
+        [Column("name")]
+        public string Name { get; set; }
+        [Column("second_name")]
+        public string? Second_name { get; set; }
+        [Column("last_name")]
+        public string? Last_name { get; set; }
+        [Column("login")]
+        public string  Login { get; set; }
+        [Column("phone")]
+        public string? Phone { get; set; }
+        [Column("email")]
+        public string? Email { get; set; }
+        [Column("role")]
+        public int?    Role { get; set; }
+        [Column("parole")]
+        public string? Parole { get; set; }
+        [Column("comment")]
+        public string? Comment { get; set; }
+
+       
     }
 }

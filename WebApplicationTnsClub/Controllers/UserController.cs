@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using global::WebApplicationTnsClub.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -28,22 +29,7 @@ namespace WebApplicationTnsClub.Controllers
         {
             return await db.Users.ToListAsync();
         }
-        /*
-               public async Task<IEnumerable<User>> Get()
-               {
-                   return db.Users
-                       //      .Include(x => x.Id)
-                       //      .Select(x =>
-                       //          new User
-                        //         {
-                        //             Title = x.Title,
-                        //             DateTime = x.WhenCreated,
-                        //             AuthorName = x.Author?.UserName ?? string.Empty
-                        ////         }
-                        //     )
-                             .ToListAsync();
-               }
-       */
+    
         [HttpGet("{id}")]
         public async Task<User> Get(int id)
         {
@@ -56,8 +42,25 @@ namespace WebApplicationTnsClub.Controllers
         {
             if (ModelState.IsValid)
             {
+    
                 await db.Users.AddAsync(user);
                 await db.SaveChangesAsync();
+
+              /*  if (user.Avatarfile!=null)
+                {   string bdfilename = "c://wwwroot/uploads/save" + user.Id + ".jpg";
+                    try
+                    {  // System.IO.File.Copy(user.Avatarfile, bdfilename);
+                      //  System.IO.File.Delete(user.Avatarfile);                       
+                        user.Avatarfile = bdfilename;
+                        db.Users.Update(user);
+                        db.SaveChanges();                        
+                    }
+                    catch (Exception ex) { 
+                      Console.WriteLine(ex.Message);
+                    }
+
+                } */
+                
                 return Ok(user);
             }
             return BadRequest(ModelState);

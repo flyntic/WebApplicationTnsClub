@@ -17,11 +17,15 @@
  </PropertyGroup>
 
   <ItemGroup>
+	  <Compile Remove="ClientApp\src\app\Новая папка1\**" />
 	  <Compile Remove="ClientApp\src\app\Новая папка\**" />
 	  <Content Remove="$(SpaRoot)**" />
+	  <Content Remove="ClientApp\src\app\Новая папка1\**" />
 	  <Content Remove="ClientApp\src\app\Новая папка\**" />
+	  <EmbeddedResource Remove="ClientApp\src\app\Новая папка1\**" />
 	  <EmbeddedResource Remove="ClientApp\src\app\Новая папка\**" />
 	  <None Remove="$(SpaRoot)**" />
+	  <None Remove="ClientApp\src\app\Новая папка1\**" />
 	  <None Remove="ClientApp\src\app\Новая папка\**" />
 	  <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
@@ -49,7 +53,11 @@
     <None Remove="ClientApp\src\app\user.component\user-detail.component.ts" />
     <None Remove="ClientApp\src\app\user.component\user-edit.component.ts" />
     <None Remove="ClientApp\src\app\user.component\user-form.component.ts" />
+    <None Remove="ClientApp\src\app\user.component\user.factory.ts" />
+    <None Remove="ClientApp\src\app\user.component\userServerResponse .ts" />
     <None Remove="ClientApp\src\app\Новая папка\app.component.html" />
+    <None Remove="ClientApp\src\environments\environment.prod.ts" />
+    <None Remove="ClientApp\src\environments\environment.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -60,6 +68,9 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.10" />
+    <PackageReference Include="RxJS-All" Version="4.0.7" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.5" />
+    <PackageReference Include="Tinify" Version="1.6.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -83,6 +94,8 @@
     <TypeScriptCompile Include="ClientApp\src\app\user.component\user-list.component.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\environments\environment.prod.ts" />
+    <TypeScriptCompile Include="ClientApp\src\environments\environment.ts" />
   </ItemGroup>
 
 	<Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">

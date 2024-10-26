@@ -3,6 +3,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using WebApplicationTnsClub;
 using WebApplicationTnsClub.Models;
 
@@ -16,7 +17,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 //builder.Services.AddSwaggerGen();
 
-string connectionString = "Host=localhost;Port=5432;Database=tennisclub;Username=postgres;Password='09870'";
+string connectionString = "Host=localhost;Port=5432;Database=tennisclub_2;Username=postgres;Password='09870'";
 
 builder.Services.AddDbContext<ApplicationContext>(options => options.UseNpgsql(connectionString),
     optionsLifetime: ServiceLifetime.Singleton);
@@ -42,15 +43,41 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 app.UseStaticFiles();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSpaStaticFiles();
 }
+
+app.UseHttpsRedirection();
+
+app.Environment.WebRootPath = "c://wwwroot";
+// for the wwwroot/uploads folder
+string uploadsDir = Path.Combine(app.Environment.WebRootPath, "uploads");
+if (!Directory.Exists(uploadsDir))
+    Directory.CreateDirectory(uploadsDir);
+
+app.UseStaticFiles(new StaticFileOptions()
+{
+    RequestPath = "/images",
+    FileProvider = new PhysicalFileProvider(uploadsDir)
+});
+
+
 app.UseRouting();
 
+/*
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
+});
+*/
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller}/{action=Index}/{id?}");
 });
 
 app.UseSpa(spa =>
@@ -62,7 +89,7 @@ app.UseSpa(spa =>
         spa.UseAngularCliServer(npmScript: "start");
     }
 });
-app.UseHttpsRedirection();
+
 
 app.UseAuthorization();
 

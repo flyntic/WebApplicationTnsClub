@@ -19,11 +19,9 @@ export class DataService {
     }
     
     createUser(user: User) {
-        console.log(user);
-        
-        console.log(this.url);
+       
         return this.http.post(this.url, user);
-           // .post(this.url, user);
+
     }
 
     updateUser(user: User) {
@@ -33,4 +31,6 @@ export class DataService {
     deleteUser(id: number) {
         return this.http.delete(this.url + '/' + id);
     }
+
+ 
 }
