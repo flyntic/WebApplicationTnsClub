@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Net.Http.Headers;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
 using System.IO;
@@ -14,18 +15,16 @@ namespace WebApplicationTnsClub.Controllers
     public class UploadController : ControllerBase
     {
         private readonly IWebHostEnvironment _hostingEnvironment;
-        private static BigInteger id_pict;
         public UploadController(IWebHostEnvironment hostingEnvironment)
         {
             _hostingEnvironment = hostingEnvironment;
-            id_pict = 1;
         }
 
         [HttpPost]
         [DisableRequestSizeLimit]
         public async Task<IActionResult> UploadFile()
         {
-            id_pict++;
+
             if (!Request.Form.Files.Any())
                 return BadRequest("No files found in the request");
 
@@ -38,26 +37,21 @@ namespace WebApplicationTnsClub.Controllers
             try
             {
                 string webRootPath = _hostingEnvironment.WebRootPath;
-                string uploadsDir = Path.Combine(webRootPath, "uploads");
+                string uploadsDir = Path.Combine(webRootPath, "images");
 
-                // wwwroot/uploads/
+                // wwwroot/images/
                 if (!Directory.Exists(uploadsDir))
                     Directory.CreateDirectory(uploadsDir);
 
                 IFormFile file = Request.Form.Files[0];
-                // string fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-                string fileName = "temp"+id_pict  + new FileInfo(ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName).Extension.Trim('"');
+                string fileName = "temp"+ Guid.NewGuid().ToString()+ DateTime.Now.ToString("-dd-MM-yy-hh-mm-ss-") + new FileInfo(System.Net.Http.Headers.ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName).Extension.Trim('"');
                 string fullPath = Path.Combine(uploadsDir, fileName);
-
 
                 using var image = Image.Load(file.OpenReadStream());
                 image.Mutate(x => x.Resize(100, 100));
                 await image.SaveAsync(fullPath);
 
-
-
                 string location=$"images/{fileName}";
-
                 var result = new
                 {
                     message = "Upload successful",

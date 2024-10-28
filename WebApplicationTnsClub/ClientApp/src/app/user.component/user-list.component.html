@@ -12,8 +12,10 @@
         </tr>
     </thead>
     <tbody>
+
+
         <tr *ngFor="let u of users">
-            <td><img [src]="u?.avatartfile" alt="preview" class="rounded shadow w-100"></td>
+            <td><img [src]="u?.avatarfile" [alt]="u?.avatarfile" class="rounded shadow w-100"></td>
             <td>{{u?.name}}</td>
             <td>{{u?.last_name}}</td>
             <td>{{u?.login}}</td>

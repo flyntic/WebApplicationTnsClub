@@ -53,7 +53,7 @@ app.UseHttpsRedirection();
 
 app.Environment.WebRootPath = "c://wwwroot";
 // for the wwwroot/uploads folder
-string uploadsDir = Path.Combine(app.Environment.WebRootPath, "uploads");
+string uploadsDir = Path.Combine(app.Environment.WebRootPath, "images");
 if (!Directory.Exists(uploadsDir))
     Directory.CreateDirectory(uploadsDir);
 
