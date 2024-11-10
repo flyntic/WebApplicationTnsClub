@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using global::WebApplicationTnsClub.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WebApplicationTnsClub.Models;
+using WebApplicationTnsClub.DB;
 
 namespace WebApplicationTnsClub.Controllers
 {
@@ -30,10 +30,10 @@ namespace WebApplicationTnsClub.Controllers
             return await db.Users.ToListAsync();
         }
     
-        [HttpGet("{id}")]
-        public async Task<User> Get(int id)
+        [HttpGet("{login}")]
+        public async Task<User> Get(string login)
         {
-            User user = await db.Users.FirstOrDefaultAsync(x => x.Id == id);
+            User user = await db.Users.FirstOrDefaultAsync(x => x.Login == login);
             return user;
         }
 
@@ -78,10 +78,10 @@ namespace WebApplicationTnsClub.Controllers
             return BadRequest(ModelState);
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        [HttpDelete("{login}")]
+        public async Task<IActionResult> Delete(string login)
         {
-            User user = await db.Users.FirstOrDefaultAsync(x => x.Id == id);
+            User user = await db.Users.FirstOrDefaultAsync(x => x.Login.Equals(login));
             if (user != null)
             {
                 db.Users.Remove(user);

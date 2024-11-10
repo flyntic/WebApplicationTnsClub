@@ -1,0 +1,11 @@
+:host {
+    min-height: 30px;
+    background-color: #F0E68C;
+    color:black;
+}
+
+div {
+    margin: 5px 10px 0;
+    float: right;
+    color: black;
+}
