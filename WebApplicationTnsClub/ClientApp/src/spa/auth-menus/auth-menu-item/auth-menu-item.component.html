@@ -1,0 +1,14 @@
+<div class='menu-item' [ngClass]="{'horizontal-menu':true, 'active': isActiveRoute}">
+    <span class='icon'><img [src]='item.icon' class='menu-icon'></span>
+    <span class='menu-text'>{{item.text}}</span>
+    <span *ngIf="item.submenu ">
+        <span [ngClass]='parentIsPopup ? "dropright": "dropdown"'><button class='dropdown-toggle'></button></span>
+    </span>
+    <span *ngIf="item.submenu ">
+        <span [ngClass]='(mouseInItem || mouseInPopup) ? "dropleft": "dropdown"'><button class='dropdown-toggle'></button></span>
+    </span>
+
+</div>
+<!--
+<spa-popup-menu @visibilityPopup *ngIf="mouseInPopup || mouseInItem" [menu]='item.submenu' [ngClass]='{"vertical-menu": menuService.isVertical}' [style.left]='popupLeft+"px"' [style.top]='popupTop+"px"' (mouseleave)='onPopupMouseLeave($event)' (mouseenter)='onPopupMouseEnter($event)'></spa-popup-menu>
+-->

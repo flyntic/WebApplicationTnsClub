@@ -10,23 +10,29 @@ import { ScreenService } from './services/screen.service';
 import { MenuService } from './services/menu.service';
 import { MenuComponent } from './menus/menu/menu.component';
 import { MenuItemComponent } from './menus/menu-item/menu-item.component';
+import { AuthMenuService } from './services/auth.menu.service';
+import { AuthMenuComponent } from './auth-menus/auth-menu/auth-menu.component';
+import { AuthMenuItemComponent } from './auth-menus/auth-menu-item/auth-menu-item.component';
 import { RouterModule } from '@angular/router';
 import { PopupMenuComponent } from './menus/popup-menu/popup-menu.component';
 import { SignInComponent } from './users/sign-in/sign-in.component';
 import { RegistrationComponent } from './users/registration/registration.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ScreenLargeDirective } from './directives/screen-large.directive';
+import { AuthenticatedComponent } from './auth-menus/authenticated/authenticated.component';
 import { ScreenSmallDirective } from './directives/screen-small.directive';
 
 @NgModule({
     imports: [CommonModule,RouterModule, FormsModule, ReactiveFormsModule,],
     declarations: [SpaBodyComponent, SpaHeaderComponent, SpaContentComponent, SpaFooterComponent,
         IconBarComponent, ScreenLargeDirective, ScreenSmallDirective,
-        MenuComponent, MenuItemComponent, PopupMenuComponent, SignInComponent, RegistrationComponent,
+        MenuComponent, MenuItemComponent, PopupMenuComponent, AuthenticatedComponent,
+        AuthMenuComponent, AuthMenuItemComponent, 
+        SignInComponent, RegistrationComponent,
     ],
     exports: [SpaBodyComponent],
-    providers: [ScreenService, MenuService]
+    providers: [ScreenService, MenuService, AuthMenuService]
 })
 export class SpaModule { }
 
-
+//, AuthenticatedComponent

@@ -33,6 +33,7 @@
   <ItemGroup>
     <None Remove="ClientApp\app.module.ts" />
     <None Remove="ClientApp\src\app-routing.module.ts" />
+    <None Remove="ClientApp\src\app\app.auth.menu.ts" />
     <None Remove="ClientApp\src\app\app.menu.ts" />
     <None Remove="ClientApp\src\app\authentication\register-user\register-user.component.ts" />
     <None Remove="ClientApp\src\app\booking.component\club.module.ts" />
@@ -70,6 +71,7 @@
     <None Remove="ClientApp\src\app\_interfaces\user\userForRegistrationDto.model.ts" />
     <None Remove="ClientApp\src\environments\environment.prod.ts" />
     <None Remove="ClientApp\src\environments\environment.ts" />
+    <None Remove="ClientApp\src\spa\services\auth.menu.service.ts" />
     <None Remove="ClientApp\src\spa\services\user.interface.ts" />
     <None Remove="ClientApp\src\spa\spa.module.ts" />
     <None Remove="ClientApp\src\spa\users\user-api.ts" />
@@ -92,6 +94,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\app.auth.menu.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\app-routing.module.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\app.menu.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\authentication\register-user\register-user.component.ts" />
@@ -139,14 +144,10 @@
     <TypeScriptCompile Include="ClientApp\src\app\_interfaces\user\userForRegistrationDto.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\environments\environment.prod.ts" />
     <TypeScriptCompile Include="ClientApp\src\environments\environment.ts" />
+    <TypeScriptCompile Include="ClientApp\src\spa\services\auth.menu.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\spa\services\user.interface.ts" />
     <TypeScriptCompile Include="ClientApp\src\spa\spa.module.ts" />
     <TypeScriptCompile Include="ClientApp\src\spa\users\user-api.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ClientApp\src\app\components\" />
-    <Folder Include="ClientApp\src\app\core.module\" />
   </ItemGroup>
 
 	<Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">

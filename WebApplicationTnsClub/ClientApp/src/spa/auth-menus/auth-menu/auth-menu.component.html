@@ -1,0 +1,15 @@
+<nav>
+    <ul>
+        <li *ngFor="let item of authMenuService.items">
+            <spa-auth-menu-item [item]='item' [ngClass]="horizontal-menu"  [parentIsPopup]='false'>
+
+            </spa-auth-menu-item>
+        </li>
+    </ul>
+
+</nav>
+<!--
+<div [ngClass]='authMenuService.isVertical? "dropup": "dropleft"'>
+    <button class="btn btn-default btn-sm dropdown-toggle" *ngIf="!authMenuService.showVerticalMenu" [ngClass]='{"horizontal": !authMenuService.isVertical}' (click)='authMenuService.toggleOrientation()'></button>
+
+</div>-->

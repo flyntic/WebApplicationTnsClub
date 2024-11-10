@@ -10,14 +10,14 @@ export interface MenuItem {
 export class MenuService {
     items: Array<MenuItem> ;
 ;
-    isVertical = false;
-    showVerticalMenu = false;
-    toggleMenu(): void {
-        this.isVertical = true;
-        this.showVerticalMenu = !this.showVerticalMenu;
-    }
+  //  isVertical = true;
+  //  showVerticalMenu = true;
+  //  toggleMenu(): void {
+   //     this.isVertical = true;
+   //     this.showVerticalMenu = !this.showVerticalMenu;
+ //   }
 
-    toggleOrientation(): void {
-        this.isVertical = !this.isVertical;
-    }
+  //  toggleOrientation(): void {
+    //    this.isVertical = !this.isVertical;
+  //  }
 }

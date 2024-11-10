@@ -1,22 +1,34 @@
 <div *screenLarge class='title-bar'>
      
     <img src="/images/imgs/tennis-club-logo.jpg" alt="Tennis club logo">
-    <div class="menu-area">
-        <!--  <icon-bar [showIcons]='flagForIcons'></icon-bar>-->
-        <spa-menu *ngIf="!menuService.isVertical"></spa-menu>
+   <!-- <div class="menu-area">
+          <icon-bar [showIcons]='flagForIcons'></icon-bar>
+          <spa-menu *ngIf="!menuService.isVertical"></spa-menu>
 
 
+    </div>-->
+
+</div>
+<!--
+<div *screenSmall class='title-bar-small'>
+    <div class="small-icon-holder">
+        <a><img src="/images/imgs/menu.png" (click)='menuService.toggleMenu()'></a>
     </div>
-
-    </div>
-
-    <div *screenSmall class='title-bar-small'>
-         <div class="small-icon-holder">
-               <a><img src="/images/imgs/menu.png" (click)='menuService.toggleMenu()'></a>
-           </div>
-        <icon-bar [showIcons]='!flagForIcons'></icon-bar>
+    <icon-bar [showIcons]='!flagForIcons'></icon-bar>
 
     <div class="small-image-holder">
-        <img src="/images/imgs/logo.png" alt="Car fest logo" class="small-image">
+        <img src="/images/imgs/logo.png" alt="Tennis club logo" class="small-image">
     </div>
-    </div>
+</div>
+-->
+
+<div class="menu-area justify-content-end">
+    <app-authenticated></app-authenticated>
+    <spa-auth-menu></spa-auth-menu>
+    <!-- <div *ngIf="this.authenticated.username">
+
+         </div>
+         <div  *ngIf="!this.authenticated.username">
+             </div>-->
+</div>
+
