@@ -9,20 +9,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DataService } from './data.service';
 import { FileService } from './file.service';
-//import { AuthService } from './auth.service';
+import { AuthService } from './auth.service';
 //import { RegisterComponent } from './register/register.component';
 //import { LoginComponent } from './login/login.component';
 //import { ProjectsComponent } from './projects/projects.component';
 
 import { SpaModule } from '../spa/spa.module';
 import { appRoutes } from './routes/app.routes';
-//import { AuthGuard } from './services/auth-guard.service';
+import { AuthGuard } from './services/auth-guard.service';
 
 @NgModule({
-    imports: [BrowserModule, FormsModule,  AppRoutingModule,/* LoginComponent,*/HttpClientModule,
+    imports: [BrowserModule, FormsModule, AppRoutingModule,/* LoginComponent,*/HttpClientModule, 
        /* RegisterComponent, ProjectsComponent,*/ SpaModule, RouterModule.forRoot(appRoutes),],
     declarations: [AppComponent],
-    providers: [DataService,FileService],//[AuthService, AuthGuard], // регистрация сервисов
+    providers: [DataService,FileService,AuthService, AuthGuard,HttpClient],// регистрация сервисов
     bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -36,24 +36,24 @@ export class MenuItemComponent implements OnInit {
         this.isActiveRoute = (route === this.item.route);
     }
     onPopupMouseLeave(event: Event): void {
-        if (!this.menuService.isVertical) {
+      //  if (!this.menuService.isVertical) {
             this.mouseInPopup = false;
-        }
+      //  }
     }
     onPopupMouseEnter(event: Event): void {
-        if (!this.menuService.isVertical) {
+       // if (!this.menuService.isVertical) {
             this.mouseInPopup = true;
-        }
+      //  }
     }
     @HostListener('mouseleave', ['$event'])
     onMouseLeave(event): void {
-        if (!this.menuService.isVertical) {
+       // if (!this.menuService.isVertical) {
             this.mouseInItem = false;
-        }
+       // }
     }
     @HostListener('mouseenter')
     onMouseEnter(): void {
-        if (!this.menuService.isVertical) {
+       // if (!this.menuService.isVertical) {
             if (this.item.submenu) {
                 this.mouseInItem = true;
                 if (this.parentIsPopup) {
@@ -61,16 +61,16 @@ export class MenuItemComponent implements OnInit {
                     this.popupTop = 0;
                 }
             }
-        }
+       // }
     }
 
     @HostListener('click', ['$event'])
     onClick(event: Event): void {
         event.stopPropagation();
         if (this.item.submenu) {
-            if (this.menuService.isVertical) {
+          //  if (this.menuService.isVertical) {
                 this.mouseInPopup = !this.mouseInPopup;
-            }
+          //  }
         } else if (this.item.route) {
             const newEvent = new MouseEvent('mouseleave', { bubbles: true });
          //   this.renderer.selectRootElement(this.el.nativeElement, 'dispatchEvent', [newEvent]);

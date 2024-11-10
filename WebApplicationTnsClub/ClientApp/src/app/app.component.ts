@@ -1,27 +1,31 @@
 ﻿import { Component, importProvidersFrom } from '@angular/core';
 import { DataService } from './data.service';
 import { FileService } from './file.service';
-//import { AuthService } from "./auth.service";
+import { AuthService } from "./auth.service";
 //import { OnInit } from '@angular/core';
 //import { of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 //import { ProjectsComponent } from './projects/projects.component'
 import { AppMenuItems } from './app.menu';
+import { AppAuthMenuItems } from './app.auth.menu';
+
 import { MenuService } from '../spa/services/menu.service';
+import { AuthMenuService } from '../spa/services/auth.menu.service';
 //import { SpaConfigService, SpaConfigSettings, Icons } from '../spa/services/spa-config.service';
+import { AuthGuard } from './services/auth-guard.service';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
-    providers: [DataService,FileService]
-    
+    providers: [DataService, FileService, AuthService,AuthGuard]
+   // imports:[HttpClient]
 })
 
 export class AppComponent  {//implements OnInit
     title = 'client';
 
-    constructor(/*private spaConfigService: SpaConfigService, */private menuService: MenuService,/* private auth: AuthService, private http: HttpClient*/) {
+    constructor(/*private spaConfigService: SpaConfigService,*/ private menuService: MenuService, private authMenuService: AuthMenuService, private auth: AuthService, private http: HttpClient) {
      /*   const config: SpaConfigSettings = {
             socialIcons: [
                 { imageFile: '/images/imgs/telegram.png', alt: 'Telegram', url: 'http://telegram.com' },
@@ -34,18 +38,19 @@ export class AppComponent  {//implements OnInit
         spaConfigService.configure(config);*/
         console.log("app-component");
         menuService.items = AppMenuItems;
+        authMenuService.items = AppAuthMenuItems;
     }
 
-    username: string;
-    user: any;
+   // username: string;
+   // user: any;
 
 
     async ngOnInit() {
         console.log("appcomponent-onInit");
-      /*  this.user = await this.auth.loadUser().toPromise();
-        this.username = this.user['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
+   //     this.user = await this.auth.loadUser().toPromise();
+   //     this.username = this.user['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
 
-        */
+        
     }
 /*
     async loadData() {
@@ -71,8 +76,8 @@ export class AppComponent  {//implements OnInit
        // console.log("NGINIT1 ");// console.log(this.user);
         console.log("NGINIT2 ");
     }
-  */ 
-   /* logout() {
+   
+    logout() {
         console.log(this.user['username']);
         return this.auth.logout();
     };*/

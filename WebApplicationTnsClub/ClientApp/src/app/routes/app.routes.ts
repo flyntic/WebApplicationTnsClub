@@ -1,23 +1,10 @@
 ﻿import { Routes } from '@angular/router';
 //import { AppHomeComponent } from './app-home/app-home.component';
 //import { SettingsComponent } from './settings/settings.component';
-//import { CarListComponent } from './car-list/car-list.component';
-//import { CarDetailComponent } from './car-detail/car-detail.component';
-//import { CarMaintComponent } from './car-maint/car-maint.component';
-//import { AuthenticatedComponent } from './authenticated/authenticated.component';
-//import { SignInComponent } from '../../spa/users/sign-in/sign-in.component';
-//import { RegistrationComponent } from '../../spa/users/registration/registration.component';
-//import { AuthGuard } from '../services/auth-guard.service';
-
-
 
 import { AppComponent } from './../app.component';
 import { UserModule } from './../user.component/user.module';
 
-//import { UserListComponent } from './../user.component/user-list.component';
-//import { UserFormComponent } from './../user.component/user-form.component';
-//import { UserCreateComponent } from './../user.component/user-create.component';
-//import { UserEditComponent } from './../user.component/user-edit.component';
 //import { NotFoundComponent } from './../not-found.component';
 //import { RegisterUserComponent } from './authentication/register-user/register-user.component'
 //import { DataService } from './../data.service';
@@ -34,24 +21,44 @@ import { ClubCreateComponent } from '../club.component/club-create/club-create.c
 import { ClubEditComponent } from   '../club.component/club-edit/club-edit.component';
 
 import { HomeComponent } from '../home.component/home/home.component';
+import { SignInComponent } from './../../spa/users/sign-in/sign-in.component'
+import { RegistrationComponent } from './../../spa/users/registration/registration.component'
+//import { AuthenticatedComponent } from './authenticated/authenticated.component';
+import { AuthGuard } from '../services/auth-guard.service';
+
+import { LoginComponent } from './../login.component/login.component'
+import { RegisterComponent } from './../register.component/register.component'
 
 
 // определение маршрутов
 export const appRoutes: Routes = [
-    { path: '', component: HomeComponent },
+    //{ path: '', component: HomeComponent },
     { path: 'home', component: HomeComponent },
+ //   { path: 'sign-in', component: SignInComponent },
+ //   { path: 'register', component: RegistrationComponent },
 
-    { path: 'user/list',        component: UserListComponent },
-    { path: 'user/create',      component: UserCreateComponent },
-    { path: 'user/edit/:login', component: UserEditComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
+    //{ path: 'logout', redirectTo: 'home' },
 
-    { path: 'booking/list', component: BookingListComponent },
-    { path: 'booking/create', component: BookingCreateComponent },
-    { path: 'booking/edit/:login', component: BookingEditComponent },
+   // {
+      //  path: 'authenticated', component: AuthenticatedComponent, canActivate: [AuthGuard], children: [
 
-    { path: 'club/list', component: ClubListComponent },
-    { path: 'club/create', component: ClubCreateComponent },
-    { path: 'club/edit/:login', component: ClubEditComponent }
+            { path: 'user/list', component: UserListComponent },
+            { path: 'user/create', component: UserCreateComponent },
+            { path: 'user/edit/:login', component: UserEditComponent },
+
+            { path: 'booking/list', component: BookingListComponent },
+            { path: 'booking/create', component: BookingCreateComponent },
+            { path: 'booking/edit/:login', component: BookingEditComponent },
+
+            { path: 'club/list', component: ClubListComponent },
+            { path: 'club/create', component: ClubCreateComponent },
+            { path: 'club/edit/:login', component: ClubEditComponent },
+      //  ]
+  //  },
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: '**', component: SignInComponent }
 
     //  { path: 'authentication', loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule) },
 

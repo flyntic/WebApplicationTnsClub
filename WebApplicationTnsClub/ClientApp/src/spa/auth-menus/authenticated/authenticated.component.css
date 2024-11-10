@@ -1,0 +1,86 @@
+
+:host(div.horizontal-menu) {
+    font-size: 10px;
+}
+
+:host(.horizontal-menu .menu-item) {
+    font-size: 12px;
+    padding: 3px 15px 3px 8px;
+}
+
+.menu-icon {
+    height: 30px;
+    width: 30px;
+    margin: 10px;
+}
+
+.menu-text {
+    font-size: 15px;
+}
+
+.active {
+    outline: none;
+    transform: scale(1.05);
+    background-color: rgba(247, 58, 58, 0.8);
+}
+
+:host(.horizontal-menu.in-popup) {
+    padding-left: 14px;
+}
+
+span span button {
+    margin: 3px 0px 3px 5px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+}
+
+span.dropdown,
+span.dropleft,
+span.dropright {
+    float: right;
+}
+
+    span.dropdown > button.dropdown-toggle::after {
+        border-top-color: #fff;
+    }
+
+    span.dropright > button.dropdown-toggle::after {
+        border-left-color: #fff;
+    }
+
+    span.dropleft > button.dropdown-toggle::before {
+        border-right-color: #fff;
+    }
+
+li {
+    display: inline;
+}
+
+
+ul {
+    float: right;
+    display: inline !important;
+}
+
+
+:host(.horizontal-menu) {
+    display: inline-block;
+    max-width: 200px;
+    min-width: 200px;
+    height: 100vh;
+    padding-left: 4px;
+    flex-grow: 0;
+    background-color: rgb(53, 133, 138);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+:host(.horizontal-menu>span.icon) {
+    width: 10px;
+    height: 10px;
+}
+
+div {
+    margin-top: 20px;
+}

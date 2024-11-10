@@ -108,7 +108,7 @@ app.UseEndpoints(endpoints =>
     endpoints.MapControllers();
 });
 
-/*
+
 var apiEndpoints = app.MapGroup("/api");
 
 //apiEndpoints.MapGet("/", () => "hello");
@@ -119,8 +119,8 @@ apiEndpoints.MapPost("/login", LoginEndPoint.Handler);
 
 apiEndpoints.MapPost("/register", RegisterEndPoint.Handler);
 
-apiEndpoints.MapGet("/logout", LogoutEndPoint.Handler).RequireAuthorization();
-
+apiEndpoints.MapGet("/logout", LogoutEndPoint.Handler);//.RequireAuthorization();
+/*
 
 apiEndpoints.MapGet("/projects", ProjectEndPoint.List)
     .RequireAuthorization();
