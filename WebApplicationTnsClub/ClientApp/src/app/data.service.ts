@@ -1,5 +1,5 @@
 ﻿import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { User } from './user.component/user';
 
 @Injectable()
@@ -8,16 +8,19 @@ export class DataService {
     private url = "/api/users";
 
     constructor(private http: HttpClient) {
+        console.log("Http client");
     }
 
     getUsers() {
         return this.http.get(this.url);
     }
 
-    getUser(id: number) {
-        return this.http.get(this.url + '/' + id);
+ //   getUser(id: number) {
+ //       return this.http.get(this.url + '/' + id);
+ //   }
+    getUser(login: string) {
+        return this.http.get(this.url + '/' + login);
     }
-    
     createUser(user: User) {
        
         return this.http.post(this.url, user);

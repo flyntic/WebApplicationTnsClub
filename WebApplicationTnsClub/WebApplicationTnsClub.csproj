@@ -18,15 +18,11 @@
 
   <ItemGroup>
 	  <Compile Remove="ClientApp\src\app\Новая папка1\**" />
-	  <Compile Remove="ClientApp\src\app\Новая папка\**" />
 	  <Content Remove="$(SpaRoot)**" />
 	  <Content Remove="ClientApp\src\app\Новая папка1\**" />
-	  <Content Remove="ClientApp\src\app\Новая папка\**" />
 	  <EmbeddedResource Remove="ClientApp\src\app\Новая папка1\**" />
-	  <EmbeddedResource Remove="ClientApp\src\app\Новая папка\**" />
 	  <None Remove="$(SpaRoot)**" />
 	  <None Remove="ClientApp\src\app\Новая папка1\**" />
-	  <None Remove="ClientApp\src\app\Новая папка\**" />
 	  <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
@@ -35,6 +31,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app.module.ts" />
+    <None Remove="ClientApp\src\app-routing.module.ts" />
+    <None Remove="ClientApp\src\app\app.menu.ts" />
+    <None Remove="ClientApp\src\app\authentication\register-user\register-user.component.ts" />
+    <None Remove="ClientApp\src\app\booking.component\club.module.ts" />
+    <None Remove="ClientApp\src\app\booking.component\club.ts" />
+    <None Remove="ClientApp\src\app\club.component\user.module.ts" />
+    <None Remove="ClientApp\src\app\club.component\user.ts" />
     <None Remove="ClientApp\src\app\data.service.ts" />
     <None Remove="ClientApp\src\app\htmlpage.html" />
     <None Remove="ClientApp\src\app\not-found.component.ts" />
@@ -49,18 +53,31 @@
     <None Remove="ClientApp\src\app\product-list.component.html" />
     <None Remove="ClientApp\src\app\product-list.component.ts" />
     <None Remove="ClientApp\src\app\product.ts" />
+    <None Remove="ClientApp\src\app\routes\app.routes.ts" />
+    <None Remove="ClientApp\src\app\shared\services\authentication.service.ts" />
+    <None Remove="ClientApp\src\app\shared\services\data.service.ts" />
+    <None Remove="ClientApp\src\app\shared\services\environment-url.service.ts" />
+    <None Remove="ClientApp\src\app\shared\services\repository.service.ts" />
     <None Remove="ClientApp\src\app\user.component\user-create.component.ts" />
     <None Remove="ClientApp\src\app\user.component\user-detail.component.ts" />
     <None Remove="ClientApp\src\app\user.component\user-edit.component.ts" />
     <None Remove="ClientApp\src\app\user.component\user-form.component.ts" />
     <None Remove="ClientApp\src\app\user.component\user.factory.ts" />
+    <None Remove="ClientApp\src\app\user.component\user.module.ts" />
     <None Remove="ClientApp\src\app\user.component\userServerResponse .ts" />
-    <None Remove="ClientApp\src\app\Новая папка\app.component.html" />
+    <None Remove="ClientApp\src\app\_interfaces\company.model.ts" />
+    <None Remove="ClientApp\src\app\_interfaces\response\registrationResponseDto.model.ts" />
+    <None Remove="ClientApp\src\app\_interfaces\user\userForRegistrationDto.model.ts" />
     <None Remove="ClientApp\src\environments\environment.prod.ts" />
     <None Remove="ClientApp\src\environments\environment.ts" />
+    <None Remove="ClientApp\src\spa\services\user.interface.ts" />
+    <None Remove="ClientApp\src\spa\spa.module.ts" />
+    <None Remove="ClientApp\src\spa\users\user-api.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="8.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.10">
@@ -75,28 +92,61 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\data.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\app-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\app.menu.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\authentication\register-user\register-user.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\club.component\club.module.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\club.component\club.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\booking.component\booking.module.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\booking.component\booking.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\not-found.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\routes\app.routes.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\services\authentication.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\data.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\environment-url.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\repository.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\user.component\user.module.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\user.component\user.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="ClientApp\src\app\user.component\user-create.component.ts">
+    <TypeScriptCompile Include="ClientApp\src\app\user.component\user-create\user-create.component.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="ClientApp\src\app\user.component\user-detail.component.ts">
+    <TypeScriptCompile Include="ClientApp\src\app\user.component\user-detail\user-detail.component.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="ClientApp\src\app\user.component\user-edit.component.ts">
+    <TypeScriptCompile Include="ClientApp\src\app\user.component\user-edit\user-edit.component.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="ClientApp\src\app\user.component\user-form.component.ts">
+    <TypeScriptCompile Include="ClientApp\src\app\user.component\user-form\user-form.component.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="ClientApp\src\app\user.component\user-list.component.ts">
+    <TypeScriptCompile Include="ClientApp\src\app\user.component\user-list\user-list.component.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\_interfaces\company.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\_interfaces\response\registrationResponseDto.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\_interfaces\user\userForRegistrationDto.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\environments\environment.prod.ts" />
     <TypeScriptCompile Include="ClientApp\src\environments\environment.ts" />
+    <TypeScriptCompile Include="ClientApp\src\spa\services\user.interface.ts" />
+    <TypeScriptCompile Include="ClientApp\src\spa\spa.module.ts" />
+    <TypeScriptCompile Include="ClientApp\src\spa\users\user-api.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\app\components\" />
+    <Folder Include="ClientApp\src\app\core.module\" />
   </ItemGroup>
 
 	<Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">

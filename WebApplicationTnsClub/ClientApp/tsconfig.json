@@ -9,6 +9,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "target": "ES2022",
+    "skipLibCheck": true,
     "useDefineForClassFields": false,
     "typeRoots": [
       "node_modules/@types"
