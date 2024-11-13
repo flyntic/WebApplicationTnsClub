@@ -1,10 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApplicationTnsClub.Models
 {
-    [Table(@"Rates")]
-    public class Rate :IBaseId //?: IdentityUser
+    public enum TypeOfDay{ 
+        Default,
+        Holiday,
+        WeekendDay
+    } 
+    [Table(@"Shedules")]
+    public class Shedule
     {
         [Column(@"id", TypeName = "bigint")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -23,20 +28,18 @@ namespace WebApplicationTnsClub.Models
         [Column(@"datedelete")]
         public DateTime? DateDelete { get; set; }
 
-        //====================================================
-        [Column("club")]
-        public Club? Club { get; set; }
+        //=====================================================
+        [Column(@"typeofday")]
+        public TypeOfDay? TypeOfDay { get; set; }
 
-        [Column("name")]
-        public string? Name { get; set; }
+        [Column(@"time")]
+        public Time? Time { get; set; }
 
-        [Column("shedules")]
-        public Shedule?[] Shedules { get; set; }
+        [Column(@"length")]
+        public int? Length { get; set; }
 
-        [Column("price")]
-        public int? Price { get; set; }
-        
-        [Column("comment")]
+        [Column(@"comment")]
         public string? Comment { get; set; }
+
     }
 }

@@ -3,12 +3,12 @@ using WebApplicationTnsClub.Models;
 
 namespace WebApplicationTnsClub.Controllers
 {  
-    public static class ExtensionBooking
+    public static class Extension
     {
-        public static Booking toNewBooking(this ApiBooking apibooking)
+        public static T toNew<T,ApiT>(this ApiT apiItem) where T:BaseId where ApiT : IBaseId
         {
-            BaseId id = new BaseId { DateCreate = DateTime.Now };
-            Booking booking = new Booking
+
+          //  T item = new ApiT();
             {
                // BaseId = id,
                 //FirstName = apiuser.FirstName,
@@ -16,7 +16,7 @@ namespace WebApplicationTnsClub.Controllers
               //  AvatarFile = apiuser.AvatarFile
 
             };
-            return booking;
+            return item;
         }
 
         public static ApiBooking toApiBooking(this Booking booking)

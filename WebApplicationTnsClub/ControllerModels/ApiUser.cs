@@ -14,9 +14,10 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace WebApplicationTnsClub.ControllerModels
 {
 
-    public class ApiUser : public User
-        {
-        public long Id{ get; set; }
+    public class ApiUser : IApiBaseId
+    {
+        public long Id { get; set; }
+        public string? Login { get; set; }   
         public string? AvatarFile { get; set; }
         public string? FirstName { get; set; }
         public string? SecondName { get; set; }
@@ -24,5 +25,5 @@ namespace WebApplicationTnsClub.ControllerModels
         public string? Comment { get; set; }
 
 
-    }
+}
 }

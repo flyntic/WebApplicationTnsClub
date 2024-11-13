@@ -11,7 +11,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WebApplicationTnsClub.Models
 {
-    [Table("Clubs")] 
+    [Table(@"Clubs")] 
     public class Club  :IBaseId //?: IdentityUser
     {
 
@@ -30,8 +30,9 @@ namespace WebApplicationTnsClub.Models
         public bool IsDeleted { get; set; }
 
         [Column(@"datedelete")]
-        public DateTime DateDelete { get; set; }
+        public DateTime? DateDelete { get; set; }
 
+       //======================================================
         [Column("logofile")]
         public string? Logofile {  get; set; }
         [Column("name")]
@@ -40,7 +41,13 @@ namespace WebApplicationTnsClub.Models
         public string? Address { get; set; }
         [Column("phone")]
         public string? Phone { get; set; }
+
+        [Column("link")]
+        public string? Link { get; set; }
+
         [Column("comment")]
         public string? Comment { get; set; }
+
+    
     }
 }

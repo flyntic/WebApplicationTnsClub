@@ -15,10 +15,16 @@ namespace WebApplicationTnsClub.DB
         public DbSet<Rate> Rates { get; set; }
         public DbSet<Club> Clubs { get; set; }
         public DbSet<Booking> Bookings { get; set; }
- 
-       //  public DbSet<Project> Projects { get; set; }
-       //  public DbSet<WorkTask> WorkTasks { get; set; }
-       //  public DbSet<ProjectUser> ProjectUsers { get; set; }
+        public DbSet<Shedule> Shedules { get; set; }
+        public DbSet<PersonalConnect> PersonalConnects { get; set; }
+        public DbSet<News> Newses { get; set; }
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<SheduleClub> SheduleClubs { get; set; }
+        public DbSet<SheduleClubOpenBooking> SheduleClubOpenBookings { get; set; }
+        public DbSet<Ticket> Tickets { get; set; }
+        //  public DbSet<Project> Projects { get; set; }
+        //  public DbSet<WorkTask> WorkTasks { get; set; }
+        //  public DbSet<ProjectUser> ProjectUsers { get; set; }
         //public DbSet<IdentityUserClaim<Guid>> IdentityUserClaims { get; set; }
         //public DbSet<IdentityUserClaim<string>> IdentityUserClaim
         //{
@@ -26,10 +32,31 @@ namespace WebApplicationTnsClub.DB
         //    set;
         //}
 
+        public DbSet<T>? Return<T>(T item) where T : class,  IBaseId
+        {
+
+            return Tickets;
+        
+        }
         public ApplicationContext(DbContextOptions options)
                 : base(options)
         {
             Database.EnsureCreated();
+        }
+
+        protected void _OnModelCreating<IBaseId>(ModelBuilder modelBuilder,IBaseId T)
+        {
+            modelBuilder.Entity<T>()
+             .Property(e => e.DateCreate)
+             .HasDefaultValueSql("GETDATE()");
+
+            modelBuilder.Entity<T>()
+                .Property(e => e.DateUpdate)
+                .HasDefaultValueSql("GETDATE()");
+
+            modelBuilder.Entity<T>()
+                .HasQueryFilter(e => !e.IsDeleted);
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -42,78 +69,19 @@ namespace WebApplicationTnsClub.DB
                 .Property(e => e.DateUpdate)
                 .HasDefaultValueSql("GETDATE()");
 
-      // todo     modelBuilder.Entity<User>()
-      //          .HasQueryFilter(p => EF.Property<bool>(p, "isdeleted") == false);
+            // todo     modelBuilder.Entity<User>()
+            //          .HasQueryFilter(p => EF.Property<bool>(p, "isdeleted") == false);
+            _OnModelCreating(modelBuilder, Booking);
+            _OnModelCreating(modelBuilder, Club);
+            _OnModelCreating(modelBuilder, Rate);
+            _OnModelCreating(modelBuilder, Shedule);
+            _OnModelCreating(modelBuilder, SheduleClub);
+            _OnModelCreating(modelBuilder, SheduleClubOpenBooking);
+            _OnModelCreating(modelBuilder, Ticket);
+            _OnModelCreating(modelBuilder, News);
+            _OnModelCreating(modelBuilder, Group);
+            _OnModelCreating(modelBuilder, PersonalConnect);
 
-            modelBuilder.Entity<Booking>()
-             .Property(e => e.DateCreate)
-             .HasDefaultValueSql("GETDATE()");
-
-            modelBuilder.Entity<Booking>()
-                .Property(e => e.DateUpdate)
-                .HasDefaultValueSql("GETDATE()");
-
-            modelBuilder.Entity<Booking>()
-                .HasQueryFilter(e => !e.IsDeleted);
-
-
-            modelBuilder.Entity<Club>()
-                .Property(e => e.DateCreate)
-                 .HasDefaultValueSql("GETDATE()");
-    
-            modelBuilder.Entity<Club>()
-                .Property(e => e.DateUpdate)
-                .HasDefaultValueSql("GETDATE()");
-
-            modelBuilder.Entity<Club>()
-                .HasQueryFilter(e => !e.IsDeleted);
-
-
-            modelBuilder.Entity<Rate>()
-                .Property(e => e.DateCreate)
-                 .HasDefaultValueSql("GETDATE()");
-
-            modelBuilder.Entity<Rate>()
-                .Property(e => e.DateUpdate)
-                .HasDefaultValueSql("GETDATE()");
-
-            modelBuilder.Entity<Rate>()
-                .HasQueryFilter(e => !e.IsDeleted);
-
-            base.OnModelCreating(modelBuilder);
-            /*
-                        modelBuilder.Entity<User>()
-                .Property(e => e.DateCreate)
-                .HasDefaultValueSql("GETDATE()");
-
-                        modelBuilder.Entity<User>()
-                            .Property(e => e.DateUpdate)
-                            .HasDefaultValueSql("GETDATE()");
-
-                        modelBuilder.Entity<User>()
-                            .HasQueryFilter(e => !e.IsDeleted);
-            */
-        }
-
-        public override int SaveChanges()
-        {
-            var modifiedEntities = ChangeTracker.Entries()
-            .Where(e => e.State == EntityState.Modified);
-
-            foreach (var entity in modifiedEntities)
-            {
-                entity.Property("DateUpdate").CurrentValue = DateTime.Now;
-            }
-
-            var deletedEntities = ChangeTracker.Entries()
-                .Where(e => e.State == EntityState.Deleted);
-
-            foreach (var entity in deletedEntities)
-            {
-                entity.State = EntityState.Modified;
-                entity.Property("DateDelete").CurrentValue = DateTime.Now;
-                entity.Property("IsDeleted").CurrentValue = true;
-            }
 
             return base.SaveChanges();
         }

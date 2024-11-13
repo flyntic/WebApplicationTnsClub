@@ -1,10 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApplicationTnsClub.Models
 {
-    [Table(@"Rates")]
-    public class Rate :IBaseId //?: IdentityUser
+    [Table(@"Tickets")]
+    public class Ticket
     {
         [Column(@"id", TypeName = "bigint")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -23,20 +23,26 @@ namespace WebApplicationTnsClub.Models
         [Column(@"datedelete")]
         public DateTime? DateDelete { get; set; }
 
-        //====================================================
-        [Column("club")]
-        public Club? Club { get; set; }
+        //======================================================
 
-        [Column("name")]
-        public string? Name { get; set; }
+        [Column(@"bookings")]
+        public Booking?[] Bookings { get; set; }
 
-        [Column("shedules")]
+        [Column(@"shedules")]
         public Shedule?[] Shedules { get; set; }
 
-        [Column("price")]
+        [Column(@"price")]
         public int? Price { get; set; }
-        
-        [Column("comment")]
+
+        [Column(@"isautorenewal")]
+        public boolean? isAutorenewal { get; set; }
+
+        [Column(@"state")]
+        public string? State { get; set; }
+
+        [Column(@"comment")]
         public string? Comment { get; set; }
+
+
     }
 }

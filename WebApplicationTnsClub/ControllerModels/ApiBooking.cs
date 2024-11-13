@@ -7,27 +7,31 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 using System.Numerics;
 using System.Reflection.Metadata;
+using WebApplicationTnsClub.Models;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WebApplicationTnsClub.ControllerModels
 {
     
-    public class ApiBooking 
+    public class ApiBooking: IApiBaseId
     {
-      
-        public long  Id { get; set; }
-        public long? UserId { get; set; }     
-        public long? ClubId { get; set; }
+        public long Id { get; set; }
+        public ApiUser?[] Users { get; set; }
+
+        public ApiClub? Club { get; set; }
+
         public DateTime? Date { get; set; }
         public string? Time { get; set; }
-        public string?  Length { get; set; }
-        public int? RateId { get; set; }
+        public string? Length { get; set; }
+        public StateBooking? StateBooking { get; set; }
+        public ApiRate? Rate { get; set; }
         public int? Price { get; set; }
-        public DateTime? DateOfBooking { get; set; }
-        public long? UserOfBookingId { get; set; }
-        public string? State { get; set; }
+        public ApiBooking? Next { get; set; }
+
+        public DateTime? DateOfSale { get; set; }
+
+        public ApiUser? UserOfSale { get; set; }
         public string? Comment { get; set; }
- 
-       
+
     }
 }

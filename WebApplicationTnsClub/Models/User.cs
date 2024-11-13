@@ -29,34 +29,24 @@ namespace WebApplicationTnsClub.Models
         public bool IsDeleted { get; set; }
 
         [Column(@"datedelete")]
-        public DateTime DateDelete { get; set; }
+        public DateTime? DateDelete { get; set; }
 
+        //============================================================
+        [Column("login")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public string?  Login { get; set; }
+ 
         [Column("avatarfile")]
         public string? AvatarFile {  get; set; }
-//        [Column("name")]
-//        public string? Name { get; set; }
         [Column("firstname")]
         public string? FirstName { get; set; }
         [Column("secondname")]
         public string? SecondName { get; set; }
         [Column("lastname")]
         public string? LastName { get; set; }
-        [Column("login")]
-        public string?  Login { get; set; }
-      //  [Column("phone")]
-      //  public string? Phone { get; set; }
-  //      [Column("email")]
- //       public string? Email { get; set; }
- //       [Column("role")]
-  //      public int?    Role { get; set; }
-//        [Column("parole")]
-//        public string? Parole { get; set; }
+ 
         [Column("comment")]
         public string? Comment { get; set; }
 
-   //     public DateTime DateCreate { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-   //     public DateTime DateUpdate { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-   //     public bool IsDeleted { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-   //     int IBaseId.Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    }
+     }
 }
