@@ -14,15 +14,25 @@ namespace WebApplicationTnsClub.Models
     [Table("Users")]
     public class User : IdentityUser
     {
-     //   [Column(@"id", TypeName = "bigint")]
-     //   [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-     //   [Key]
-     //   public int Id { get; set; }
+        [Column(@"id", TypeName = "bigint")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
+        public int Id { get; set; }
 
-        //[Column("avatar")]
-        //  public Blob? Avatar { get; set; }
+        [Column(@"datecreate")]
+        public DateTime DateCreate { get; set; }
+
+        [Column(@"dateupdate")]
+        public DateTime DateUpdate { get; set; }=DateTime.Now;
+
+        [Column(@"isdeleted")]
+        public bool IsDeleted { get; set; }
+
+        [Column(@"datedelete")]
+        public DateTime DateDelete { get; set; }
+
         [Column("avatarfile")]
-        public string? Avatarfile {  get; set; }
+        public string? AvatarFile {  get; set; }
 //        [Column("name")]
 //        public string? Name { get; set; }
         [Column("firstname")]
@@ -33,8 +43,8 @@ namespace WebApplicationTnsClub.Models
         public string? LastName { get; set; }
         [Column("login")]
         public string?  Login { get; set; }
-        [Column("phone")]
-        public string? Phone { get; set; }
+      //  [Column("phone")]
+      //  public string? Phone { get; set; }
   //      [Column("email")]
  //       public string? Email { get; set; }
  //       [Column("role")]
@@ -44,6 +54,9 @@ namespace WebApplicationTnsClub.Models
         [Column("comment")]
         public string? Comment { get; set; }
 
-       
+   //     public DateTime DateCreate { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+   //     public DateTime DateUpdate { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+   //     public bool IsDeleted { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+   //     int IBaseId.Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }

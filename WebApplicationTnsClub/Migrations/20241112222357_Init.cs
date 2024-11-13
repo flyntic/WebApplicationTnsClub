@@ -57,6 +57,10 @@ namespace WebApplicationTnsClub.Migrations
                 {
                     id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    datecreate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "GETDATE()"),
+                    dateupdate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "GETDATE()"),
+                    isdeleted = table.Column<bool>(type: "boolean", nullable: false),
+                    datedelete = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     user_id = table.Column<long>(type: "bigint", nullable: true),
                     club_id = table.Column<long>(type: "bigint", nullable: true),
                     date = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
@@ -80,6 +84,10 @@ namespace WebApplicationTnsClub.Migrations
                 {
                     id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    datecreate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "GETDATE()"),
+                    dateupdate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "GETDATE()"),
+                    isdeleted = table.Column<bool>(type: "boolean", nullable: false),
+                    datedelete = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     logofile = table.Column<string>(type: "text", nullable: true),
                     name = table.Column<string>(type: "text", nullable: true),
                     address = table.Column<string>(type: "text", nullable: true),
@@ -97,6 +105,10 @@ namespace WebApplicationTnsClub.Migrations
                 {
                     id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    datecreate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "GETDATE()"),
+                    dateupdate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "GETDATE()"),
+                    isdeleted = table.Column<bool>(type: "boolean", nullable: false),
+                    datedelete = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     name = table.Column<string>(type: "text", nullable: true),
                     price = table.Column<int>(type: "integer", nullable: true),
                     comment = table.Column<string>(type: "text", nullable: true)
@@ -217,12 +229,15 @@ namespace WebApplicationTnsClub.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "text", nullable: false),
+                    datecreate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "GETDATE()"),
+                    dateupdate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "GETDATE()"),
+                    isdeleted = table.Column<bool>(type: "boolean", nullable: false),
+                    datedelete = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     avatarfile = table.Column<string>(type: "text", nullable: true),
                     firstname = table.Column<string>(type: "text", nullable: true),
                     secondname = table.Column<string>(type: "text", nullable: true),
                     lastname = table.Column<string>(type: "text", nullable: true),
                     login = table.Column<string>(type: "text", nullable: true),
-                    phone = table.Column<string>(type: "text", nullable: true),
                     comment = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>

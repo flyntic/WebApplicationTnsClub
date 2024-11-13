@@ -12,13 +12,25 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace WebApplicationTnsClub.Models
 {
     [Table("Clubs")] 
-    public class Club  //?: IdentityUser
+    public class Club  :IBaseId //?: IdentityUser
     {
 
         [Column(@"id", TypeName = "bigint")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public long Id { get; set; }
+        public int Id { get; set; }
+
+        [Column(@"datecreate")]
+        public DateTime DateCreate { get; set; }
+
+        [Column(@"dateupdate")]
+        public DateTime DateUpdate { get; set; } = DateTime.Now;
+
+        [Column(@"isdeleted")]
+        public bool IsDeleted { get; set; }
+
+        [Column(@"datedelete")]
+        public DateTime DateDelete { get; set; }
 
         [Column("logofile")]
         public string? Logofile {  get; set; }
@@ -30,7 +42,5 @@ namespace WebApplicationTnsClub.Models
         public string? Phone { get; set; }
         [Column("comment")]
         public string? Comment { get; set; }
-
-       
     }
 }

@@ -27,7 +27,7 @@ builder.Services.AddControllers();
 
 //builder.Services.AddSwaggerGen();
 
-string connectionString = "Host=localhost;Port=5432;Database=tennisclub_8;Username=postgres;Password='09870'";
+string connectionString = "Host=localhost;Port=5432;Database=tennisclub_10;Username=postgres;Password='09870'";
 
 builder.Services.AddDbContext<ApplicationContext>(options => options.UseNpgsql(connectionString),
     optionsLifetime: ServiceLifetime.Singleton);

@@ -12,19 +12,29 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace WebApplicationTnsClub.Models
 {
     [Table("Bookings")]
-    public class Booking 
+    public class Booking :IBaseId
     {
         [Column(@"id", TypeName = "bigint")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public long  Id { get; set; }
+        public int Id { get; set; }
+
+        [Column(@"datecreate")]
+        public DateTime DateCreate { get; set; }
+
+        [Column(@"dateupdate")]
+        public DateTime DateUpdate { get; set; } = DateTime.Now;
+
+        [Column(@"isdeleted")]
+        public bool IsDeleted { get; set; }
+
+        [Column(@"datedelete")]
+        public DateTime DateDelete { get; set; }
 
         [Column("user_id")]
          public long? UserId { get; set; }
       
-      //  [ForeignKey("UserId")]
-      //  public User? User { get; set; }
-
+ 
         [Column("club_id")]
         public long? ClubId { get; set; }
    //     [ForeignKey("ClubId")]
@@ -56,7 +66,5 @@ namespace WebApplicationTnsClub.Models
 
         [Column("comment")]
         public string? Comment { get; set; }
- 
-       
     }
 }

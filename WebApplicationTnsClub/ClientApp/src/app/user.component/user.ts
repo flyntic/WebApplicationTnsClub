@@ -1,4 +1,15 @@
-﻿
+﻿/*
+export class BaseId {
+
+    constructor(
+        public id?: any,
+        public datecreate?: any,
+        public dateupdate?: any,
+        public isdeleted?: boolean) { }
+
+
+}
+*/
 export class User {
   
   constructor(

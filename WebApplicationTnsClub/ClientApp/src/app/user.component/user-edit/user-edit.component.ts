@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataService } from './../../data.service';
-import { User } from './../user';
+import {  User } from './../user';
 //import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -17,13 +17,13 @@ export class UserEditComponent implements OnInit {
     loaded: boolean = false;
 
     constructor(private dataService: DataService, private router: Router, activeRoute: ActivatedRoute) {
-        this.id = Number.parseInt(activeRoute.snapshot.params["id"]);
-        this.login = String(activeRoute.snapshot.params["login"]);
+        this.id= Number.parseInt(activeRoute.snapshot.params["id"]);
+       // this.login = String(activeRoute.snapshot.params["login"]);
     }
 
     ngOnInit() {
-        if (this.login)
-            this.dataService.getUser(this.login)
+        if (this.id)
+            this.dataService.getUser(this.id)
                 .subscribe((data: User) => {
                     this.user = data;
                     if (this.user != null) this.loaded = true;

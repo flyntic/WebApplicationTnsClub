@@ -18,13 +18,14 @@ export class DataService {
  //   getUser(id: number) {
  //       return this.http.get(this.url + '/' + id);
  //   }
-    getUser(login: string) {
-        return this.http.get(this.url + '/' + login);
+    getUser(id: number) {
+        return this.http.get(this.url + '/' + id); 
     }
     createUser(user: User) {
-       
-        return this.http.post(this.url, user);
-
+        console.log("create user:"+user.toString());
+        const result: any = this.http.post(this.url, user);
+        console.log(result);
+        return result;
     }
 
     updateUser(user: User) {

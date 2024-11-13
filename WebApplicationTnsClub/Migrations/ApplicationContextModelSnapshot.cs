@@ -241,9 +241,29 @@ namespace WebApplicationTnsClub.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("date");
 
+                    b.Property<DateTime>("DateCreate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datecreate")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<DateTime>("DateDelete")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datedelete");
+
                     b.Property<DateTime?>("DateOfBooking")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("date_of_booking");
+
+                    b.Property<DateTime>("DateUpdate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("dateupdate")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean")
+                        .HasColumnName("isdeleted");
 
                     b.Property<string>("Length")
                         .HasColumnType("text")
@@ -295,6 +315,26 @@ namespace WebApplicationTnsClub.Migrations
                         .HasColumnType("text")
                         .HasColumnName("comment");
 
+                    b.Property<DateTime>("DateCreate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datecreate")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<DateTime>("DateDelete")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datedelete");
+
+                    b.Property<DateTime>("DateUpdate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("dateupdate")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean")
+                        .HasColumnName("isdeleted");
+
                     b.Property<string>("Logofile")
                         .HasColumnType("text")
                         .HasColumnName("logofile");
@@ -325,6 +365,26 @@ namespace WebApplicationTnsClub.Migrations
                         .HasColumnType("text")
                         .HasColumnName("comment");
 
+                    b.Property<DateTime>("DateCreate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datecreate")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<DateTime>("DateDelete")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datedelete");
+
+                    b.Property<DateTime>("DateUpdate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("dateupdate")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean")
+                        .HasColumnName("isdeleted");
+
                     b.Property<string>("Name")
                         .HasColumnType("text")
                         .HasColumnName("name");
@@ -342,7 +402,7 @@ namespace WebApplicationTnsClub.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.Property<string>("Avatarfile")
+                    b.Property<string>("AvatarFile")
                         .HasColumnType("text")
                         .HasColumnName("avatarfile");
 
@@ -350,9 +410,29 @@ namespace WebApplicationTnsClub.Migrations
                         .HasColumnType("text")
                         .HasColumnName("comment");
 
+                    b.Property<DateTime>("DateCreate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datecreate")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<DateTime>("DateDelete")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datedelete");
+
+                    b.Property<DateTime>("DateUpdate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("dateupdate")
+                        .HasDefaultValueSql("GETDATE()");
+
                     b.Property<string>("FirstName")
                         .HasColumnType("text")
                         .HasColumnName("firstname");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean")
+                        .HasColumnName("isdeleted");
 
                     b.Property<string>("LastName")
                         .HasColumnType("text")
@@ -361,10 +441,6 @@ namespace WebApplicationTnsClub.Migrations
                     b.Property<string>("Login")
                         .HasColumnType("text")
                         .HasColumnName("login");
-
-                    b.Property<string>("Phone")
-                        .HasColumnType("text")
-                        .HasColumnName("phone");
 
                     b.Property<string>("SecondName")
                         .HasColumnType("text")

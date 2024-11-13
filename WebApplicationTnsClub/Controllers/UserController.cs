@@ -4,6 +4,8 @@ using System.Linq.Expressions;
 using global::WebApplicationTnsClub.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebApplicationTnsClub.ControllerModels;
+using WebApplicationTnsClub.Controllers;
 using WebApplicationTnsClub.DB;
 
 namespace WebApplicationTnsClub.Controllers
@@ -25,26 +27,43 @@ namespace WebApplicationTnsClub.Controllers
             }
         }
         [HttpGet]
-        public async Task<IEnumerable<User>> Get()
+        public async Task<IEnumerable<ApiUser>> Get()
         {
-            return await db.Users.ToListAsync();
+           List<ApiUser> apiUsers = new List<ApiUser>();
+           try
+            {
+                List<User> users = await db.Users.ToListAsync();
+                foreach (var user in users)
+                {
+                    apiUsers.Add(user.toApiUser());
+                    
+                }
+                return apiUsers;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
     
-        [HttpGet("{login}")]
-        public async Task<User> Get(string login)
+        [HttpGet("{id}")]
+        public async Task<ApiUser> Get(long id)
         {
-            User user = await db.Users.FirstOrDefaultAsync(x => x.Login == login);
-            return user;
+                User user = await db.Users.FirstOrDefaultAsync(x => x.Id == id);
+                    
+            return user.toApiUser();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(User user)
+        public async Task<IActionResult> Post(ApiUser user)
         {
             if (ModelState.IsValid)
             {
-    
-                await db.Users.AddAsync(user);
-                await db.SaveChangesAsync();
+                Console.WriteLine("add user" + user.ToString());
+                await db.Users.AddAsync(user);//.toNewUser()
+                Console.WriteLine("add");
+                db.SaveChanges();
+                Console.WriteLine("end add");
 
               /*  if (user.Avatarfile!=null)
                 {   string bdfilename = "c://wwwroot/uploads/save" + user.Id + ".jpg";
@@ -67,24 +86,25 @@ namespace WebApplicationTnsClub.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put(User user)
+        public async Task<IActionResult> Put(ApiUser user)
         {
             if (ModelState.IsValid)
             {
-                db.Update(user);
+              //todo  db.Update(user.toUser());
                 await db.SaveChangesAsync();
                 return Ok(user);
             }
             return BadRequest(ModelState);
         }
 
-        [HttpDelete("{login}")]
-        public async Task<IActionResult> Delete(string login)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(long id)
         {
-            User user = await db.Users.FirstOrDefaultAsync(x => x.Login.Equals(login));
+            User user = await db.Users.FirstOrDefaultAsync(x => x.Id.Equals(id));
             if (user != null)
             {
-                db.Users.Remove(user);
+                user.IsDeleted = true;
+               // db.Users.Remove(user);
                 await db.SaveChangesAsync();
             }
             return Ok(user);

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using System.Net;
+using WebApplicationTnsClub.ControllerModels;
 using WebApplicationTnsClub.DataTransferObjects;
 using WebApplicationTnsClub.Models;
 
