@@ -4,12 +4,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace WebApplicationTnsClub.Models
 {
     [Table(@"Tickets")]
-    public class Ticket
+    public class Ticket:BaseId
     {
         [Column(@"id", TypeName = "bigint")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Column(@"datecreate")]
         public DateTime DateCreate { get; set; }
@@ -35,7 +35,7 @@ namespace WebApplicationTnsClub.Models
         public int? Price { get; set; }
 
         [Column(@"isautorenewal")]
-        public boolean? isAutorenewal { get; set; }
+        public bool? isAutorenewal { get; set; }
 
         [Column(@"state")]
         public string? State { get; set; }

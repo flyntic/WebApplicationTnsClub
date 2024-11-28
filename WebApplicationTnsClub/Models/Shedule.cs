@@ -9,12 +9,12 @@ namespace WebApplicationTnsClub.Models
         WeekendDay
     } 
     [Table(@"Shedules")]
-    public class Shedule
+    public class Shedule:BaseId
     {
         [Column(@"id", TypeName = "bigint")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Column(@"datecreate")]
         public DateTime DateCreate { get; set; }
@@ -33,7 +33,7 @@ namespace WebApplicationTnsClub.Models
         public TypeOfDay? TypeOfDay { get; set; }
 
         [Column(@"time")]
-        public Time? Time { get; set; }
+        public string? Time { get; set; }
 
         [Column(@"length")]
         public int? Length { get; set; }

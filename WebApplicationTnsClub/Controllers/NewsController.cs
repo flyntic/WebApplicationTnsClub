@@ -12,21 +12,21 @@ namespace WebApplicationTnsClub.Controllers
 {
     [ApiController]
     [Route("api/users")]
-    public class UserController : Controller
+    public class NewsController : Controller
     {
         ApplicationContext db;
-        public UserController(ApplicationContext context)
+        public NewsController(ApplicationContext context)
         {
             db = context;
-            if (!db.Users.Any())
-            {
+          //  if (!db.Users.Any())
+          //  {
                 //  db.Users.Add(new User { name = "iPhone X", last_name = "Apple", login = "79900" });
                 //  db.Users.Add(new User { name = "Galaxy S8", last_name = "Samsung", login = "49900 "});
                 //  db.Users.Add(new User { name = "Pixel 2", last_name = "Google", login = "52900" });
                 //  db.SaveChanges();
-            }
+          //  }
         }
-        [HttpGet]
+     /*   [HttpGet]
         public async Task<IEnumerable<ApiUser>> Get()
         {
            List<ApiUser> apiUsers = new List<ApiUser>();
@@ -65,7 +65,7 @@ namespace WebApplicationTnsClub.Controllers
                 db.SaveChanges();
                 Console.WriteLine("end add");
 
-              /*  if (user.Avatarfile!=null)
+        */      /*  if (user.Avatarfile!=null)
                 {   string bdfilename = "c://wwwroot/uploads/save" + user.Id + ".jpg";
                     try
                     {  // System.IO.File.Copy(user.Avatarfile, bdfilename);
@@ -79,7 +79,7 @@ namespace WebApplicationTnsClub.Controllers
                     }
 
                 } */
-                
+          /*      
                 return Ok(user);
             }
             return BadRequest(ModelState);
@@ -108,6 +108,6 @@ namespace WebApplicationTnsClub.Controllers
                 await db.SaveChangesAsync();
             }
             return Ok(user);
-        }
+        }*/
     }
 }

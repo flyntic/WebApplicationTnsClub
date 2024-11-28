@@ -8,7 +8,7 @@ namespace WebApplicationTnsClub.Endpoints
 {
     public class UserEndPoint
     {
-        private static Dictionary<string,string> userObj =new Dictionary<string, string>() { { "user_id", " 1" }, { "username", "Anna" } };
+        private static Dictionary<string, string> userObj = new Dictionary<string, string>();/// { { "user_id", " 1" }, { "username", "Anna" } };
         public static Dictionary<string, string> Handler(HttpContext context)//(ClaimsPrincipal user)=>//
               {
             Console.WriteLine("call user");

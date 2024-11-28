@@ -12,10 +12,10 @@ namespace WebApplicationTnsClub.Controllers
 {
     [ApiController]
     [Route("api/users")]
-    public class UserController : Controller
+    public class SheduleController : Controller
     {
         ApplicationContext db;
-        public UserController(ApplicationContext context)
+        public SheduleController(ApplicationContext context)
         {
             db = context;
             if (!db.Users.Any())
@@ -26,7 +26,7 @@ namespace WebApplicationTnsClub.Controllers
                 //  db.SaveChanges();
             }
         }
-        [HttpGet]
+    /*    [HttpGet]
         public async Task<IEnumerable<ApiUser>> Get()
         {
            List<ApiUser> apiUsers = new List<ApiUser>();
@@ -64,7 +64,7 @@ namespace WebApplicationTnsClub.Controllers
                 Console.WriteLine("add");
                 db.SaveChanges();
                 Console.WriteLine("end add");
-
+    */
               /*  if (user.Avatarfile!=null)
                 {   string bdfilename = "c://wwwroot/uploads/save" + user.Id + ".jpg";
                     try
@@ -79,7 +79,7 @@ namespace WebApplicationTnsClub.Controllers
                     }
 
                 } */
-                
+         /*       
                 return Ok(user);
             }
             return BadRequest(ModelState);
@@ -108,6 +108,6 @@ namespace WebApplicationTnsClub.Controllers
                 await db.SaveChangesAsync();
             }
             return Ok(user);
-        }
+        }*/
     }
 }

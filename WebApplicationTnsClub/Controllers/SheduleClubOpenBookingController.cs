@@ -12,20 +12,15 @@ namespace WebApplicationTnsClub.Controllers
 {
     [ApiController]
     [Route("api/users")]
-    public class UserController : Controller
+    public class SheduleClubOpenBookingController : Controller
     {
         ApplicationContext db;
-        public UserController(ApplicationContext context)
+        public SheduleClubOpenBookingController(ApplicationContext context)
         {
             db = context;
-            if (!db.Users.Any())
-            {
-                //  db.Users.Add(new User { name = "iPhone X", last_name = "Apple", login = "79900" });
-                //  db.Users.Add(new User { name = "Galaxy S8", last_name = "Samsung", login = "49900 "});
-                //  db.Users.Add(new User { name = "Pixel 2", last_name = "Google", login = "52900" });
-                //  db.SaveChanges();
-            }
+            
         }
+        /*
         [HttpGet]
         public async Task<IEnumerable<ApiUser>> Get()
         {
@@ -64,7 +59,7 @@ namespace WebApplicationTnsClub.Controllers
                 Console.WriteLine("add");
                 db.SaveChanges();
                 Console.WriteLine("end add");
-
+        */
               /*  if (user.Avatarfile!=null)
                 {   string bdfilename = "c://wwwroot/uploads/save" + user.Id + ".jpg";
                     try
@@ -80,7 +75,7 @@ namespace WebApplicationTnsClub.Controllers
 
                 } */
                 
-                return Ok(user);
+        /*        return Ok(user);
             }
             return BadRequest(ModelState);
         }
@@ -108,6 +103,6 @@ namespace WebApplicationTnsClub.Controllers
                 await db.SaveChangesAsync();
             }
             return Ok(user);
-        }
+        }*/
     }
 }

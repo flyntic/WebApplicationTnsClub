@@ -14,16 +14,18 @@ namespace WebApplicationTnsClub.Models
     [Table("Users")]
     public class User : IdentityUser
     {
-        [Column(@"id", TypeName = "bigint")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Key]
-        public int Id { get; set; }
+       // [Column(@"id", TypeName = "text")]
+      //  [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+      /// <summary>
+      /// / [Key]
+      /// </summary>
+      //  override public string Id { get; set; } //= Guid.NewGuid();
 
         [Column(@"datecreate")]
         public DateTime DateCreate { get; set; }
 
         [Column(@"dateupdate")]
-        public DateTime DateUpdate { get; set; }=DateTime.Now;
+        public DateTime DateUpdate { get; set; }
 
         [Column(@"isdeleted")]
         public bool IsDeleted { get; set; }
@@ -47,6 +49,11 @@ namespace WebApplicationTnsClub.Models
  
         [Column("comment")]
         public string? Comment { get; set; }
+
+        public User():base()
+        {
+            
+        }
 
      }
 }

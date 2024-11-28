@@ -4,12 +4,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace WebApplicationTnsClub.Models
 {
     [Table(@"SheduleClubOpenBookings")]
-    public class SheduleClubOpenBooking
+    public class SheduleClubOpenBooking:BaseId
     {
         [Column(@"id", TypeName = "bigint")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Column(@"datecreate")]
         public DateTime DateCreate { get; set; }
@@ -29,7 +29,7 @@ namespace WebApplicationTnsClub.Models
         public SheduleClub? SheduleClub { get; set; }
 
         [Column(@"date")]
-        public Date? Date { get; set; }
+        public DateTime? Date { get; set; }
 
         [Column(@"state_booking")]
         public StateBooking? StateBooking { get; set; }

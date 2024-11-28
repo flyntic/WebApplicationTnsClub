@@ -26,7 +26,7 @@ namespace WebApplicationTnsClub.Controllers
                 //  db.SaveChanges();
             }
         }
-        [HttpGet]
+    /*    [HttpGet]
         public async Task<IEnumerable<ApiGroup>> Get()
         {
            List<ApiGroup> apiGroups = new List<ApiGroup>();
@@ -65,7 +65,7 @@ namespace WebApplicationTnsClub.Controllers
                 db.SaveChanges();
               //  Console.WriteLine("end add");
 
-              /*  if (user.Avatarfile!=null)
+         */     /*  if (user.Avatarfile!=null)
                 {   string bdfilename = "c://wwwroot/uploads/save" + user.Id + ".jpg";
                     try
                     {  // System.IO.File.Copy(user.Avatarfile, bdfilename);
@@ -79,7 +79,7 @@ namespace WebApplicationTnsClub.Controllers
                     }
 
                 } */
-                
+        /*        
                 return Ok(group);
             }
             return BadRequest(ModelState);
@@ -108,6 +108,6 @@ namespace WebApplicationTnsClub.Controllers
                 await db.SaveChangesAsync();
             }
             return Ok(group);
-        }
+        }*/
     }
 }

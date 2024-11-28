@@ -4,12 +4,13 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Xml;
 using WebApplicationTnsClub.ControllerModels;
+using WebApplicationTnsClub.Extensions;
 using WebApplicationTnsClub.Models;
 
 namespace WebApplicationTnsClub.DB
 {
 
-    public class ApplicationContext : IdentityDbContext
+    public class ApplicationContext : IdentityDbContext<IdentityUser>
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Rate> Rates { get; set; }
@@ -32,19 +33,19 @@ namespace WebApplicationTnsClub.DB
         //    set;
         //}
 
-        public DbSet<T>? Return<T>(T item) where T : class,  IBaseId
+     /*   public DbSet<T>? _Return<T>(T item) where T : class,  IBaseId
         {
 
-            return Tickets;
+            return this.Users as DbSet<T>;
         
-        }
+        }*/
         public ApplicationContext(DbContextOptions options)
                 : base(options)
         {
             Database.EnsureCreated();
         }
 
-        protected void _OnModelCreating<IBaseId>(ModelBuilder modelBuilder,IBaseId T)
+        protected void _OnModelCreating<T>(ModelBuilder modelBuilder) where T:BaseId
         {
             modelBuilder.Entity<T>()
              .Property(e => e.DateCreate)
@@ -61,7 +62,9 @@ namespace WebApplicationTnsClub.DB
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>()
+            modelBuilder.ApplyUtcDateTimeConverter();
+
+         /*   modelBuilder.Entity<User>()
                 .Property(e => e.DateCreate)
                 .HasDefaultValueSql("GETDATE()");
 
@@ -71,30 +74,35 @@ namespace WebApplicationTnsClub.DB
 
             // todo     modelBuilder.Entity<User>()
             //          .HasQueryFilter(p => EF.Property<bool>(p, "isdeleted") == false);
-            _OnModelCreating(modelBuilder, Booking);
-            _OnModelCreating(modelBuilder, Club);
-            _OnModelCreating(modelBuilder, Rate);
-            _OnModelCreating(modelBuilder, Shedule);
-            _OnModelCreating(modelBuilder, SheduleClub);
-            _OnModelCreating(modelBuilder, SheduleClubOpenBooking);
-            _OnModelCreating(modelBuilder, Ticket);
-            _OnModelCreating(modelBuilder, News);
-            _OnModelCreating(modelBuilder, Group);
-            _OnModelCreating(modelBuilder, PersonalConnect);
+            _OnModelCreating<Booking>(modelBuilder);
+            _OnModelCreating<Club>(modelBuilder );
+            _OnModelCreating<Rate>(modelBuilder );
+            _OnModelCreating<Shedule>(modelBuilder );
+            _OnModelCreating<SheduleClub>(modelBuilder );
+            _OnModelCreating<SheduleClubOpenBooking>(modelBuilder );
+            _OnModelCreating<Ticket>(modelBuilder );
+            _OnModelCreating<News>(modelBuilder );
+            _OnModelCreating<Group>(modelBuilder );
+            _OnModelCreating<PersonalConnect>(modelBuilder );
+        */
 
-
-            return base.SaveChanges();
+             base.OnModelCreating(modelBuilder);
         }
 
-            /*    protected override void OnModelCreating(ModelBuilder modelBuilder)
-                {
-                     base.OnModelCreating(modelBuilder);
-                    //modelBuilder.ApplyConfiguration(new CompanyConfiguration());
-                    //modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
-                }*/
-            // public DbSet<User> Users { get; set; }
-            // public DbSet<Employee> Employees { get; set; }
-        }
+      /*  internal object _Return<T>() where T : IApiBaseId
+        {
+            throw new NotImplementedException();
+        }*/
+
+        /*    protected override void OnModelCreating(ModelBuilder modelBuilder)
+            {
+                 base.OnModelCreating(modelBuilder);
+                //modelBuilder.ApplyConfiguration(new CompanyConfiguration());
+                //modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
+            }*/
+        // public DbSet<User> Users { get; set; }
+        // public DbSet<Employee> Employees { get; set; }
+    }
         /*
         public class Project
         {

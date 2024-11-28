@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using TinifyAPI;
+using WebApplicationTnsClub.Models;
 
 namespace WebApplicationTnsClub.Endpoints
 {

@@ -1,4 +1,7 @@
-﻿namespace WebApplicationTnsClub.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace WebApplicationTnsClub.Models
 {
     public enum TypeConnect { 
       Parent,
@@ -7,12 +10,12 @@
     }
 
     [Table(@"PersonalConnects")]
-    public class PersonalConnect
+    public class PersonalConnect:BaseId
     {
         [Column(@"id", TypeName = "bigint")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Column(@"datecreate")]
         public DateTime DateCreate { get; set; }

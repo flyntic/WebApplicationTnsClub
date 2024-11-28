@@ -5,7 +5,7 @@ namespace WebApplicationTnsClub.Controllers
 {
     public static class ExtensionUser
     {
-        public static User toNew(this ApiUser apiuser)
+    /*    public static User toNew(this ApiUser apiuser)
         {
             BaseId id = new BaseId { DateCreate = DateTime.Now };
             User user = new User
@@ -33,6 +33,6 @@ namespace WebApplicationTnsClub.Controllers
 
             };
             return apiuser;
-        }
+        }*/
     }
 }

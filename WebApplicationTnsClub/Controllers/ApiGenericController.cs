@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.InteropServices;
 using global::WebApplicationTnsClub.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -21,15 +22,16 @@ namespace WebApplicationTnsClub.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<T>> Get<T>() where T:IApiBaseId
+        public async Task<IEnumerable<ApiT>> Get<TEntity,ApiT>() where TEntity:BaseId where ApiT:ApiBaseId
         {
-           List<T> apiArray = new List<T>();
+           List<ApiT> apiArray = new List<ApiT>();
            try
             {
-                List<T> array = await db.Return<T>().ToListAsync();
-                foreach (var t in array)
+                
+                List<TEntity> array = await db.Set<TEntity>().ToListAsync();
+                foreach (TEntity arr  in array)
                 {
-                    apiArray.Add(t.toApi());
+                    apiArray.Add(arr.toApi<ApiT,TEntity>());
                     
                 }
                 return apiArray;
@@ -39,69 +41,106 @@ namespace WebApplicationTnsClub.Controllers
                 return null;
             }
         }
-    
-        [HttpGet("{id}")]
-        public async Task<ApiUser> Get(long id)
-        {
-                User user = await db.Users.FirstOrDefaultAsync(x => x.Id == id);
-                    
-            return user.toApiUser();
-        }
 
         [HttpPost]
-        public async Task<IActionResult> Post(ApiUser user)
+        public async Task<IActionResult> Post<TEntity,ApiT>(ApiT apiItem) where TEntity : BaseId where ApiT : ApiBaseId
         {
             if (ModelState.IsValid)
             {
-                Console.WriteLine("add user" + user.ToString());
-                await db.Users.AddAsync(user);//.toNewUser()
-                Console.WriteLine("add");
-                db.SaveChanges();
-                Console.WriteLine("end add");
+                //   Console.WriteLine("add user" + user.ToString());
+                User user = null;
+                if (apiItem.GetType().Equals(typeof(ApiBooking)))
+                {
+                    Booking booking = null;
+                    ApiBooking apiBooking = apiItem as ApiBooking;
+                //    apiBooking.toNew<ApiBooking, Booking>(booking);
+                    await db.Bookings.AddAsync(booking);//.toNewUser()
+                }                             //    Console.WriteLine("add");
+                       db.SaveChanges();
+                //   Console.WriteLine("end add");
 
-              /*  if (user.Avatarfile!=null)
-                {   string bdfilename = "c://wwwroot/uploads/save" + user.Id + ".jpg";
-                    try
-                    {  // System.IO.File.Copy(user.Avatarfile, bdfilename);
-                      //  System.IO.File.Delete(user.Avatarfile);                       
-                        user.Avatarfile = bdfilename;
-                        db.Users.Update(user);
-                        db.SaveChanges();                        
-                    }
-                    catch (Exception ex) { 
-                      Console.WriteLine(ex.Message);
-                    }
+                /*  if (user.Avatarfile!=null)
+                  {   string bdfilename = "c://wwwroot/uploads/save" + user.Id + ".jpg";
+                      try
+                      {  // System.IO.File.Copy(user.Avatarfile, bdfilename);
+                        //  System.IO.File.Delete(user.Avatarfile);                       
+                          user.Avatarfile = bdfilename;
+                          db.Users.Update(user);
+                          db.SaveChanges();                        
+                      }
+                      catch (Exception ex) { 
+                        Console.WriteLine(ex.Message);
+                      }
 
-                } */
-                
+                  } */
+
                 return Ok(user);
             }
             return BadRequest(ModelState);
         }
-
-        [HttpPut]
-        public async Task<IActionResult> Put(ApiUser user)
-        {
-            if (ModelState.IsValid)
+        /*
+            [HttpGet("{id}")]
+            public async Task<T> Get<T,ApiT>(long id) where T:IBaseId where ApiT:IApiBaseId
             {
-              //todo  db.Update(user.toUser());
-                await db.SaveChangesAsync();
+                    T t = await db._Return<T>.FirstOrDefaultAsync(x => x.Id == id);
+
+                return t.toApi();
+            }
+
+            [HttpPost]
+            public async Task<IActionResult> Post(ApiUser user)
+            {
+                if (ModelState.IsValid)
+                {
+                    Console.WriteLine("add user" + user.ToString());
+                    await db.Users.AddAsync(user);//.toNewUser()
+                    Console.WriteLine("add");
+                    db.SaveChanges();
+                    Console.WriteLine("end add");
+        */
+        /*  if (user.Avatarfile!=null)
+          {   string bdfilename = "c://wwwroot/uploads/save" + user.Id + ".jpg";
+              try
+              {  // System.IO.File.Copy(user.Avatarfile, bdfilename);
+                //  System.IO.File.Delete(user.Avatarfile);                       
+                  user.Avatarfile = bdfilename;
+                  db.Users.Update(user);
+                  db.SaveChanges();                        
+              }
+              catch (Exception ex) { 
+                Console.WriteLine(ex.Message);
+              }
+
+          } */
+
+        /*            return Ok(user);
+                }
+                return BadRequest(ModelState);
+            }
+
+            [HttpPut]
+            public async Task<IActionResult> Put(ApiUser user)
+            {
+                if (ModelState.IsValid)
+                {
+                  //todo  db.Update(user.toUser());
+                    await db.SaveChangesAsync();
+                    return Ok(user);
+                }
+                return BadRequest(ModelState);
+            }
+
+            [HttpDelete("{id}")]
+            public async Task<IActionResult> Delete(long id)
+            {
+                User user = await db.Users.FirstOrDefaultAsync(x => x.Id.Equals(id));
+                if (user != null)
+                {
+                    user.IsDeleted = true;
+                   // db.Users.Remove(user);
+                    await db.SaveChangesAsync();
+                }
                 return Ok(user);
-            }
-            return BadRequest(ModelState);
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(long id)
-        {
-            User user = await db.Users.FirstOrDefaultAsync(x => x.Id.Equals(id));
-            if (user != null)
-            {
-                user.IsDeleted = true;
-               // db.Users.Remove(user);
-                await db.SaveChangesAsync();
-            }
-            return Ok(user);
-        }
+            }*/
     }
 }

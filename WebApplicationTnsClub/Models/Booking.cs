@@ -21,12 +21,12 @@ namespace WebApplicationTnsClub.Models
     }
 
     [Table(@"Bookings")]
-    public class Booking :IBaseId
+    public class Booking :BaseId
     {
         [Column(@"id", TypeName = "bigint")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Column(@"datecreate")]
         public DateTime DateCreate { get; set; }
@@ -43,7 +43,7 @@ namespace WebApplicationTnsClub.Models
         //======================================================
  
         [Column(@"user")]
-        public user?[4] Users { get; set; }
+        public User?[] Users { get; set; }
       
         [Column(@"club")]
         public Club? Club { get; set; }
@@ -71,7 +71,7 @@ namespace WebApplicationTnsClub.Models
         public DateTime? DateOfSale { get; set; }
 
         [Column(@"user_of_sale")]
-        public user? UserOfSale { get; set; }
+        public User? UserOfSale { get; set; }
    
         [Column(@"comment")]
         public string? Comment { get; set; }

@@ -11,8 +11,8 @@ namespace WebApplicationTnsClub.Services
         public MappingProfiles()
         {
             // CreateMap<Address, AddressDto>();
-            CreateMap<UserForRegistrationDto, User>()
-               .ForMember(u => u.UserName, opt => opt.MapFrom(x => x.Email));
+          //anna  CreateMap<UserForRegistrationDto, User>()
+          //     .ForMember(u => u.UserName, opt => opt.MapFrom(x => x.Email));
         }
     }
 }

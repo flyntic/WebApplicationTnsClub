@@ -4,12 +4,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace WebApplicationTnsClub.Models
 {
     [Table(@"News")]
-    public class News:IBaseId
+    public class News:BaseId
     {
         [Column(@"id", TypeName = "bigint")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Column(@"datecreate")]
         public DateTime DateCreate { get; set; }

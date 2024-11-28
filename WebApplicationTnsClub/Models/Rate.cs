@@ -4,12 +4,12 @@ using System.ComponentModel.DataAnnotations;
 namespace WebApplicationTnsClub.Models
 {
     [Table(@"Rates")]
-    public class Rate :IBaseId //?: IdentityUser
+    public class Rate :BaseId //?: IdentityUser
     {
         [Column(@"id", TypeName = "bigint")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Column(@"datecreate")]
         public DateTime DateCreate { get; set; }
@@ -38,5 +38,5 @@ namespace WebApplicationTnsClub.Models
         
         [Column("comment")]
         public string? Comment { get; set; }
-    }
+         }
 }

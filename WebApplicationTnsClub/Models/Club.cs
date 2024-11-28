@@ -12,13 +12,13 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace WebApplicationTnsClub.Models
 {
     [Table(@"Clubs")] 
-    public class Club  :IBaseId //?: IdentityUser
+    public class Club  :BaseId //?: IdentityUser
     {
 
         [Column(@"id", TypeName = "bigint")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Column(@"datecreate")]
         public DateTime DateCreate { get; set; }

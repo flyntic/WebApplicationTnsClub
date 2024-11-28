@@ -4,14 +4,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace WebApplicationTnsClub.Models
 {
     [Table(@"Groups")]
-    public class Group
+    public class Group:BaseId
     {
         //==============================  BaseId =====================
 
         [Column(@"id", TypeName = "bigint")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Column(@"datecreate")]
         public DateTime DateCreate { get; set; }

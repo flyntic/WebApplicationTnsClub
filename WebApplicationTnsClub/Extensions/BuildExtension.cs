@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.FileProviders;
 using WebApplicationTnsClub.DB;
 using Microsoft.Extensions.DependencyInjection;
+using WebApplicationTnsClub.Models;
 
 namespace WebApplicationTnsClub.Extensions
 {
@@ -75,16 +76,16 @@ namespace WebApplicationTnsClub.Extensions
             });
 
             using var scope=app.Services.CreateScope();
-            IdentityUser admin = null;
+            User admin = null;
             var userManager=scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
             if (!userManager.Users.Any(x => x.UserName == "admin"))
             {
-                admin=new IdentityUser() { UserName = "admin" };
+                admin=new User() { UserName = "admin" };
                 userManager.CreateAsync(admin,"password").GetAwaiter().GetResult();
                 userManager.AddClaimAsync(admin, new System.Security.Claims.Claim("level","admin")).GetAwaiter().GetResult();    
             }
 
-            var database=scope.ServiceProvider.GetRequiredService<ApplicationContext>();
+        //    var database=scope.ServiceProvider.GetRequiredService<ApplicationContext>();
 
        /*     if (!database.Projects.Any())
             {
