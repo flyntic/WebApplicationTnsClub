@@ -12,38 +12,46 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace WebApplicationTnsClub.Models
 {
     [Table("Users")]
-    public class User : IdentityUser
+    public class User : IdentityUser//, IBaseDataType<long>
     {
-     //   [Column(@"id", TypeName = "bigint")]
-     //   [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-     //   [Key]
-     //   public int Id { get; set; }
+      //  [Column("id")]
+      //  [Key]
+      //  [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+       // override public long Id { get; set; } //= Guid.NewGuid();
 
-        //[Column("avatar")]
-        //  public Blob? Avatar { get; set; }
+        [Column("datecreate")]
+        public DateTime DateCreate { get; set; }
+
+        [Column("dateupdate")]
+        public DateTime DateUpdate { get; set; }
+
+        [Column("isdeleted")]
+        public bool IsDeleted { get; set; }
+
+        [Column("datedelete")]
+        public DateTime? DateDelete { get; set; }
+
+        [Column("comment")]
+        public string? Comment { get; set; }
+        //============================================================
+       // [Column("login")]
+       // [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+      //  public string?  Login { get; set; }
+ 
         [Column("avatarfile")]
-        public string? Avatarfile {  get; set; }
-//        [Column("name")]
-//        public string? Name { get; set; }
+        public string? AvatarFile {  get; set; }
         [Column("firstname")]
         public string? FirstName { get; set; }
         [Column("secondname")]
         public string? SecondName { get; set; }
         [Column("lastname")]
         public string? LastName { get; set; }
-        [Column("login")]
-        public string?  Login { get; set; }
-        [Column("phone")]
-        public string? Phone { get; set; }
-  //      [Column("email")]
- //       public string? Email { get; set; }
- //       [Column("role")]
-  //      public int?    Role { get; set; }
-//        [Column("parole")]
-//        public string? Parole { get; set; }
-        [Column("comment")]
-        public string? Comment { get; set; }
+ 
 
-       
-    }
+        ///public User():base()
+       // {
+            
+        //}
+
+     }
 }

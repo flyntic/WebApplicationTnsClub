@@ -4,6 +4,8 @@ using System.Linq.Expressions;
 using global::WebApplicationTnsClub.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebApplicationTnsClub.Controllers;
+using WebApplicationTnsClub.Controllers.Models;
 using WebApplicationTnsClub.DB;
 
 namespace WebApplicationTnsClub.Controllers
@@ -16,35 +18,51 @@ namespace WebApplicationTnsClub.Controllers
         public UserController(ApplicationContext context)
         {
             db = context;
-            if (!db.Users.Any())
+        }
+
+        [HttpGet]
+        public async Task<IEnumerable<UserParameters>> Get() 
+        {
+            List<UserParameters> usersParameters = new List<UserParameters>();
+            try
             {
-                //  db.Users.Add(new User { name = "iPhone X", last_name = "Apple", login = "79900" });
-                //  db.Users.Add(new User { name = "Galaxy S8", last_name = "Samsung", login = "49900 "});
-                //  db.Users.Add(new User { name = "Pixel 2", last_name = "Google", login = "52900" });
-                //  db.SaveChanges();
+
+                List<User> users = await db.Set<User>().ToListAsync();
+                foreach (User item in users)
+                {
+                    usersParameters.Add(UserParameters.FromUser(item));
+
+                }
+                return usersParameters;
+            }
+            catch (Exception ex)
+            {
+                return null;
             }
         }
-        [HttpGet]
-        public async Task<IEnumerable<User>> Get()
+      
+        [HttpGet("{id}")]
+        public async Task<UserParameters> Get (string id) 
         {
-            return await db.Users.ToListAsync();
-        }
-    
-        [HttpGet("{login}")]
-        public async Task<User> Get(string login)
-        {
-            User user = await db.Users.FirstOrDefaultAsync(x => x.Login == login);
-            return user;
+                User user = await db.Set<User>().FirstOrDefaultAsync(x => x.Id.Equals(id));
+                UserParameters userParameters = UserParameters.FromUser(user);
+                    
+            return userParameters;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(User user)
+        public async Task<IActionResult> Post(UserParameters userParameters)
         {
             if (ModelState.IsValid)
-            {
-    
-                await db.Users.AddAsync(user);
-                await db.SaveChangesAsync();
+            { User user=new User();
+                try {
+                 //   user = ;
+                userParameters.ToUser(user);
+                await db.Users.AddAsync(user);//.toNewUser()
+
+                db.SaveChanges();
+                }
+             //   Console.WriteLine("end add");
 
               /*  if (user.Avatarfile!=null)
                 {   string bdfilename = "c://wwwroot/uploads/save" + user.Id + ".jpg";
@@ -54,36 +72,52 @@ namespace WebApplicationTnsClub.Controllers
                         user.Avatarfile = bdfilename;
                         db.Users.Update(user);
                         db.SaveChanges();                        
-                    }
+                    }} */
                     catch (Exception ex) { 
                       Console.WriteLine(ex.Message);
-                    }
+                    return BadRequest(ModelState);
+                   }
 
-                } */
                 
-                return Ok(user);
+                
+               return Ok(userParameters);
             }
             return BadRequest(ModelState);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put(User user)
+        public async Task<IActionResult> Put(UserParameters userParameters)
         {
             if (ModelState.IsValid)
             {
-                db.Update(user);
-                await db.SaveChangesAsync();
-                return Ok(user);
+                User user = db.Users.Where(user =>  user.Id == userParameters.Id).First();
+
+
+
+                user=userParameters.ToUser(user);
+                try
+               {
+                   db.Update(user);
+                   await db.SaveChangesAsync();
+                    return Ok(userParameters);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return BadRequest(ModelState);
+                }
             }
             return BadRequest(ModelState);
         }
 
-        [HttpDelete("{login}")]
-        public async Task<IActionResult> Delete(string login)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(string id)
         {
-            User user = await db.Users.FirstOrDefaultAsync(x => x.Login.Equals(login));
+            Console.WriteLine(id);
+            User user = await db.Users.FirstOrDefaultAsync(x => x.Id.Equals(id));
             if (user != null)
             {
+                user.IsDeleted = true;
                 db.Users.Remove(user);
                 await db.SaveChangesAsync();
             }

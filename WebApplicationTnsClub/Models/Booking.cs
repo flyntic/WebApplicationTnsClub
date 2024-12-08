@@ -11,52 +11,69 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WebApplicationTnsClub.Models
 {
+    public enum StateBooking { 
+      Reserv, 
+      Confirm,
+      Cancel,
+      Skipped,
+      Transfer,
+      CloseForSale
+    }
+
     [Table("Bookings")]
-    public class Booking 
+    public class Booking : IBaseDataType<long>
     {
         [Column(@"id", TypeName = "bigint")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public long  Id { get; set; }
+        public long Id { get; set; }
 
-        [Column("user_id")]
-         public long? UserId { get; set; }
+        [Column("datecreate")]
+        public DateTime DateCreate { get; set; }
+
+        [Column("dateupdate")]
+        public DateTime DateUpdate { get; set; } = DateTime.Now;
+
+        [Column("isdeleted")]
+        public bool IsDeleted { get; set; }
+
+        [Column("datedelete")]
+        public DateTime? DateDelete { get; set; }
+
+        [Column("comment")]
+        public string? Comment { get; set; }
+        //======================================================
+ 
+        [Column("user")]
+        public User?[] Users { get; set; }
       
-      //  [ForeignKey("UserId")]
-      //  public User? User { get; set; }
-
-        [Column("club_id")]
-        public long? ClubId { get; set; }
-   //     [ForeignKey("ClubId")]
-   //     public Club?  Club { get; set; }
-
+        [Column("club")]
+        public Club? Club { get; set; }
+ 
         [Column("date")]
         public DateTime? Date { get; set; }
         [Column("time")]
         public string? Time { get; set; }
         [Column("length")]
         public string?  Length { get; set; }
+     
+        [Column("state")]
+        public StateBooking? StateBooking { get; set; }
 
-        [Column("rate_id")]
-        public int? RateId { get; set; }
-  //      [ForeignKey("RateId")]
-  //      public Rate? Rate { get; set; }
+        [Column("rate")]
+        public Prices? Rate { get; set; }
+  
         [Column("price")]
         public int? Price { get; set; }
 
-        [Column("date_of_booking")]
-        public DateTime? DateOfBooking { get; set; }
-        [Column("user_of_booking_id")]
-        public long? UserOfBookingId { get; set; }
-    //    [ForeignKey("UserOfBookingId")]
-    //    public User? UserOfBooking { get; set; }
+        [Column("next")]
+        public Booking? Next { get; set; }
 
-        [Column("state")]
-        public string? State { get; set; }
+        [Column("date_of_sale")]
+        public DateTime? DateOfSale { get; set; }
 
-        [Column("comment")]
-        public string? Comment { get; set; }
- 
-       
+        [Column("user_of_sale")]
+        public User? UserOfSale { get; set; }
+   
     }
 }

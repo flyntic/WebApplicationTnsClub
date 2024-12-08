@@ -1,0 +1,17 @@
+﻿:host {
+    min-height: 30px;
+    background-color: #bcbcbc;
+    color: black;
+}
+
+div {
+    margin: 5px 10px 0;
+   
+    color: black;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: #bcbcbc;
+    width: fit-content;
+}

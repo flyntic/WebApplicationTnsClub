@@ -220,6 +220,91 @@ namespace WebApplicationTnsClub.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("WebApplicationTnsClub.Models.Abonement", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("text")
+                        .HasColumnName("comment");
+
+                    b.Property<DateTime>("DateCreate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datecreate");
+
+                    b.Property<DateTime?>("DateDelete")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datedelete");
+
+                    b.Property<DateTime>("DateUpdate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("dateupdate");
+
+                    b.Property<bool?>("IsAutorenewal")
+                        .HasColumnType("boolean")
+                        .HasColumnName("isautorenewal");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean")
+                        .HasColumnName("isdeleted");
+
+                    b.Property<int?>("Price")
+                        .HasColumnType("integer")
+                        .HasColumnName("price");
+
+                    b.Property<string>("State")
+                        .HasColumnType("text")
+                        .HasColumnName("state");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Abonements");
+                });
+
+            modelBuilder.Entity("WebApplicationTnsClub.Models.AdminUser", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("text")
+                        .HasColumnName("comment");
+
+                    b.Property<DateTime>("DateCreate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datecreate");
+
+                    b.Property<DateTime?>("DateDelete")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datedelete");
+
+                    b.Property<DateTime>("DateUpdate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("dateupdate");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean")
+                        .HasColumnName("isdeleted");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AdminUsers");
+                });
+
             modelBuilder.Entity("WebApplicationTnsClub.Models.Booking", b =>
                 {
                     b.Property<long>("Id")
@@ -229,9 +314,11 @@ namespace WebApplicationTnsClub.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
+                    b.Property<long?>("AbonementId")
+                        .HasColumnType("bigint");
+
                     b.Property<long?>("ClubId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("club_id");
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Comment")
                         .HasColumnType("text")
@@ -241,39 +328,67 @@ namespace WebApplicationTnsClub.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("date");
 
-                    b.Property<DateTime?>("DateOfBooking")
+                    b.Property<DateTime>("DateCreate")
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("date_of_booking");
+                        .HasColumnName("datecreate");
+
+                    b.Property<DateTime?>("DateDelete")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datedelete");
+
+                    b.Property<DateTime?>("DateOfSale")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("date_of_sale");
+
+                    b.Property<DateTime>("DateUpdate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("dateupdate");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean")
+                        .HasColumnName("isdeleted");
 
                     b.Property<string>("Length")
                         .HasColumnType("text")
                         .HasColumnName("length");
 
+                    b.Property<long?>("NextId")
+                        .HasColumnType("bigint");
+
                     b.Property<int?>("Price")
                         .HasColumnType("integer")
                         .HasColumnName("price");
 
-                    b.Property<int?>("RateId")
-                        .HasColumnType("integer")
-                        .HasColumnName("rate_id");
+                    b.Property<long?>("RateId")
+                        .HasColumnType("bigint");
 
-                    b.Property<string>("State")
-                        .HasColumnType("text")
+                    b.Property<long?>("SheduleClubOpenBookingId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int?>("StateBooking")
+                        .HasColumnType("integer")
                         .HasColumnName("state");
 
                     b.Property<string>("Time")
                         .HasColumnType("text")
                         .HasColumnName("time");
 
-                    b.Property<long?>("UserId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("user_id");
-
-                    b.Property<long?>("UserOfBookingId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("user_of_booking_id");
+                    b.Property<string>("UserOfSaleId")
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AbonementId");
+
+                    b.HasIndex("ClubId");
+
+                    b.HasIndex("NextId");
+
+                    b.HasIndex("RateId");
+
+                    b.HasIndex("SheduleClubOpenBookingId");
+
+                    b.HasIndex("UserOfSaleId");
 
                     b.ToTable("Bookings");
                 });
@@ -295,6 +410,26 @@ namespace WebApplicationTnsClub.Migrations
                         .HasColumnType("text")
                         .HasColumnName("comment");
 
+                    b.Property<DateTime>("DateCreate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datecreate");
+
+                    b.Property<DateTime?>("DateDelete")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datedelete");
+
+                    b.Property<DateTime>("DateUpdate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("dateupdate");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean")
+                        .HasColumnName("isdeleted");
+
+                    b.Property<string>("Link")
+                        .HasColumnType("text")
+                        .HasColumnName("link");
+
                     b.Property<string>("Logofile")
                         .HasColumnType("text")
                         .HasColumnName("logofile");
@@ -312,7 +447,7 @@ namespace WebApplicationTnsClub.Migrations
                     b.ToTable("Clubs");
                 });
 
-            modelBuilder.Entity("WebApplicationTnsClub.Models.Rate", b =>
+            modelBuilder.Entity("WebApplicationTnsClub.Models.CoachUser", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -325,6 +460,258 @@ namespace WebApplicationTnsClub.Migrations
                         .HasColumnType("text")
                         .HasColumnName("comment");
 
+                    b.Property<DateTime>("DateCreate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datecreate");
+
+                    b.Property<DateTime?>("DateDelete")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datedelete");
+
+                    b.Property<DateTime>("DateUpdate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("dateupdate");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean")
+                        .HasColumnName("isdeleted");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("CoachUsers");
+                });
+
+            modelBuilder.Entity("WebApplicationTnsClub.Models.Group", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<long?>("ClubId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("CoachUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("text")
+                        .HasColumnName("comment");
+
+                    b.Property<DateTime>("DateCreate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datecreate");
+
+                    b.Property<DateTime?>("DateDelete")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datedelete");
+
+                    b.Property<DateTime>("DateUpdate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("dateupdate");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean")
+                        .HasColumnName("isdeleted");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text")
+                        .HasColumnName("name");
+
+                    b.Property<string>("State")
+                        .HasColumnType("text")
+                        .HasColumnName("state");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClubId");
+
+                    b.HasIndex("CoachUserId");
+
+                    b.ToTable("Groups");
+                });
+
+            modelBuilder.Entity("WebApplicationTnsClub.Models.ManagerUser", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<long?>("ClubId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("text")
+                        .HasColumnName("comment");
+
+                    b.Property<DateTime>("DateCreate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datecreate");
+
+                    b.Property<DateTime?>("DateDelete")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datedelete");
+
+                    b.Property<DateTime>("DateUpdate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("dateupdate");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean")
+                        .HasColumnName("isdeleted");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClubId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ManagerUsers");
+                });
+
+            modelBuilder.Entity("WebApplicationTnsClub.Models.News", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("AuthorId")
+                        .HasColumnType("text");
+
+                    b.Property<long?>("ClubId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("text")
+                        .HasColumnName("comment");
+
+                    b.Property<DateTime>("DateCreate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datecreate");
+
+                    b.Property<DateTime?>("DateDelete")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datedelete");
+
+                    b.Property<DateTime>("DateUpdate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("dateupdate");
+
+                    b.Property<string>("ImageFile")
+                        .HasColumnType("text")
+                        .HasColumnName("imagefile");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean")
+                        .HasColumnName("isdeleted");
+
+                    b.Property<string>("Link")
+                        .HasColumnType("text")
+                        .HasColumnName("link");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("text")
+                        .HasColumnName("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("ClubId");
+
+                    b.ToTable("News");
+                });
+
+            modelBuilder.Entity("WebApplicationTnsClub.Models.ParentUser", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("text")
+                        .HasColumnName("comment");
+
+                    b.Property<DateTime>("DateCreate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datecreate");
+
+                    b.Property<DateTime?>("DateDelete")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datedelete");
+
+                    b.Property<DateTime>("DateUpdate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("dateupdate");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean")
+                        .HasColumnName("isdeleted");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ParentUsers");
+                });
+
+            modelBuilder.Entity("WebApplicationTnsClub.Models.Prices", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<long?>("ClubId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("text")
+                        .HasColumnName("comment");
+
+                    b.Property<DateTime>("DateCreate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datecreate");
+
+                    b.Property<DateTime?>("DateDelete")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datedelete");
+
+                    b.Property<DateTime>("DateUpdate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("dateupdate");
+
+                    b.Property<long?>("GroupId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean")
+                        .HasColumnName("isdeleted");
+
                     b.Property<string>("Name")
                         .HasColumnType("text")
                         .HasColumnName("name");
@@ -335,40 +722,220 @@ namespace WebApplicationTnsClub.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Rates");
+                    b.HasIndex("ClubId");
+
+                    b.HasIndex("GroupId");
+
+                    b.ToTable("Prices");
+                });
+
+            modelBuilder.Entity("WebApplicationTnsClub.Models.Session", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<long?>("AbonementId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("text")
+                        .HasColumnName("comment");
+
+                    b.Property<DateTime>("DateCreate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datecreate");
+
+                    b.Property<DateTime?>("DateDelete")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datedelete");
+
+                    b.Property<DateTime>("DateUpdate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("dateupdate");
+
+                    b.Property<long?>("GroupId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean")
+                        .HasColumnName("isdeleted");
+
+                    b.Property<int?>("Length")
+                        .HasColumnType("integer")
+                        .HasColumnName("length");
+
+                    b.Property<long?>("PricesId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("SheduleClubId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Time")
+                        .HasColumnType("text")
+                        .HasColumnName("time");
+
+                    b.Property<int?>("TypeOfDay")
+                        .HasColumnType("integer")
+                        .HasColumnName("typeofday");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AbonementId");
+
+                    b.HasIndex("GroupId");
+
+                    b.HasIndex("PricesId");
+
+                    b.HasIndex("SheduleClubId");
+
+                    b.ToTable("Sessions");
+                });
+
+            modelBuilder.Entity("WebApplicationTnsClub.Models.SheduleClub", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<long?>("ClubId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("text")
+                        .HasColumnName("comment");
+
+                    b.Property<DateTime>("DateCreate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datecreate");
+
+                    b.Property<DateTime?>("DateDelete")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datedelete");
+
+                    b.Property<DateTime>("DateUpdate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("dateupdate");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean")
+                        .HasColumnName("isdeleted");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClubId");
+
+                    b.ToTable("SheduleClubs");
+                });
+
+            modelBuilder.Entity("WebApplicationTnsClub.Models.SheduleClubOpenBooking", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("text")
+                        .HasColumnName("comment");
+
+                    b.Property<DateTime?>("Date")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("date");
+
+                    b.Property<DateTime>("DateCreate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datecreate");
+
+                    b.Property<DateTime?>("DateDelete")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datedelete");
+
+                    b.Property<DateTime>("DateUpdate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("dateupdate");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean")
+                        .HasColumnName("isdeleted");
+
+                    b.Property<long?>("SheduleClubId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SheduleClubId");
+
+                    b.ToTable("SheduleClubOpenBookings");
                 });
 
             modelBuilder.Entity("WebApplicationTnsClub.Models.User", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.Property<string>("Avatarfile")
+                    b.Property<string>("AvatarFile")
                         .HasColumnType("text")
                         .HasColumnName("avatarfile");
+
+                    b.Property<long?>("BookingId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("CoachUserId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Comment")
                         .HasColumnType("text")
                         .HasColumnName("comment");
 
+                    b.Property<DateTime>("DateCreate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datecreate");
+
+                    b.Property<DateTime?>("DateDelete")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("datedelete");
+
+                    b.Property<DateTime>("DateUpdate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("dateupdate");
+
                     b.Property<string>("FirstName")
                         .HasColumnType("text")
                         .HasColumnName("firstname");
+
+                    b.Property<long?>("GroupId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean")
+                        .HasColumnName("isdeleted");
 
                     b.Property<string>("LastName")
                         .HasColumnType("text")
                         .HasColumnName("lastname");
 
-                    b.Property<string>("Login")
-                        .HasColumnType("text")
-                        .HasColumnName("login");
-
-                    b.Property<string>("Phone")
-                        .HasColumnType("text")
-                        .HasColumnName("phone");
+                    b.Property<long?>("ParentUserId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("SecondName")
                         .HasColumnType("text")
                         .HasColumnName("secondname");
+
+                    b.HasIndex("BookingId");
+
+                    b.HasIndex("CoachUserId");
+
+                    b.HasIndex("GroupId");
+
+                    b.HasIndex("ParentUserId");
 
                     b.ToTable("Users");
                 });
@@ -424,13 +991,232 @@ namespace WebApplicationTnsClub.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("WebApplicationTnsClub.Models.AdminUser", b =>
+                {
+                    b.HasOne("WebApplicationTnsClub.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("WebApplicationTnsClub.Models.Booking", b =>
+                {
+                    b.HasOne("WebApplicationTnsClub.Models.Abonement", null)
+                        .WithMany("Bookings")
+                        .HasForeignKey("AbonementId");
+
+                    b.HasOne("WebApplicationTnsClub.Models.Club", "Club")
+                        .WithMany()
+                        .HasForeignKey("ClubId");
+
+                    b.HasOne("WebApplicationTnsClub.Models.Booking", "Next")
+                        .WithMany()
+                        .HasForeignKey("NextId");
+
+                    b.HasOne("WebApplicationTnsClub.Models.Prices", "Rate")
+                        .WithMany()
+                        .HasForeignKey("RateId");
+
+                    b.HasOne("WebApplicationTnsClub.Models.SheduleClubOpenBooking", null)
+                        .WithMany("Bookings")
+                        .HasForeignKey("SheduleClubOpenBookingId");
+
+                    b.HasOne("WebApplicationTnsClub.Models.User", "UserOfSale")
+                        .WithMany()
+                        .HasForeignKey("UserOfSaleId");
+
+                    b.Navigation("Club");
+
+                    b.Navigation("Next");
+
+                    b.Navigation("Rate");
+
+                    b.Navigation("UserOfSale");
+                });
+
+            modelBuilder.Entity("WebApplicationTnsClub.Models.CoachUser", b =>
+                {
+                    b.HasOne("WebApplicationTnsClub.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("WebApplicationTnsClub.Models.Group", b =>
+                {
+                    b.HasOne("WebApplicationTnsClub.Models.Club", "Club")
+                        .WithMany()
+                        .HasForeignKey("ClubId");
+
+                    b.HasOne("WebApplicationTnsClub.Models.CoachUser", "CoachUser")
+                        .WithMany()
+                        .HasForeignKey("CoachUserId");
+
+                    b.Navigation("Club");
+
+                    b.Navigation("CoachUser");
+                });
+
+            modelBuilder.Entity("WebApplicationTnsClub.Models.ManagerUser", b =>
+                {
+                    b.HasOne("WebApplicationTnsClub.Models.Club", "Club")
+                        .WithMany()
+                        .HasForeignKey("ClubId");
+
+                    b.HasOne("WebApplicationTnsClub.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Club");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("WebApplicationTnsClub.Models.News", b =>
+                {
+                    b.HasOne("WebApplicationTnsClub.Models.User", "Author")
+                        .WithMany()
+                        .HasForeignKey("AuthorId");
+
+                    b.HasOne("WebApplicationTnsClub.Models.Club", "Club")
+                        .WithMany()
+                        .HasForeignKey("ClubId");
+
+                    b.Navigation("Author");
+
+                    b.Navigation("Club");
+                });
+
+            modelBuilder.Entity("WebApplicationTnsClub.Models.ParentUser", b =>
+                {
+                    b.HasOne("WebApplicationTnsClub.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("WebApplicationTnsClub.Models.Prices", b =>
+                {
+                    b.HasOne("WebApplicationTnsClub.Models.Club", "Club")
+                        .WithMany()
+                        .HasForeignKey("ClubId");
+
+                    b.HasOne("WebApplicationTnsClub.Models.Group", null)
+                        .WithMany("Prices")
+                        .HasForeignKey("GroupId");
+
+                    b.Navigation("Club");
+                });
+
+            modelBuilder.Entity("WebApplicationTnsClub.Models.Session", b =>
+                {
+                    b.HasOne("WebApplicationTnsClub.Models.Abonement", null)
+                        .WithMany("Sessions")
+                        .HasForeignKey("AbonementId");
+
+                    b.HasOne("WebApplicationTnsClub.Models.Group", null)
+                        .WithMany("Sessions")
+                        .HasForeignKey("GroupId");
+
+                    b.HasOne("WebApplicationTnsClub.Models.Prices", null)
+                        .WithMany("Sessions")
+                        .HasForeignKey("PricesId");
+
+                    b.HasOne("WebApplicationTnsClub.Models.SheduleClub", null)
+                        .WithMany("Sessions")
+                        .HasForeignKey("SheduleClubId");
+                });
+
+            modelBuilder.Entity("WebApplicationTnsClub.Models.SheduleClub", b =>
+                {
+                    b.HasOne("WebApplicationTnsClub.Models.Club", "Club")
+                        .WithMany()
+                        .HasForeignKey("ClubId");
+
+                    b.Navigation("Club");
+                });
+
+            modelBuilder.Entity("WebApplicationTnsClub.Models.SheduleClubOpenBooking", b =>
+                {
+                    b.HasOne("WebApplicationTnsClub.Models.SheduleClub", "SheduleClub")
+                        .WithMany()
+                        .HasForeignKey("SheduleClubId");
+
+                    b.Navigation("SheduleClub");
+                });
+
             modelBuilder.Entity("WebApplicationTnsClub.Models.User", b =>
                 {
+                    b.HasOne("WebApplicationTnsClub.Models.Booking", null)
+                        .WithMany("Users")
+                        .HasForeignKey("BookingId");
+
+                    b.HasOne("WebApplicationTnsClub.Models.CoachUser", null)
+                        .WithMany("Students")
+                        .HasForeignKey("CoachUserId");
+
+                    b.HasOne("WebApplicationTnsClub.Models.Group", null)
+                        .WithMany("Players")
+                        .HasForeignKey("GroupId");
+
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithOne()
                         .HasForeignKey("WebApplicationTnsClub.Models.User", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("WebApplicationTnsClub.Models.ParentUser", null)
+                        .WithMany("Childs")
+                        .HasForeignKey("ParentUserId");
+                });
+
+            modelBuilder.Entity("WebApplicationTnsClub.Models.Abonement", b =>
+                {
+                    b.Navigation("Bookings");
+
+                    b.Navigation("Sessions");
+                });
+
+            modelBuilder.Entity("WebApplicationTnsClub.Models.Booking", b =>
+                {
+                    b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("WebApplicationTnsClub.Models.CoachUser", b =>
+                {
+                    b.Navigation("Students");
+                });
+
+            modelBuilder.Entity("WebApplicationTnsClub.Models.Group", b =>
+                {
+                    b.Navigation("Players");
+
+                    b.Navigation("Prices");
+
+                    b.Navigation("Sessions");
+                });
+
+            modelBuilder.Entity("WebApplicationTnsClub.Models.ParentUser", b =>
+                {
+                    b.Navigation("Childs");
+                });
+
+            modelBuilder.Entity("WebApplicationTnsClub.Models.Prices", b =>
+                {
+                    b.Navigation("Sessions");
+                });
+
+            modelBuilder.Entity("WebApplicationTnsClub.Models.SheduleClub", b =>
+                {
+                    b.Navigation("Sessions");
+                });
+
+            modelBuilder.Entity("WebApplicationTnsClub.Models.SheduleClubOpenBooking", b =>
+                {
+                    b.Navigation("Bookings");
                 });
 #pragma warning restore 612, 618
         }

@@ -4,6 +4,7 @@ using System.Linq.Expressions;
 using global::WebApplicationTnsClub.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebApplicationTnsClub.Controllers.Models;
 using WebApplicationTnsClub.DB;
 
 namespace WebApplicationTnsClub.Controllers
@@ -26,7 +27,7 @@ namespace WebApplicationTnsClub.Controllers
         }
         [HttpGet]
         public async Task<IEnumerable<Club>> Get()
-        {
+        { //todo
             return await db.Clubs.ToListAsync();
         }
     

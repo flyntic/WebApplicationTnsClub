@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.SqlServer.Server;
+using System.Buffers.Text;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
@@ -12,7 +13,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace WebApplicationTnsClub.Models
 {
     [Table("Clubs")] 
-    public class Club  //?: IdentityUser
+    public class Club  : IBaseDataType<long>
     {
 
         [Column(@"id", TypeName = "bigint")]
@@ -20,6 +21,21 @@ namespace WebApplicationTnsClub.Models
         [Key]
         public long Id { get; set; }
 
+        [Column("datecreate")]
+        public DateTime DateCreate { get; set; }
+
+        [Column("dateupdate")]
+        public DateTime DateUpdate { get; set; } = DateTime.Now;
+
+        [Column("isdeleted")]
+        public bool IsDeleted { get; set; }
+
+        [Column("datedelete")]
+        public DateTime? DateDelete { get; set; }
+
+        [Column("comment")]
+        public string? Comment { get; set; }
+     //======================================================
         [Column("logofile")]
         public string? Logofile {  get; set; }
         [Column("name")]
@@ -28,9 +44,11 @@ namespace WebApplicationTnsClub.Models
         public string? Address { get; set; }
         [Column("phone")]
         public string? Phone { get; set; }
-        [Column("comment")]
-        public string? Comment { get; set; }
 
-       
+        [Column("link")]
+        public string? Link { get; set; }
+
+
+    
     }
 }
