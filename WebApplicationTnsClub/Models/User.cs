@@ -12,31 +12,31 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace WebApplicationTnsClub.Models
 {
     [Table("Users")]
-    public class User : IdentityUser
+    public class User : IdentityUser//, IBaseDataType<long>
     {
-       // [Column(@"id", TypeName = "text")]
+      //  [Column("id")]
+      //  [Key]
       //  [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-      /// <summary>
-      /// / [Key]
-      /// </summary>
-      //  override public string Id { get; set; } //= Guid.NewGuid();
+       // override public long Id { get; set; } //= Guid.NewGuid();
 
-        [Column(@"datecreate")]
+        [Column("datecreate")]
         public DateTime DateCreate { get; set; }
 
-        [Column(@"dateupdate")]
+        [Column("dateupdate")]
         public DateTime DateUpdate { get; set; }
 
-        [Column(@"isdeleted")]
+        [Column("isdeleted")]
         public bool IsDeleted { get; set; }
 
-        [Column(@"datedelete")]
+        [Column("datedelete")]
         public DateTime? DateDelete { get; set; }
 
+        [Column("comment")]
+        public string? Comment { get; set; }
         //============================================================
-        [Column("login")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string?  Login { get; set; }
+       // [Column("login")]
+       // [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+      //  public string?  Login { get; set; }
  
         [Column("avatarfile")]
         public string? AvatarFile {  get; set; }
@@ -47,13 +47,11 @@ namespace WebApplicationTnsClub.Models
         [Column("lastname")]
         public string? LastName { get; set; }
  
-        [Column("comment")]
-        public string? Comment { get; set; }
 
-        public User():base()
-        {
+        ///public User():base()
+       // {
             
-        }
+        //}
 
      }
 }

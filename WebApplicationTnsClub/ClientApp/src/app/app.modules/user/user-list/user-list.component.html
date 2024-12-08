@@ -5,10 +5,11 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <td>    </td>
+            <td>Аватар</td>
+            <td>Id</td>
             <td>Имя</td>
+            <td>Отчество</td>
             <td>Фамилия</td>
-            <td>Логин</td>
             <td></td>
         </tr>
     </thead>
@@ -16,13 +17,11 @@
 
 
         <tr *ngFor="let u of users">
-            <td><img [src]="u?.avatarfile" [alt]="u?.avatarfile" class="rounded shadow w-100"></td>
+            <td><img [src]="u?.avatarFile" [alt]="u?.avatarFile" class="rounded shadow w-100"></td>
             <td>{{u?.id}}</td>
-            <td>{{u?.firstname}}</td>
-            <td>{{u?.lastname}}</td>
-            <td>{{u?.login}}</td>
-            <td>{{u?.secondname}}</td>
-            <td>{{u?.comment}}</td>
+            <td>{{u?.firstName}}</td>
+            <td>{{u?.secondName}}</td>
+            <td>{{u?.lastName}}</td>
             <td>
                 <a [routerLink]="['/user/edit', u.id]" class="btn btn-sm btn-primary">Изменить</a>
                 <button (click)="delete(u.id)" class="btn btn-sm btn-danger">Удалить</button>

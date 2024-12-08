@@ -1,11 +1,22 @@
 ﻿:host {
     min-height: 30px;
-    background-color: #F0E68C;
+    background-color: #bcbcbc;
     color: black;
 }
 
 div {
     margin: 5px 10px 0;
-    float: right;
+
     color: black;
+}
+
+.form-control{
+    width:fit-content;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: #bcbcbc;
+    width: fit-content;
 }

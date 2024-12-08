@@ -12,6 +12,32 @@ import { UserListComponent } from   '../app.modules/user/user-list/user-list.com
 import { UserCreateComponent } from '../app.modules/user/user-create/user-create.component';
 import { UserEditComponent } from   '../app.modules/user/user-edit/user-edit.component';
 
+import { CoachListComponent }   from '../app.modules/coach/coach-list/coach-list.component';
+import { CoachCreateComponent } from '../app.modules/coach/coach-create/coach-create.component';
+import { CoachEditComponent }   from '../app.modules/coach/coach-edit/coach-edit.component';
+
+import { AdminListComponent }   from '../app.modules/admin/admin-list/admin-list.component';
+import { AdminCreateComponent } from '../app.modules/admin/admin-create/admin-create.component';
+import { AdminEditComponent }   from '../app.modules/admin/admin-edit/admin-edit.component';
+
+import { PlayerListComponent }   from '../app.modules/player/player-list/player-list.component';
+import { PlayerCreateComponent } from '../app.modules/player/player-create/player-create.component';
+import { PlayerEditComponent }   from '../app.modules/player/player-edit/player-edit.component';
+
+import { ParentListComponent }   from '../app.modules/parent/parent-list/parent-list.component';
+import { ParentCreateComponent } from '../app.modules/parent/parent-create/parent-create.component';
+import { ParentEditComponent }   from '../app.modules/parent/parent-edit/parent-edit.component';
+
+import { AuthorListComponent }   from '../app.modules/author/author-list/author-list.component';
+import { AuthorCreateComponent } from '../app.modules/author/author-create/author-create.component';
+import { AuthorEditComponent }   from '../app.modules/author/author-edit/author-edit.component';
+
+import { ManagerListComponent }   from '../app.modules/manager/manager-list/manager-list.component';
+import { ManagerCreateComponent } from '../app.modules/manager/manager-create/manager-create.component';
+import { ManagerEditComponent }   from '../app.modules/manager/manager-edit/manager-edit.component';
+
+
+
 import { BookingListComponent } from   '../app.modules/booking/booking-list/booking-list.component';
 import { BookingCreateComponent } from '../app.modules/booking/booking-create/booking-create.component';
 import { BookingEditComponent } from   '../app.modules/booking/booking-edit/booking-edit.component';
@@ -28,17 +54,17 @@ import { NewsListComponent } from   '../app.modules/news/news-list/news-list.com
 import { NewsCreateComponent } from '../app.modules/news/news-create/news-create.component';
 import { NewsEditComponent } from   '../app.modules/news/news-edit/news-edit.component';
 
-import { TicketListComponent } from   '../app.modules/ticket/ticket-list/ticket-list.component';
-import { TicketCreateComponent } from '../app.modules/ticket/ticket-create/ticket-create.component';
-import { TicketEditComponent } from   '../app.modules/ticket/ticket-edit/ticket-edit.component';
+import { AbonementListComponent } from   '../app.modules/abonement/abonement-list/abonement-list.component';
+import { AbonementCreateComponent } from '../app.modules/abonement/abonement-create/abonement-create.component';
+import { AbonementEditComponent } from   '../app.modules/abonement/abonement-edit/abonement-edit.component';
 
-import { SheduleListComponent } from   '../app.modules/shedule/shedule-list/shedule-list.component';
-import { SheduleCreateComponent } from '../app.modules/shedule/shedule-create/shedule-create.component';
-import { SheduleEditComponent } from   '../app.modules/shedule/shedule-edit/shedule-edit.component';
+import { SessionListComponent } from   '../app.modules/session/session-list/session-list.component';
+import { SessionCreateComponent } from '../app.modules/session/session-create/session-create.component';
+import { SessionEditComponent } from   '../app.modules/session/session-edit/session-edit.component';
 
-import { RateListComponent } from   '../app.modules/rate/rate-list/rate-list.component';
-import { RateCreateComponent } from '../app.modules/rate/rate-create/rate-create.component';
-import { RateEditComponent } from   '../app.modules/rate/rate-edit/rate-edit.component';
+import { PriceListComponent } from   '../app.modules/price/price-list/price-list.component';
+import { PriceCreateComponent } from '../app.modules/price/price-create/price-create.component';
+import { PriceEditComponent } from   '../app.modules/price/price-edit/price-edit.component';
 
 import { SheduleClubListComponent } from   '../app.modules/shedule-club/shedule-club-list/shedule-club-list.component';
 import { SheduleClubCreateComponent } from '../app.modules/shedule-club/shedule-club-create/shedule-club-create.component';
@@ -73,21 +99,50 @@ export const appRoutes: Routes = [
    // {
       //  path: 'authenticated', component: AuthenticatedComponent, canActivate: [AuthGuard], children: [
 
-            { path: 'user/list', component: UserListComponent },
+            { path: 'user/list',   component: UserListComponent },
             { path: 'user/create', component: UserCreateComponent },
             { path: 'user/edit/:id', component: UserEditComponent },
+
+            { path: 'player/list',     component: PlayerListComponent },
+            { path: 'player/create',   component: PlayerCreateComponent },
+            { path: 'player/edit/:id', component: PlayerEditComponent },
+
+            { path: 'parent/list',     component: ParentListComponent },
+            { path: 'parent/create',   component: ParentCreateComponent },
+            { path: 'parent/edit/:id', component: ParentEditComponent },
+
+            { path: 'coach/list',     component: CoachListComponent },
+            { path: 'coach/create',   component: CoachCreateComponent },
+            { path: 'coach/edit/:id', component: CoachEditComponent },
+
+            { path: 'admin/list',     component: AdminListComponent },
+            { path: 'admin/create',   component: AdminCreateComponent },
+            { path: 'admin/edit/:id', component: AdminEditComponent },
+            
+            { path: 'author/list',     component: AuthorListComponent },
+            { path: 'author/create',   component: AuthorCreateComponent },
+            { path: 'author/edit/:id', component: AuthorEditComponent },
+
+            { path: 'manager/list',     component: ManagerListComponent },
+            { path: 'manager/create',   component: ManagerCreateComponent },
+            { path: 'manager/edit/:id', component: ManagerEditComponent },
+
 
             { path: 'booking/list', component: BookingListComponent },
             { path: 'booking/create', component: BookingCreateComponent },
             { path: 'booking/edit/:id', component: BookingEditComponent },
 
-            { path: 'shedule/list', component: SheduleListComponent },
-            { path: 'shedule/create', component: SheduleCreateComponent },
-            { path: 'shedule/edit/:id', component: SheduleEditComponent },
+            { path: 'club/list',     component: ClubListComponent },
+            { path: 'club/create',   component: ClubCreateComponent },
+            { path: 'club/edit/:id', component: ClubEditComponent },
 
-            { path: 'ticket/list', component: TicketListComponent },
-            { path: 'ticket/create', component: TicketCreateComponent },
-            { path: 'ticket/edit/:id', component: TicketEditComponent },
+            { path: 'session/list', component: SessionListComponent },
+            { path: 'session/create',   component: SessionCreateComponent },
+            { path: 'session/edit/:id', component: SessionEditComponent },
+
+            { path: 'abonement/list',     component: AbonementListComponent },
+            { path: 'abonement/create',   component: AbonementCreateComponent },
+            { path: 'abonement/edit/:id', component: AbonementEditComponent },
 
             { path: 'group/list', component: GroupListComponent },
             { path: 'group/create', component: GroupCreateComponent },
@@ -97,9 +152,9 @@ export const appRoutes: Routes = [
             { path: 'news/create', component: NewsCreateComponent },
             { path: 'news/edit/:id', component: NewsEditComponent },
 
-            { path: 'rate/list', component: RateListComponent },
-            { path: 'rate/create', component: RateCreateComponent },
-            { path: 'rate/edit/:id', component: RateEditComponent },
+            { path: 'price/list',     component: PriceListComponent },
+            { path: 'price/create',   component: PriceCreateComponent },
+            { path: 'price/edit/:id', component: PriceEditComponent },
 
             { path: 'sheduleclub/list', component: SheduleClubListComponent },
             { path: 'sheduleclub/create', component: SheduleClubCreateComponent },

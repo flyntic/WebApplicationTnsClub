@@ -13,20 +13,17 @@ import { OnInit } from '@angular/core';
 })
 export class UserCreateComponent implements OnInit {
 
-    user: User;// = new User();    // добавляемый объект
+    user: User = new User();    // добавляемый объект
 
     constructor(private dataService: DataService, private router: Router) { }
 
     ngOnInit() {
-        console.log("user-create-onInit");
-        this.user = new User();  
-
+       
     }
 
     save() {
-        console.log("CREATE USER"+this.user.id);
-
-      //  this.dataService.createUser(this.user).subscribe(data => this.router.navigateByUrl("/"));
+    
+        this.dataService.createUser(this.user).subscribe(data => this.router.navigateByUrl("/"));
     }
 
 }

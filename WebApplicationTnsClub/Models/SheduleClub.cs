@@ -4,31 +4,33 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace WebApplicationTnsClub.Models
 {
     [Table("SheduleClubs")]
-    public class SheduleClub:BaseId
+    public class SheduleClub : IBaseDataType<long>
     {
-        [Column(@"id", TypeName = "bigint")]
+        [Column("id", TypeName = "bigint")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public long Id { get; set; }
 
-        [Column(@"datecreate")]
+        [Column("datecreate")]
         public DateTime DateCreate { get; set; }
 
-        [Column(@"dateupdate")]
+        [Column("dateupdate")]
         public DateTime DateUpdate { get; set; } = DateTime.Now;
 
-        [Column(@"isdeleted")]
+        [Column("isdeleted")]
         public bool IsDeleted { get; set; }
 
-        [Column(@"datedelete")]
+        [Column("datedelete")]
         public DateTime? DateDelete { get; set; }
 
+        [Column("comment")]
+        public string? Comment { get; set; }
         //======================================================
-        [Column(@"club")]
+        [Column("club")]
         public Club? Club { get; set; }
 
-        [Column(@"shedule")]
-        public Shedule?[] Shedules { get; set; }
+        [Column("sessions")]
+        public Session[]? Sessions { get; set; }
 
 
 

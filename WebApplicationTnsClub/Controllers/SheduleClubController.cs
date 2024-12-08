@@ -4,14 +4,14 @@ using System.Linq.Expressions;
 using global::WebApplicationTnsClub.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WebApplicationTnsClub.ControllerModels;
+
 using WebApplicationTnsClub.Controllers;
 using WebApplicationTnsClub.DB;
 
 namespace WebApplicationTnsClub.Controllers
 {
     [ApiController]
-    [Route("api/users")]
+    [Route("api/sheduleclubs")]
     public class SheduleClubController : Controller
     {
         ApplicationContext db;

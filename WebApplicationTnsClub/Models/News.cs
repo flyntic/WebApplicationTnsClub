@@ -3,42 +3,45 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApplicationTnsClub.Models
 {
-    [Table(@"News")]
-    public class News:BaseId
+    [Table("News")]
+    public class News: IBaseDataType<long>
     {
-        [Column(@"id", TypeName = "bigint")]
+        [Column("id", TypeName = "bigint")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public long Id { get; set; }
 
-        [Column(@"datecreate")]
+        [Column("datecreate")]
         public DateTime DateCreate { get; set; }
 
-        [Column(@"dateupdate")]
+        [Column("dateupdate")]
         public DateTime DateUpdate { get; set; } = DateTime.Now;
 
-        [Column(@"isdeleted")]
+        [Column("isdeleted")]
         public bool IsDeleted { get; set; }
 
-        [Column(@"datedelete")]
+        [Column("datedelete")]
         public DateTime? DateDelete { get; set; }
 
+        [Column("comment")]
+        public string? Comment { get; set; }
+
         //==========================================
-        [Column(@"text")]
+        [Column("text")]
         public string? Text { get; set; }
 
-        [Column(@"link")]
+        [Column("link")]
         public string? Link { get; set; }
 
-        [Column(@"imagefile")]
+        [Column("imagefile")]
         public string? ImageFile { get; set; }
 
         //ForeignKey
-        [Column(@"club")]
+        [Column("club")]
         public Club? Club { get; set; }
 
         //ForeignKey
-        [Column(@"author") ]
+        [Column("author") ]
         public User? Author { get; set; }
 
 

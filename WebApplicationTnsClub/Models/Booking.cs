@@ -20,60 +20,60 @@ namespace WebApplicationTnsClub.Models
       CloseForSale
     }
 
-    [Table(@"Bookings")]
-    public class Booking :BaseId
+    [Table("Bookings")]
+    public class Booking : IBaseDataType<long>
     {
         [Column(@"id", TypeName = "bigint")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public long Id { get; set; }
 
-        [Column(@"datecreate")]
+        [Column("datecreate")]
         public DateTime DateCreate { get; set; }
 
-        [Column(@"dateupdate")]
+        [Column("dateupdate")]
         public DateTime DateUpdate { get; set; } = DateTime.Now;
 
-        [Column(@"isdeleted")]
+        [Column("isdeleted")]
         public bool IsDeleted { get; set; }
 
-        [Column(@"datedelete")]
+        [Column("datedelete")]
         public DateTime? DateDelete { get; set; }
 
+        [Column("comment")]
+        public string? Comment { get; set; }
         //======================================================
  
-        [Column(@"user")]
+        [Column("user")]
         public User?[] Users { get; set; }
       
-        [Column(@"club")]
+        [Column("club")]
         public Club? Club { get; set; }
  
-        [Column(@"date")]
+        [Column("date")]
         public DateTime? Date { get; set; }
-        [Column(@"time")]
+        [Column("time")]
         public string? Time { get; set; }
-        [Column(@"length")]
+        [Column("length")]
         public string?  Length { get; set; }
      
-        [Column(@"state")]
+        [Column("state")]
         public StateBooking? StateBooking { get; set; }
 
-        [Column(@"rate")]
-        public Rate? Rate { get; set; }
+        [Column("rate")]
+        public Prices? Rate { get; set; }
   
-        [Column(@"price")]
+        [Column("price")]
         public int? Price { get; set; }
 
-        [Column(@"next")]
+        [Column("next")]
         public Booking? Next { get; set; }
 
-        [Column(@"date_of_sale")]
+        [Column("date_of_sale")]
         public DateTime? DateOfSale { get; set; }
 
-        [Column(@"user_of_sale")]
+        [Column("user_of_sale")]
         public User? UserOfSale { get; set; }
    
-        [Column(@"comment")]
-        public string? Comment { get; set; }
     }
 }

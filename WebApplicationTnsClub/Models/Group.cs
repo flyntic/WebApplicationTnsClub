@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace WebApplicationTnsClub.Models
 {
     [Table(@"Groups")]
-    public class Group:BaseId
+    public class Group: IBaseDataType<long>
     {
         //==============================  BaseId =====================
 
@@ -13,42 +13,42 @@ namespace WebApplicationTnsClub.Models
         [Key]
         public long Id { get; set; }
 
-        [Column(@"datecreate")]
+        [Column("datecreate")]
         public DateTime DateCreate { get; set; }
 
-        [Column(@"dateupdate")]
+        [Column("dateupdate")]
         public DateTime DateUpdate { get; set; } = DateTime.Now;
 
-        [Column(@"isdeleted")]
+        [Column("isdeleted")]
         public bool IsDeleted { get; set; }
 
-        [Column(@"datedelete")]
+        [Column("datedelete")]
         public DateTime? DateDelete { get; set; }
 
+        [Column("comment")]
+        public string? Comment { get; set; }
         //=========================================================
-        [Column(@"name")]
+        [Column("name")]
         public string? Name { get; set; }
 
-        [Column(@"organizator")]
-        public User? Organizator { get; set; }
+        [Column("organizator")]
+        public CoachUser? CoachUser { get; set; }
 
-        [Column(@"club")]
+        [Column("club")]
         public Club? Club { get; set; }
 
-        [Column(@"shedule")]
-        public Shedule?[] Shedules { get; set; }
+        [Column("shedule")]
+        public Session?[] Sessions { get; set; }
 
-        [Column(@"rates")]
-        public Rate?[] Rates { get; set; }
+        [Column("rates")]
+        public Prices?[] Prices { get; set; }
 
-        [Column(@"players")]
+        [Column("players")]
         public User?[] Players { get; set; }
 
-        [Column(@"state")]
+        [Column("state")]
         public string? State { get; set; }
 
-        [Column(@"comment")]
-        public string? Comment { get; set; }
         
 
     }

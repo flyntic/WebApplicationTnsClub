@@ -2,8 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using WebApplicationTnsClub.ControllerModels;
-using WebApplicationTnsClub.DataTransferObjects;
+using WebApplicationTnsClub.Controllers.Models;
 using WebApplicationTnsClub.Models;
 
 namespace WebApplicationTnsClub.Controllers
@@ -12,9 +11,9 @@ namespace WebApplicationTnsClub.Controllers
     [ApiController]
     public class AccountsController : ControllerBase
     {
-        private readonly UserManager<ApiUser> _userManager;
+ /*       private readonly UserManager<UserParameters> _userManager;
         private readonly IMapper _mapper;
-        public AccountsController(UserManager<ApiUser> userManager, IMapper mapper)
+        public AccountsController(UserManager<UserParameters> userManager, IMapper mapper)
         {
             _userManager = userManager;
             _mapper = mapper;
@@ -25,7 +24,7 @@ namespace WebApplicationTnsClub.Controllers
             if (userForRegistration == null || !ModelState.IsValid)
                 return BadRequest();
 
-            var user = _mapper.Map<ApiUser>(userForRegistration);
+            var user = _mapper.Map<UserParameters>(userForRegistration);
             var result = await _userManager.CreateAsync(user, userForRegistration.Password);
             if (!result.Succeeded)
             {
@@ -35,7 +34,7 @@ namespace WebApplicationTnsClub.Controllers
             }
 
             return StatusCode(201);
-        }
+        }*/
     }
    
 }

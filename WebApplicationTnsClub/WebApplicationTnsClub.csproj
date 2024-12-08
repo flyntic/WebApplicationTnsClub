@@ -133,6 +133,12 @@
     <TypeScriptCompile Include="ClientApp\src\spa\users\user-api.ts" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ControllerModels\" />
+    <Folder Include="Controllers\Models\Input\" />
+    <Folder Include="Controllers\Models\Output\" />
+  </ItemGroup>
+
 	<Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
 		<Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
 		<Exec WorkingDirectory="$(SpaRoot)" Command="npm run build -- --prod" />

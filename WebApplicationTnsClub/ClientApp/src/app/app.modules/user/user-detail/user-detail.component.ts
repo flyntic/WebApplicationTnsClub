@@ -2,25 +2,21 @@
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from './../../../data.service';
 import {  User } from './../user';
-//import { FormsModule } from '@angular/forms';
 
 @Component({
     templateUrl: './user-detail.component.html',
     styleUrl:  './user-detail.component.css',
-    //imports: [FormsModule],
     providers: [DataService]
 })
 
 export class UserDetailComponent implements OnInit {
 
     id: string;
-    login: string;
     user: User;
     loaded: boolean = false;
 
     constructor(private dataService: DataService, activeRoute: ActivatedRoute) {
         this.id= String(activeRoute.snapshot.params["id"]);
-       // this.login = String(activeRoute.snapshot.params["login"]);
         
 
     }

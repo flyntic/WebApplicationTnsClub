@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Xml;
-using WebApplicationTnsClub.ControllerModels;
+
 using WebApplicationTnsClub.Extensions;
 using WebApplicationTnsClub.Models;
 
@@ -13,25 +13,20 @@ namespace WebApplicationTnsClub.DB
     public class ApplicationContext : IdentityDbContext<IdentityUser>
     {
         public DbSet<User> Users { get; set; }
-        public DbSet<Rate> Rates { get; set; }
+        public DbSet<Prices> Prices { get; set; }
         public DbSet<Club> Clubs { get; set; }
         public DbSet<Booking> Bookings { get; set; }
-        public DbSet<Shedule> Shedules { get; set; }
-        public DbSet<PersonalConnect> PersonalConnects { get; set; }
+        public DbSet<Session> Sessions { get; set; }
+        public DbSet<AdminUser> AdminUsers { get; set; }
+        public DbSet<CoachUser> CoachUsers { get; set; }
+        public DbSet<ParentUser> ParentUsers { get; set; }
+        public DbSet<ManagerUser> ManagerUsers { get; set; }
         public DbSet<News> Newses { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<SheduleClub> SheduleClubs { get; set; }
         public DbSet<SheduleClubOpenBooking> SheduleClubOpenBookings { get; set; }
-        public DbSet<Ticket> Tickets { get; set; }
-        //  public DbSet<Project> Projects { get; set; }
-        //  public DbSet<WorkTask> WorkTasks { get; set; }
-        //  public DbSet<ProjectUser> ProjectUsers { get; set; }
-        //public DbSet<IdentityUserClaim<Guid>> IdentityUserClaims { get; set; }
-        //public DbSet<IdentityUserClaim<string>> IdentityUserClaim
-        //{
-        //    get;
-        //    set;
-        //}
+        public DbSet<Abonement> Abonements { get; set; }
+
 
      /*   public DbSet<T>? _Return<T>(T item) where T : class,  IBaseId
         {
@@ -45,9 +40,9 @@ namespace WebApplicationTnsClub.DB
             Database.EnsureCreated();
         }
 
-        protected void _OnModelCreating<T>(ModelBuilder modelBuilder) where T:BaseId
+        protected void _OnModelCreating<T,L>(ModelBuilder modelBuilder) where T:IBaseDataType<L>
         {
-            modelBuilder.Entity<T>()
+     /* 06.12.2024      modelBuilder.Entity<T>()
              .Property(e => e.DateCreate)
              .HasDefaultValueSql("GETDATE()");
 
@@ -57,12 +52,12 @@ namespace WebApplicationTnsClub.DB
 
             modelBuilder.Entity<T>()
                 .HasQueryFilter(e => !e.IsDeleted);
-
+     */
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyUtcDateTimeConverter();
+          //  modelBuilder.ApplyUtcDateTimeConverter();
 
          /*   modelBuilder.Entity<User>()
                 .Property(e => e.DateCreate)

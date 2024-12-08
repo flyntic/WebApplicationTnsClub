@@ -13,8 +13,6 @@ import { User } from './../user';
 export class UserListComponent implements OnInit {
 
     users: User[];
-    avatar: any;
-    sanitizer: any;
 
 
     constructor(private dataService: DataService, private fileService: FileService,
@@ -27,6 +25,7 @@ export class UserListComponent implements OnInit {
     }
     load() {
         this.dataService.getUsers().subscribe((data: User[]) => {
+            
             this.users = data;
         });
     

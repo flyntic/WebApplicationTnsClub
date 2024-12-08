@@ -20,14 +20,27 @@ export const AppMenuItems: Array<MenuItem> = [
     {
         text: 'Новости',
         icon: 'images/imgs/news.png',
-        route: '/user/list',
+        route: '/news/list',
         submenu: null
     },
     {
         text: 'Расписания',
         icon: 'images/imgs/shedule.png',
-        route: '/shedule/list',
-        submenu: null
+        route: null,
+        submenu: [
+            {
+                text: 'Сеансы',
+                icon: 'images/imgs/price.png',
+                route: '/session/list',
+                submenu: null
+            },
+            {
+                text: 'Расписания в клубах',
+                icon: 'images/imgs/price.png',
+                route:'/sheduleclub/list',
+                submenu: null
+            },
+        ]
     },
     {
         text: 'Тарифы',
@@ -38,21 +51,57 @@ export const AppMenuItems: Array<MenuItem> = [
     {
         text: 'Абонементы',
         icon: 'images/imgs/tickets.png',
-        route: '/ticket/list',
+        route: '/abonement/list',
         submenu: null
     },
     {
-        text: 'Игроки',
+        text: 'Пользователи',
         icon: 'images/imgs/players.png',
-        route: '/player/list',
-        submenu: null
-    },
-    {
-        text: 'Тренеры',
-        icon: 'images/imgs/coach.png',
-        route: '/coach/list',
-        submenu: null
-    },
+        route: null,
+        submenu: [
+            {
+             text: 'Все',
+             icon: 'images/imgs/players.png',
+             route: '/user/list',
+             submenu: null
+            },
+            {
+             text: 'Игроки',
+             icon: 'images/imgs/players.png',
+             route: '/player/list',
+             submenu: null
+            },
+            {
+             text: 'Тренеры',
+             icon: 'images/imgs/coach.png',
+             route: '/coach/list',
+             submenu: null
+            },
+            {
+             text: 'Родители',
+             icon: 'images/imgs/players.png',
+             route: '/parent/list',
+             submenu: null
+            },
+            {
+                text: 'Менеджеры',
+                icon: 'images/imgs/players.png',
+                route: '/manager/list',
+                submenu: null
+            },
+            {
+                text: 'Админы',
+                icon: 'images/imgs/coach.png',
+                route: '/admin/list',
+                submenu: null
+            },
+            {
+                text: 'Игроки',
+                icon: 'images/imgs/players.png',
+                route: '/parent/list',
+                submenu: null
+            }]
+        },
     {
         text: 'Группы',
         icon: 'images/imgs/groups.png',

@@ -43,7 +43,7 @@ export class UserFormComponent {
             reportProgress: true,
         });
 
-        this.user.avatarfile = '';
+        this.user.avatarFile = '';
       //  this.uploadProgress = 0;
         this.working = true;
        
@@ -51,7 +51,7 @@ export class UserFormComponent {
             if (event.type === HttpEventType.UploadProgress) {
                // this.uploadProgress = Math.round((100 * event.loaded) / event.total);
             } else if (event.type === HttpEventType.Response) {
-                this.user.avatarfile = event.body.url;               
+                this.user.avatarFile = event.body.url;               
             } 
         }, (error: any) => {
             console.error(error);

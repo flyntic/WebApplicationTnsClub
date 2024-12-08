@@ -24,13 +24,14 @@ export class DataService {
     }
     createUser(user: User) {
         console.log("create user:" + JSON.stringify(user));
-        const result: any = this.http.post(this.url, user);
-        console.log("do create"+result );
-        return result;
+        return this.http.post(this.url,  user);
+     //   console.log("do create"+result );
+     //   return result;
     }
 
     updateUser(user: User) {
-        console.log("create user:" );
+        console.log("create user:");
+        
         return this.http.put(this.url, user);
     }
 

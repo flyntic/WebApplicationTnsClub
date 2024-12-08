@@ -4,8 +4,8 @@ using System.Linq.Expressions;
 using global::WebApplicationTnsClub.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WebApplicationTnsClub.ControllerModels;
 using WebApplicationTnsClub.Controllers;
+using WebApplicationTnsClub.Controllers.Models;
 using WebApplicationTnsClub.DB;
 
 namespace WebApplicationTnsClub.Controllers
@@ -21,19 +21,19 @@ namespace WebApplicationTnsClub.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<ApiUser>> Get() 
+        public async Task<IEnumerable<UserParameters>> Get() 
         {
-            List<ApiUser> apiArray = new List<ApiUser>();
+            List<UserParameters> usersParameters = new List<UserParameters>();
             try
             {
 
-                List<User> array = await db.Set<User>().ToListAsync();
-                foreach (User arr in array)
+                List<User> users = await db.Set<User>().ToListAsync();
+                foreach (User item in users)
                 {
-                    apiArray.Add(ApiUser.fromBaseId(arr));
+                    usersParameters.Add(UserParameters.FromUser(item));
 
                 }
-                return apiArray;
+                return usersParameters;
             }
             catch (Exception ex)
             {
@@ -42,26 +42,24 @@ namespace WebApplicationTnsClub.Controllers
         }
       
         [HttpGet("{id}")]
-        public async Task<ApiUser> Get (string id) 
+        public async Task<UserParameters> Get (string id) 
         {
                 User user = await db.Set<User>().FirstOrDefaultAsync(x => x.Id.Equals(id));
-                ApiUser apiUser = ApiUser.fromBaseId(user);
+                UserParameters userParameters = UserParameters.FromUser(user);
                     
-            return apiUser;
+            return userParameters;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(ApiUser apiUser)
+        public async Task<IActionResult> Post(UserParameters userParameters)
         {
             if (ModelState.IsValid)
-            { User user=null;
-                try { 
-                //   Console.WriteLine("add user" + user.ToString());
-               
-               
-                user=apiUser.toBaseId();
+            { User user=new User();
+                try {
+                 //   user = ;
+                userParameters.ToUser(user);
                 await db.Users.AddAsync(user);//.toNewUser()
-            //    Console.WriteLine("add");
+
                 db.SaveChanges();
                 }
              //   Console.WriteLine("end add");
@@ -82,23 +80,26 @@ namespace WebApplicationTnsClub.Controllers
 
                 
                 
-               return Ok(user);
+               return Ok(userParameters);
             }
             return BadRequest(ModelState);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put(ApiUser apiUser)
+        public async Task<IActionResult> Put(UserParameters userParameters)
         {
             if (ModelState.IsValid)
             {
-                //User userFind = db.Users.Find(apiUser.Id);
-                User user = apiUser.toBaseId();
+                User user = db.Users.Where(user =>  user.Id == userParameters.Id).First();
+
+
+
+                user=userParameters.ToUser(user);
                 try
                {
                    db.Update(user);
                    await db.SaveChangesAsync();
-                    return Ok(apiUser);
+                    return Ok(userParameters);
                 }
                 catch (Exception ex)
                 {
