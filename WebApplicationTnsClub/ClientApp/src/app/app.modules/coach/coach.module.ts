@@ -9,7 +9,7 @@ import { CoachListComponent }   from './coach-list/coach-list.component';
 import { CoachCreateComponent } from './coach-create/coach-create.component';
 
 
-import { DataService } from './../../data.service';
+import { CoachDataService } from './../../shared/data.services/coach.data.service';
 import { FileService } from './../../file.service';
 
 @NgModule({
@@ -22,6 +22,6 @@ import { FileService } from './../../file.service';
         CoachFormComponent
     ],
     exports: [CoachListComponent, CoachEditComponent, CoachCreateComponent],
-    providers: [DataService, FileService]
+    providers: [CoachDataService, FileService]
 })
 export class CoachModule { }

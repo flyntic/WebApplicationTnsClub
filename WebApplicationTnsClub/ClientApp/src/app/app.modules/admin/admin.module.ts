@@ -9,7 +9,7 @@ import { AdminListComponent }   from './admin-list/admin-list.component';
 import { AdminCreateComponent } from './admin-create/admin-create.component';
 
 
-import { DataService } from './../../data.service';
+import { AdminDataService } from './../../shared/data.services/admin.data.service';
 import { FileService } from './../../file.service';
 
 @NgModule({
@@ -22,6 +22,6 @@ import { FileService } from './../../file.service';
         AdminFormComponent
     ],
     exports: [AdminListComponent, AdminEditComponent, AdminCreateComponent],
-    providers: [DataService, FileService]
+    providers: [AdminDataService, FileService]
 })
 export class AdminModule { }

@@ -5,7 +5,9 @@ export class Club {
         public id?: number,
         public name?: string,
         public address?: string,
-        public logofile?: string) { }
+        public logofile?: string,
+        public link?: string,
+        public phone?:string) { }
 
-   
+    
 }

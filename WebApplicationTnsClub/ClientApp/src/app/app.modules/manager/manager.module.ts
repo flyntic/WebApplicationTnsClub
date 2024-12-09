@@ -9,7 +9,7 @@ import { ManagerListComponent }   from './manager-list/manager-list.component';
 import { ManagerCreateComponent } from './manager-create/manager-create.component';
 
 
-import { DataService } from './../../data.service';
+import { ManagerDataService } from './../../shared/data.services/manager.data.service';
 import { FileService } from './../../file.service';
 
 @NgModule({
@@ -22,6 +22,6 @@ import { FileService } from './../../file.service';
         ManagerFormComponent
     ],
     exports: [ManagerListComponent, ManagerEditComponent, ManagerCreateComponent],
-    providers: [DataService, FileService]
+    providers: [ManagerDataService, FileService]
 })
 export class ManagerModule { }

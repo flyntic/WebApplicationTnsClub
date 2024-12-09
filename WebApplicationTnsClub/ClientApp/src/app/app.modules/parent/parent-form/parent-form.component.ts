@@ -1,12 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { HttpClient, HttpEventType, HttpRequest } from '@angular/common/http';
+import { Parent } from './../parent';
+import { ParentDataService } from './../../../shared/data.services/parent.data.service';
+
 
 @Component({
-  selector: 'parent-form',
-  standalone: true,
-  imports: [],
-  templateUrl: './parent-form.component.html',
-  styleUrl: './parent-form.component.css'
+    selector: "parent-form",
+    styleUrl: './parent-form.component.css',
+    templateUrl: './parent-form.component.html'
 })
+
 export class ParentFormComponent {
+    @Input() item: Parent;
+    constructor(public dataService: ParentDataService, private http: HttpClient) { console.log(http); }
 
 }

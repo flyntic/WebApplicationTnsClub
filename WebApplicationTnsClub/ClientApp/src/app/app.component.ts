@@ -1,11 +1,10 @@
 ﻿import { Component, importProvidersFrom } from '@angular/core';
-import { DataService } from './data.service';
+import { UserDataService } from './shared/data.services/user.data.service';
 import { FileService } from './file.service';
 import { AuthService } from "./auth.service";
-//import { OnInit } from '@angular/core';
-//import { of } from 'rxjs';
+
 import { HttpClient } from '@angular/common/http';
-//import { ProjectsComponent } from './projects/projects.component'
+
 import { AppMenuItems } from './app.menu';
 import { AppAuthMenuItems } from './app.auth.menu';
 
@@ -18,8 +17,12 @@ import { AuthGuard } from './services/auth-guard.service';
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
-    providers: [DataService, FileService, AuthService,AuthGuard]
-   // imports:[HttpClient]
+    providers: [
+        UserDataService,
+        FileService,
+        AuthService,
+        AuthGuard]
+
 })
 
 export class AppComponent  {//implements OnInit

@@ -1,12 +1,11 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DataService } from './../../../data.service';
+import { UserDataService } from './../../../shared/data.services/user.data.service';
 import {  User } from './../user';
 
 @Component({
     templateUrl: './user-detail.component.html',
     styleUrl:  './user-detail.component.css',
-    providers: [DataService]
 })
 
 export class UserDetailComponent implements OnInit {
@@ -15,7 +14,7 @@ export class UserDetailComponent implements OnInit {
     user: User;
     loaded: boolean = false;
 
-    constructor(private dataService: DataService, activeRoute: ActivatedRoute) {
+    constructor(private dataService: UserDataService, activeRoute: ActivatedRoute) {
         this.id= String(activeRoute.snapshot.params["id"]);
         
 

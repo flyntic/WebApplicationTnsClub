@@ -1,7 +1,7 @@
 ﻿import { Component, Input } from '@angular/core';
 import { HttpClient, HttpEventType, HttpRequest } from '@angular/common/http';
 import { User } from './../user';
-import { DataService } from '../../../data.service';
+import { UserDataService } from './../../../shared/data.services/user.data.service';
 import { environment } from '../../../../environments/environment';
 
 
@@ -12,7 +12,7 @@ import { environment } from '../../../../environments/environment';
 })
 export class UserFormComponent {
     @Input() user: User;
-    constructor(public dataService: DataService, private http: HttpClient) { console.log(http); }
+    constructor(public dataService: UserDataService, private http: HttpClient) { console.log(http); }
     
 
     working = false;

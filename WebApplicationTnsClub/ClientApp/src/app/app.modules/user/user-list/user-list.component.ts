@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { DataService } from './../../../data.service';
+import { UserDataService } from './../../../shared/data.services/user.data.service';
 import { FileService } from './../../../file.service';
 import { User } from './../user';
 
@@ -15,11 +15,11 @@ export class UserListComponent implements OnInit {
     users: User[];
 
 
-    constructor(private dataService: DataService, private fileService: FileService,
+    constructor(private dataService: UserDataService, private fileService: FileService,
         private router: Router) { console.log("user-list"); }
 
     ngOnInit() {
-        console.log("user-list-onInit");
+
         this.load();
        
     }
@@ -33,7 +33,7 @@ export class UserListComponent implements OnInit {
     }
  
     delete(id: any) {
-        console.log(id);
+
         this.dataService.deleteUser(id).subscribe(data => this.load());
     }
 }

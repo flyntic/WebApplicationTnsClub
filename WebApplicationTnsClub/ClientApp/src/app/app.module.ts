@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DataService } from './data.service';
+//import { DataService } from './data.service';
 import { FileService } from './file.service';
 import { AuthService } from './auth.service';
 //import { RegisterComponent } from './register/register.component';
@@ -22,7 +22,7 @@ import { AuthGuard } from './services/auth-guard.service';
     imports: [BrowserModule, FormsModule, AppRoutingModule,/* LoginComponent,*/HttpClientModule, 
        /* RegisterComponent, ProjectsComponent,*/ SpaModule, RouterModule.forRoot(appRoutes),],
     declarations: [AppComponent],
-    providers: [DataService,FileService,AuthService, AuthGuard,HttpClient],// регистрация сервисов
+    providers: [FileService,AuthService, AuthGuard,HttpClient],// регистрация сервисов
     bootstrap: [AppComponent]
 })
 export class AppModule {

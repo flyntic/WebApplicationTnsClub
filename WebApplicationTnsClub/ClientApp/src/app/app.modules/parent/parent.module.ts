@@ -9,7 +9,7 @@ import { ParentListComponent }   from './parent-list/parent-list.component';
 import { ParentCreateComponent } from './parent-create/parent-create.component';
 
 
-import { DataService } from './../../data.service';
+import { ParentDataService } from './../../shared/data.services/parent.data.service';
 import { FileService } from './../../file.service';
 
 @NgModule({
@@ -22,6 +22,6 @@ import { FileService } from './../../file.service';
         ParentFormComponent
     ],
     exports: [ParentListComponent, ParentEditComponent, ParentCreateComponent],
-    providers: [DataService, FileService]
+    providers: [ParentDataService, FileService]
 })
 export class ParentModule { }

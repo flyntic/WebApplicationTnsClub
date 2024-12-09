@@ -1,12 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { AdminDataService } from './../../../shared/data.services/admin.data.service';
+import { FileService } from './../../../file.service';
+import { Admin } from './../admin';
+
 
 @Component({
-  selector: 'admin-list',
-  standalone: true,
-  imports: [],
-  templateUrl: './admin-list.component.html',
-  styleUrl: './admin-list.component.css'
-})
-export class AdminListComponent {
 
+    styleUrl: './admin-list.component.css',
+    templateUrl: './admin-list.component.html'
+})
+export class AdminListComponent implements OnInit {
+
+    items: Admin[];
+
+
+    constructor(private dataService: AdminDataService, private fileService: FileService,
+        private router: Router) { }
+
+    ngOnInit() {
+
+        this.load();
+
+    }
+    load() {
+        this.dataService.getAdmins().subscribe((data: Admin[]) => {
+
+            this.items = data;
+        });
+
+
+    }
+
+    delete(id: any) {
+
+        this.dataService.deleteAdmin(id).subscribe(data => this.load());
+    }
 }
+
