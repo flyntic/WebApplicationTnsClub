@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { DataService } from './../../../data.service';
+import { UserDataService } from './../../../shared/data.services/user.data.service';
 import {  User } from './../user';
 
 
@@ -16,8 +16,8 @@ export class UserEditComponent implements OnInit {
     user: User;    // изменяемый объект
     loaded: boolean = false;
 
-    constructor(private dataService: DataService, private router: Router, activeRoute: ActivatedRoute) {
-        console.log("edit user");
+    constructor(private dataService: UserDataService, private router: Router, activeRoute: ActivatedRoute) {
+
         this.id = String(activeRoute.snapshot.params["id"]);
 
     }
@@ -29,11 +29,11 @@ export class UserEditComponent implements OnInit {
                     this.user = data;
                     if (this.user != null) this.loaded = true;
                 });
-        console.log("edit user ngOninit");
+
     }
 
     save() {
-        console.log("save user ngOninit");
+
         this.dataService.updateUser(this.user).subscribe(data => this.router.navigateByUrl("/"));
     }
 }

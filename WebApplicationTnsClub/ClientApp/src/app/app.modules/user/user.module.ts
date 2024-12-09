@@ -9,7 +9,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { UserCreateComponent } from './user-create/user-create.component';
 
 
-import { DataService } from './../../data.service';
+import { UserDataService } from './../../shared/data.services/user.data.service';
 import { FileService } from './../../file.service';
 
 @NgModule({
@@ -21,6 +21,6 @@ import { FileService } from './../../file.service';
         UserFormComponent
     ],
     exports: [UserListComponent, UserEditComponent, UserCreateComponent],
-    providers: [DataService, FileService]
+    providers: [UserDataService, FileService]
 })
 export class UserModule { }

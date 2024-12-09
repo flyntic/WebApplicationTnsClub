@@ -8,7 +8,7 @@ import { BookingDetailComponent } from './booking-detail/booking-detail.componen
 import { BookingEditComponent } from './booking-edit/booking-edit.component';
 import { BookingFormComponent } from './booking-form/booking-form.component';
 
-import { DataService } from './../../data.service';
+import { BookingDataService } from './../../shared/data.services/booking.data.service';
 import { FileService } from './../../file.service';
 
 @NgModule({
@@ -20,6 +20,6 @@ import { FileService } from './../../file.service';
         BookingFormComponent
     ],
     exports: [BookingListComponent, BookingEditComponent, BookingCreateComponent],
-    providers: [DataService, FileService]
+    providers: [BookingDataService, FileService]
 })
 export class BookingModule { }

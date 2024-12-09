@@ -8,7 +8,7 @@ import { ClubDetailComponent } from './club-detail/club-detail.component';
 import { ClubEditComponent } from './club-edit/club-edit.component';
 import { ClubFormComponent } from './club-form/club-form.component';
 
-import { DataService } from './../../data.service';
+import { ClubDataService } from './../../shared/data.services/club.data.service';
 import { FileService } from './../../file.service';
 
 @NgModule({
@@ -20,6 +20,6 @@ import { FileService } from './../../file.service';
         ClubFormComponent
     ],
     exports: [ClubListComponent, ClubEditComponent, ClubCreateComponent],
-    providers: [DataService, FileService]
+    providers: [ClubDataService, FileService]
 })
 export class UserModule { }

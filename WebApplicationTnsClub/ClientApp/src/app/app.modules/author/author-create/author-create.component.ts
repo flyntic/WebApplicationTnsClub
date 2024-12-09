@@ -1,12 +1,29 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthorDataService } from './../../../shared/data.services/author.data.service';
+import { Author } from './../author';
+import { OnInit } from '@angular/core';
+
 
 @Component({
-  selector: 'author-create',
-  standalone: true,
-  imports: [],
-  templateUrl: './author-create.component.html',
-  styleUrl: './author-create.component.css'
+
+    templateUrl: './author-create.component.html',
+    styleUrl: './author-create.component.css',
+
 })
-export class AuthorCreateComponent {
+export class AuthorCreateComponent implements OnInit {
+
+    item: Author = new Author();    // добавляемый объект
+
+    constructor(private dataService: AuthorDataService, private router: Router) { }
+
+    ngOnInit() {
+
+    }
+
+    save() {
+
+        this.dataService.createAuthor(this.item).subscribe(data => this.router.navigateByUrl("/"));
+    }
 
 }

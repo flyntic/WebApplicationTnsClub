@@ -1,6 +1,6 @@
 ﻿import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { DataService } from './../../../data.service';
+import { UserDataService } from './../../../shared/data.services/user.data.service';
 import { User } from './../user';
 import { OnInit } from '@angular/core';
 
@@ -15,7 +15,7 @@ export class UserCreateComponent implements OnInit {
 
     user: User = new User();    // добавляемый объект
 
-    constructor(private dataService: DataService, private router: Router) { }
+    constructor(private dataService: UserDataService, private router: Router) { }
 
     ngOnInit() {
        

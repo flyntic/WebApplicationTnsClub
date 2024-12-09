@@ -9,7 +9,7 @@ import { PlayerListComponent } from './player-list/player-list.component';
 import { PlayerCreateComponent } from './player-create/player-create.component';
 
 
-import { DataService } from './../../data.service';
+import { PlayerDataService } from './../../shared/data.services/player.data.service';
 import { FileService } from './../../file.service';
 
 @NgModule({
@@ -21,6 +21,6 @@ import { FileService } from './../../file.service';
         PlayerFormComponent
     ],
     exports: [PlayerListComponent, PlayerEditComponent, PlayerCreateComponent],
-    providers: [DataService, FileService]
+    providers: [PlayerDataService, FileService]
 })
 export class PlayerModule { }

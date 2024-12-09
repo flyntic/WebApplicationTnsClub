@@ -35,8 +35,21 @@
     <None Remove="ClientApp\src\app-routing.module.ts" />
     <None Remove="ClientApp\src\app\app.auth.menu.ts" />
     <None Remove="ClientApp\src\app\app.menu.ts" />
+    <None Remove="ClientApp\src\app\app.modules\abonement\abonement.ts" />
+    <None Remove="ClientApp\src\app\app.modules\admin\admin.ts" />
+    <None Remove="ClientApp\src\app\app.modules\author\author.ts" />
+    <None Remove="ClientApp\src\app\app.modules\coach\coach.ts" />
+    <None Remove="ClientApp\src\app\app.modules\group\group.ts" />
+    <None Remove="ClientApp\src\app\app.modules\manager\manager.ts" />
+    <None Remove="ClientApp\src\app\app.modules\news\news.ts" />
+    <None Remove="ClientApp\src\app\app.modules\parent\parent.ts" />
+    <None Remove="ClientApp\src\app\app.modules\player\player.ts" />
+    <None Remove="ClientApp\src\app\app.modules\price\price.ts" />
+    <None Remove="ClientApp\src\app\app.modules\session\session.ts" />
+    <None Remove="ClientApp\src\app\app.modules\shedule-club-open-booking\shedule-club-open-booking.ts" />
+    <None Remove="ClientApp\src\app\app.modules\shedule-club\shedule-club.ts" />
     <None Remove="ClientApp\src\app\authentication\register-user\register-user.component.ts" />
-    <None Remove="ClientApp\src\app\data.service.ts" />
+    <None Remove="ClientApp\src\app\exampledata.service.ts" />
     <None Remove="ClientApp\src\app\htmlpage.html" />
     <None Remove="ClientApp\src\app\not-found.component.ts" />
     <None Remove="ClientApp\src\app\product-create.component.html" />
@@ -51,6 +64,22 @@
     <None Remove="ClientApp\src\app\product-list.component.ts" />
     <None Remove="ClientApp\src\app\product.ts" />
     <None Remove="ClientApp\src\app\routes\app.routes.ts" />
+    <None Remove="ClientApp\src\app\shared\data.services\abonement.data.service.ts" />
+    <None Remove="ClientApp\src\app\shared\data.services\admin.data.service.ts" />
+    <None Remove="ClientApp\src\app\shared\data.services\author.data.service.ts" />
+    <None Remove="ClientApp\src\app\shared\data.services\booking.data.service.ts" />
+    <None Remove="ClientApp\src\app\shared\data.services\club.data.service.ts" />
+    <None Remove="ClientApp\src\app\shared\data.services\coach.data.service.ts" />
+    <None Remove="ClientApp\src\app\shared\data.services\group.data.service.ts" />
+    <None Remove="ClientApp\src\app\shared\data.services\manager.data.service.ts" />
+    <None Remove="ClientApp\src\app\shared\data.services\news.data.service.ts" />
+    <None Remove="ClientApp\src\app\shared\data.services\parent.data.service.ts" />
+    <None Remove="ClientApp\src\app\shared\data.services\player.data.service.ts" />
+    <None Remove="ClientApp\src\app\shared\data.services\price.data.service.ts" />
+    <None Remove="ClientApp\src\app\shared\data.services\session.data.service.ts" />
+    <None Remove="ClientApp\src\app\shared\data.services\shedule-club-open-booking.data.service.ts" />
+    <None Remove="ClientApp\src\app\shared\data.services\shedule-club.data.service.ts" />
+    <None Remove="ClientApp\src\app\shared\data.services\user.data.service.ts" />
     <None Remove="ClientApp\src\app\shared\services\authentication.service.ts" />
     <None Remove="ClientApp\src\app\shared\services\data.service.ts" />
     <None Remove="ClientApp\src\app\shared\services\environment-url.service.ts" />
@@ -89,6 +118,45 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\app-routing.module.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\app.menu.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\app.modules\abonement\abonement.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\app.modules\admin\admin.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\app.modules\author\author.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\app.modules\coach\coach.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\app.modules\group\group.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\app.modules\manager\manager.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\app.modules\news\news.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\app.modules\parent\parent.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\app.modules\player\player.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\app.modules\price\price.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\app.modules\session\session.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\app.modules\shedule-club-open-booking\shedule-club-open-booking.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\app.modules\shedule-club\shedule-club.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\authentication\register-user\register-user.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\app.modules\club\club.ts">
       <SubType>Code</SubType>
@@ -98,8 +166,56 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\not-found.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\routes\app.routes.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\data.services\admin.data.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\shared\data.services\author.data.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\shared\data.services\coach.data.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\shared\data.services\abonement.data.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\shared\data.services\club.data.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\shared\data.services\booking.data.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\shared\data.services\group.data.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\shared\data.services\news.data.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\shared\data.services\shedule-club-open-booking.data.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\shared\data.services\shedule-club.data.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\shared\data.services\session.data.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\shared\data.services\price.data.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\shared\data.services\player.data.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\shared\data.services\parent.data.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\shared\data.services\manager.data.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\shared\data.services\user.data.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\shared\services\authentication.service.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\data.service.ts">
+    <TypeScriptCompile Include="ClientApp\src\app\exampledata.service.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\environment-url.service.ts" />
