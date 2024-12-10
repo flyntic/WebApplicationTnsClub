@@ -15,9 +15,9 @@ namespace WebApplicationTnsClub.Controllers.Models
 
         public UserParameters? Author { get; set; }
 
-        public NewsParameters FromNews(News news)
+        public static NewsParameters FromNews(News news)
         {
-           
+        
 
             NewsParameters parameters = new NewsParameters()
             {
@@ -32,11 +32,11 @@ namespace WebApplicationTnsClub.Controllers.Models
 
             return parameters;
         }
-        public News ToNews()
+        public News ToNews(News news)
         {
-            News news = new News()
+          //  News news = new News()
             {
-                Id = Id,
+                Id = news.Id;
                 //ApiUser?[] Users { get; set; }
                 //ApiClub? Club { get; set; }
                 //ApiRate? Rate { get; set; }

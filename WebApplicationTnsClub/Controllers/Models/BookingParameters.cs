@@ -33,7 +33,7 @@ namespace WebApplicationTnsClub.Controllers.Models
         public UserParameters? UserOfSale { get; set; }
         public string? Comment { get; set; }
 
-        public BookingParameters FromBooking(Booking booking)
+        public static BookingParameters FromBooking(Booking booking)
         {
             BookingParameters parameters = new BookingParameters()
             {
@@ -53,22 +53,22 @@ namespace WebApplicationTnsClub.Controllers.Models
 
             return parameters;
         }
-        public Booking toBaseId()
+        public Booking toBaseId(Booking booking)
         {
-            Booking booking = new Booking()
-            {
-                Id = this.Id,
-                //ApiUser?[] Users { get; set; }
-                //ApiClub? Club { get; set; }
-                //ApiRate? Rate { get; set; }
-                //public ApiUser? UserOfSale { get; set; }
-                Date = this.Date,
-                Time = this.Time,
-                Length = this.Length,
-                StateBooking = this.StateBooking,
-               // Price = this.Price.ToPrices(), //Next=booking.Next,
-                DateOfSale = this.DateOfSale
-            };
+            // = new Booking()
+            // {
+            //   Id = this.Id,
+            //ApiUser?[] Users { get; set; }
+            //ApiClub? Club { get; set; }
+            //ApiRate? Rate { get; set; }
+            //public ApiUser? UserOfSale { get; set; }
+            booking.Date = this.Date;
+            booking.Time = this.Time;
+            booking.Length = this.Length;
+            booking.StateBooking = this.StateBooking;
+            // Price = this.Price.ToPrices(), //Next=booking.Next,
+            booking.DateOfSale = this.DateOfSale;
+           // };
 
             return booking;
         }

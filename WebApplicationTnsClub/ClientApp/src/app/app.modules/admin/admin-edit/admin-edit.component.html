@@ -1,1 +1,9 @@
 <p>admin-edit works!</p>
+<div *ngIf="loaded" class="container">
+    <h2>Изменение данных об игроке</h2>
+    <a routerLink="/" class="nav-link">Назад к списку</a>
+    <admin-form [(item)]="item"></admin-form>
+    <div class="form-group">
+        <input type="button" value="Сохранить" (click)="save()" class="btn btn-success " />
+    </div>
+</div>

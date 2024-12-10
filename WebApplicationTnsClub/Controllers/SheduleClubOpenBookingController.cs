@@ -6,12 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 using WebApplicationTnsClub.Controllers;
+using WebApplicationTnsClub.Controllers.Models;
 using WebApplicationTnsClub.DB;
 
 namespace WebApplicationTnsClub.Controllers
 {
     [ApiController]
-    [Route("api/sheduleclubopenbookings")]
+    [Route("api/shedule-club-open-bookings")]
     public class SheduleClubOpenBookingController : Controller
     {
         ApplicationContext db;
@@ -20,89 +21,97 @@ namespace WebApplicationTnsClub.Controllers
             db = context;
             
         }
-        /*
         [HttpGet]
-        public async Task<IEnumerable<ApiUser>> Get()
-        {
-           List<ApiUser> apiUsers = new List<ApiUser>();
-           try
+        public async Task<IEnumerable<SheduleClubOpenBookingParameters>> Get()
+        { //todo
+            List<SheduleClubOpenBookingParameters> sheduleClubOpenBookingParameters = new List<SheduleClubOpenBookingParameters>();
+            try
             {
-                List<User> users = await db.Users.ToListAsync();
-                foreach (var user in users)
+
+                List<SheduleClubOpenBooking> sheduleClubOpenBookings = await db.Set<SheduleClubOpenBooking>().ToListAsync();
+                foreach (SheduleClubOpenBooking item in sheduleClubOpenBookings)
                 {
-                    apiUsers.Add(user.toApiUser());
-                    
+                    sheduleClubOpenBookingParameters.Add(SheduleClubOpenBookingParameters.FromSheduleClubOpenBooking(item));
+
                 }
-                return apiUsers;
+                return sheduleClubOpenBookingParameters;
             }
             catch (Exception ex)
             {
                 return null;
             }
         }
-    
+
         [HttpGet("{id}")]
-        public async Task<ApiUser> Get(long id)
+        public async Task<SheduleClubOpenBookingParameters> Get(long id)
         {
-                User user = await db.Users.FirstOrDefaultAsync(x => x.Id == id);
-                    
-            return user.toApiUser();
+            SheduleClubOpenBooking sheduleClubOpenBooking = await db.SheduleClubOpenBookings.FirstOrDefaultAsync(x => x.Id == id);
+            SheduleClubOpenBookingParameters sheduleClubOpenBookingParameters = SheduleClubOpenBookingParameters.FromSheduleClubOpenBooking(sheduleClubOpenBooking);
+            return sheduleClubOpenBookingParameters;
         }
+
 
         [HttpPost]
-        public async Task<IActionResult> Post(ApiUser user)
+        public async Task<IActionResult> Post(SheduleClubOpenBookingParameters sheduleClubOpenBookingParameters)
         {
             if (ModelState.IsValid)
             {
-                Console.WriteLine("add user" + user.ToString());
-                await db.Users.AddAsync(user);//.toNewUser()
-                Console.WriteLine("add");
-                db.SaveChanges();
-                Console.WriteLine("end add");
-        */
-              /*  if (user.Avatarfile!=null)
-                {   string bdfilename = "c://wwwroot/uploads/save" + user.Id + ".jpg";
-                    try
-                    {  // System.IO.File.Copy(user.Avatarfile, bdfilename);
-                      //  System.IO.File.Delete(user.Avatarfile);                       
-                        user.Avatarfile = bdfilename;
-                        db.Users.Update(user);
-                        db.SaveChanges();                        
-                    }
-                    catch (Exception ex) { 
-                      Console.WriteLine(ex.Message);
-                    }
-
-                } */
-                
-        /*        return Ok(user);
+                SheduleClubOpenBooking sheduleClubOpenBooking = new SheduleClubOpenBooking();
+                try
+                {
+                    sheduleClubOpenBooking=sheduleClubOpenBookingParameters.ToSheduleClubOpenBooking(sheduleClubOpenBooking);
+                    await db.SheduleClubOpenBookings.AddAsync(sheduleClubOpenBooking);
+                    await db.SaveChangesAsync();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return BadRequest(ModelState);
+                }
+                return Ok(sheduleClubOpenBookingParameters);
             }
+
             return BadRequest(ModelState);
         }
+
+
 
         [HttpPut]
-        public async Task<IActionResult> Put(ApiUser user)
+        public async Task<IActionResult> Put(SheduleClubOpenBookingParameters sheduleClubOpenBookingParameters)
         {
             if (ModelState.IsValid)
             {
-              //todo  db.Update(user.toUser());
-                await db.SaveChangesAsync();
-                return Ok(user);
+                SheduleClubOpenBooking sheduleClubOpenBooking = db.SheduleClubOpenBookings.Where(sheduleClubOpenBooking => sheduleClubOpenBooking.Id == sheduleClubOpenBookingParameters.Id).First();
+
+                sheduleClubOpenBooking = sheduleClubOpenBookingParameters.ToSheduleClubOpenBooking(sheduleClubOpenBooking);
+                try
+                {
+                    db.Update(sheduleClubOpenBooking);
+                    await db.SaveChangesAsync();
+                    return Ok(sheduleClubOpenBookingParameters);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return BadRequest(ModelState);
+                }
             }
             return BadRequest(ModelState);
         }
+
+
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(long id)
         {
-            User user = await db.Users.FirstOrDefaultAsync(x => x.Id.Equals(id));
-            if (user != null)
+            SheduleClubOpenBooking sheduleClubOpenBooking = await db.SheduleClubOpenBookings.FirstOrDefaultAsync(x => x.Id.Equals(id));
+            if (sheduleClubOpenBooking != null)
             {
-                user.IsDeleted = true;
-               // db.Users.Remove(user);
+                sheduleClubOpenBooking.IsDeleted = true;
+                db.SheduleClubOpenBookings.Remove(sheduleClubOpenBooking);
                 await db.SaveChangesAsync();
             }
-            return Ok(user);
-        }*/
+            return Ok(id);
+        }
     }
 }

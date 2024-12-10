@@ -21,7 +21,7 @@ namespace WebApplicationTnsClub.Controllers.Models
         public string? Phone { get; set; }
         public string? Link { get; set; }
 
-        public ClubParameters FromClub(Club club)
+        public static ClubParameters FromClub(Club club)
         {
             ClubParameters parameters = new ClubParameters()
             {
@@ -34,18 +34,16 @@ namespace WebApplicationTnsClub.Controllers.Models
             };
             return parameters;
         }
-        public Club ToClub()
+        public Club ToClub(Club club)
         {
-        
-            Club club = new Club()
-            {
-                Id = this.Id,               
-                Logofile = this.Logofile,
-                Name = this.Name,
-                Address = this.Address,
-                Phone = this.Phone,
-                Link = this.Link
-            };
+
+
+            //                Id = this.Id,               
+            Logofile = this.Logofile;
+            Name = this.Name;
+            Address = this.Address;
+            Phone = this.Phone;
+            Link = this.Link;
 
             return club;
         }

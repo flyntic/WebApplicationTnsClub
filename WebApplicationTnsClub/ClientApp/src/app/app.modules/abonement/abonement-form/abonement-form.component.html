@@ -1,1 +1,26 @@
 <p>abonement-form works!</p>
+<div class="container">
+    <!-- <div class="form-group">
+            <label>Аватар</label>
+            <div class="form-group">
+                <img [src]="item.avatarFile" alt="preview" class="rounded shadow w-100" id="imageFile">
+            </div>
+            <div class="form-group">
+                <input type="file" accept="image/*" class="custom-file-input" id="customFile" (change)="handleFileInput($any($event.target).files)" (change)="upload()" [disabled]="working">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Имя</label>
+            <input type="text" [(ngModel)]="item.firstName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label>Отчество</label>
+            <input type="text" [(ngModel)]="item.secondName" class="form-control" />
+        </div>
+     -->
+    <div class="form-group">
+        <label>Id</label>
+        <input type="text" [(ngModel)]="item.id" class="form-control" />
+    </div>
+
+</div>

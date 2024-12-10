@@ -5,27 +5,28 @@ namespace WebApplicationTnsClub.Controllers.Models
     public class SheduleClubParameters : IBaseParameters<long>
     {
         public long Id { get; set; }
-        public Club? Club { get; set; }
-        public Session?[] Sessions { get; set; }
+        public ClubParameters? Club { get; set; }
+        public SessionParameters?[] Sessions { get; set; }
 
-        public SheduleClubParameters FromSheduleClub(SheduleClub sheduleClub)
+        public static SheduleClubParameters FromSheduleClub(SheduleClub sheduleClub)
         {
-           SheduleClubParameters sheduleClubParameters = new SheduleClubParameters()
+            SheduleClubParameters sheduleClubParameters = new SheduleClubParameters()
             {
                 Id = sheduleClub.Id,
-                //ApiUser?[] Users { get; set; }
-                //ApiClub? Club { get; set; }
-                //ApiRate? Rate { get; set; }
-                //public ApiUser? UserOfSale { get; set; }
-
-                // Comment = club.Comment
+                Club = ClubParameters.FromClub(sheduleClub.Club),
+           //     Sessions= new SessionParameters[sheduleClub.Sessions]()
             };
+
+            foreach (var s in sheduleClub.Sessions) {
+                sheduleClubParameters.Sessions.Append(SessionParameters.FromSession(s));
+            }
 
             return sheduleClubParameters;
         }
-        public SheduleClub ToSheduleClub()
+        public SheduleClub ToSheduleClub(SheduleClub s)
         {
-            SheduleClub s = new SheduleClub() { };
+             
+            s.Club = this.Club.ToClub(new Club());
             return s;
         }
     }

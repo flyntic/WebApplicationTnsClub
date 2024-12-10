@@ -30,10 +30,7 @@ namespace WebApplicationTnsClub.Controllers.Models
         {
             UserParameters parameters = new UserParameters()
             {
-                 Id = user.Id,
-    //            Login = user.Login,
-     //           UserName = user.UserName,
-                // Password=user.PasswordHash,
+                Id = user.Id,
                 AvatarFile = user.AvatarFile,
                 FirstName = user.FirstName,
                 SecondName = user.SecondName,
@@ -44,18 +41,12 @@ namespace WebApplicationTnsClub.Controllers.Models
 
         public User ToUser(User user)
         {
-          //  User s = new User()
           
-            {
-                //user.Id = this.Id;
-                //        Login = Login,
-                //        UserName = this.UserName,
                 user.AvatarFile = this.AvatarFile;
                 user.FirstName = this.FirstName;
                 user.SecondName = this.SecondName;
                 user.LastName = this.LastName;
 
-            };
             return user;
         }
 
