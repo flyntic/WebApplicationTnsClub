@@ -13,7 +13,7 @@ namespace WebApplicationTnsClub.DB
     public class ApplicationContext : IdentityDbContext<IdentityUser>
     {
         public DbSet<User> Users { get; set; }
-        public DbSet<Prices> Prices { get; set; }
+        public DbSet<Price> Prices { get; set; }
         public DbSet<Club> Clubs { get; set; }
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<Session> Sessions { get; set; }

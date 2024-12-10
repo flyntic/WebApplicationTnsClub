@@ -12,7 +12,7 @@ namespace WebApplicationTnsClub.Controllers.Models
         public bool? IsAutorenewal { get; set; }
         public string? State { get; set; }
 
-        public AbonementParameters FromAbonement(Abonement abonement)
+        public static AbonementParameters FromAbonement(Abonement abonement)
         {
 
             AbonementParameters parameters = new AbonementParameters()
@@ -27,17 +27,17 @@ namespace WebApplicationTnsClub.Controllers.Models
             };
             return parameters;
         }
-        public Abonement ToAbonement()
+        public Abonement ToAbonement(Abonement item)
         {
-            Abonement item = new Abonement() {
-                Id = this.Id,
-                // Bookings = abonement.Bookings.ToArray<Booking>().ForEach(a=>a.toBookingparameters),
-                // Sessions= abonement.Sessions.ToArray<Session>().ForEach(a=>a.toSessionparameters)            
-                Price = this.Price,
-                IsAutorenewal = this.IsAutorenewal,
-                State = this.State
+            // = new Abonement() {
+            //    Id = this.Id,
+            // Bookings = abonement.Bookings.ToArray<Booking>().ForEach(a=>a.toBookingparameters),
+            // Sessions= abonement.Sessions.ToArray<Session>().ForEach(a=>a.toSessionparameters)            
+            item.Price = this.Price;
+            item.IsAutorenewal = this.IsAutorenewal;
+            item.State = this.State;
 
-            };
+           
             return item;
         }
     }

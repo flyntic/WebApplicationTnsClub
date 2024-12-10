@@ -355,11 +355,7 @@ namespace WebApplicationTnsClub.Migrations
                     b.Property<long?>("NextId")
                         .HasColumnType("bigint");
 
-                    b.Property<int?>("Price")
-                        .HasColumnType("integer")
-                        .HasColumnName("price");
-
-                    b.Property<long?>("RateId")
+                    b.Property<long?>("PriceId")
                         .HasColumnType("bigint");
 
                     b.Property<long?>("SheduleClubOpenBookingId")
@@ -384,7 +380,7 @@ namespace WebApplicationTnsClub.Migrations
 
                     b.HasIndex("NextId");
 
-                    b.HasIndex("RateId");
+                    b.HasIndex("PriceId");
 
                     b.HasIndex("SheduleClubOpenBookingId");
 
@@ -677,7 +673,7 @@ namespace WebApplicationTnsClub.Migrations
                     b.ToTable("ParentUsers");
                 });
 
-            modelBuilder.Entity("WebApplicationTnsClub.Models.Prices", b =>
+            modelBuilder.Entity("WebApplicationTnsClub.Models.Price", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -716,9 +712,9 @@ namespace WebApplicationTnsClub.Migrations
                         .HasColumnType("text")
                         .HasColumnName("name");
 
-                    b.Property<int?>("Price")
+                    b.Property<int?>("Tariff")
                         .HasColumnType("integer")
-                        .HasColumnName("price");
+                        .HasColumnName("tariff");
 
                     b.HasKey("Id");
 
@@ -768,7 +764,7 @@ namespace WebApplicationTnsClub.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("length");
 
-                    b.Property<long?>("PricesId")
+                    b.Property<long?>("PriceId")
                         .HasColumnType("bigint");
 
                     b.Property<long?>("SheduleClubId")
@@ -788,7 +784,7 @@ namespace WebApplicationTnsClub.Migrations
 
                     b.HasIndex("GroupId");
 
-                    b.HasIndex("PricesId");
+                    b.HasIndex("PriceId");
 
                     b.HasIndex("SheduleClubId");
 
@@ -1014,9 +1010,9 @@ namespace WebApplicationTnsClub.Migrations
                         .WithMany()
                         .HasForeignKey("NextId");
 
-                    b.HasOne("WebApplicationTnsClub.Models.Prices", "Rate")
+                    b.HasOne("WebApplicationTnsClub.Models.Price", "Price")
                         .WithMany()
-                        .HasForeignKey("RateId");
+                        .HasForeignKey("PriceId");
 
                     b.HasOne("WebApplicationTnsClub.Models.SheduleClubOpenBooking", null)
                         .WithMany("Bookings")
@@ -1030,7 +1026,7 @@ namespace WebApplicationTnsClub.Migrations
 
                     b.Navigation("Next");
 
-                    b.Navigation("Rate");
+                    b.Navigation("Price");
 
                     b.Navigation("UserOfSale");
                 });
@@ -1098,7 +1094,7 @@ namespace WebApplicationTnsClub.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("WebApplicationTnsClub.Models.Prices", b =>
+            modelBuilder.Entity("WebApplicationTnsClub.Models.Price", b =>
                 {
                     b.HasOne("WebApplicationTnsClub.Models.Club", "Club")
                         .WithMany()
@@ -1121,9 +1117,9 @@ namespace WebApplicationTnsClub.Migrations
                         .WithMany("Sessions")
                         .HasForeignKey("GroupId");
 
-                    b.HasOne("WebApplicationTnsClub.Models.Prices", null)
+                    b.HasOne("WebApplicationTnsClub.Models.Price", null)
                         .WithMany("Sessions")
-                        .HasForeignKey("PricesId");
+                        .HasForeignKey("PriceId");
 
                     b.HasOne("WebApplicationTnsClub.Models.SheduleClub", null)
                         .WithMany("Sessions")
@@ -1204,7 +1200,7 @@ namespace WebApplicationTnsClub.Migrations
                     b.Navigation("Childs");
                 });
 
-            modelBuilder.Entity("WebApplicationTnsClub.Models.Prices", b =>
+            modelBuilder.Entity("WebApplicationTnsClub.Models.Price", b =>
                 {
                     b.Navigation("Sessions");
                 });

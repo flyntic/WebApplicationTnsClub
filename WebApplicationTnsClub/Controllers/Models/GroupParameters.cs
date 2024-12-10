@@ -18,7 +18,7 @@ namespace WebApplicationTnsClub.Controllers.Models
         public string? State { get; set; }
         
 
-        public GroupParameters FromGroup( Group group)
+        public static GroupParameters FromGroup( Group group)
         {
           
 
@@ -37,11 +37,11 @@ namespace WebApplicationTnsClub.Controllers.Models
             return parameters;
         }
 
-        public Group ToGroup()
+        public Group ToGroup(Group group)
         {
-            Group group = new Group()
-            {
-                Id = Id,
+             //= new Group()
+          //  {
+             //   Id = Id,
                 //ApiUser?[] Users { get; set; }
                 //ApiClub? Club { get; set; }
                 //ApiRate? Rate { get; set; }
@@ -53,7 +53,7 @@ namespace WebApplicationTnsClub.Controllers.Models
                 //    Price = this.Price, //Next=booking.Next,
                 //    DateOfSale = this.DateOfSale,
                 //Comment = Comment
-            };
+         //   };
 
             return group;
         }

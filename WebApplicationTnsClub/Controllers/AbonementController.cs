@@ -29,7 +29,7 @@ namespace WebApplicationTnsClub.Controllers
                 List<Abonement> abonements = await db.Abonements.ToListAsync();
                 foreach (var item in abonements)
                 {
-                    abonementParameters.Add(new AbonementParameters().FromAbonement(item));
+                    abonementParameters.Add(AbonementParameters.FromAbonement(item));
                     
                 }
                 return abonementParameters;
@@ -45,7 +45,7 @@ namespace WebApplicationTnsClub.Controllers
         {
                 Abonement abonement = await db.Abonements.FirstOrDefaultAsync(x => x.Id == id);
                     
-            return new AbonementParameters().FromAbonement(abonement);
+            return AbonementParameters.FromAbonement(abonement);
         }
 
         [HttpPost]
@@ -54,7 +54,7 @@ namespace WebApplicationTnsClub.Controllers
             if (ModelState.IsValid)
             {
               //  Console.WriteLine("add user" + user.ToString());
-                await db.Abonements.AddAsync(abonementParameters.ToAbonement());//.toNewUser()
+                await db.Abonements.AddAsync(abonementParameters.ToAbonement(new Abonement()));//.toNewUser()
               //  Console.WriteLine("add");
                 db.SaveChanges();
              //   Console.WriteLine("end add");

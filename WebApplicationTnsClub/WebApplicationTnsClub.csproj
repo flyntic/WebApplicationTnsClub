@@ -35,19 +35,6 @@
     <None Remove="ClientApp\src\app-routing.module.ts" />
     <None Remove="ClientApp\src\app\app.auth.menu.ts" />
     <None Remove="ClientApp\src\app\app.menu.ts" />
-    <None Remove="ClientApp\src\app\app.modules\abonement\abonement.ts" />
-    <None Remove="ClientApp\src\app\app.modules\admin\admin.ts" />
-    <None Remove="ClientApp\src\app\app.modules\author\author.ts" />
-    <None Remove="ClientApp\src\app\app.modules\coach\coach.ts" />
-    <None Remove="ClientApp\src\app\app.modules\group\group.ts" />
-    <None Remove="ClientApp\src\app\app.modules\manager\manager.ts" />
-    <None Remove="ClientApp\src\app\app.modules\news\news.ts" />
-    <None Remove="ClientApp\src\app\app.modules\parent\parent.ts" />
-    <None Remove="ClientApp\src\app\app.modules\player\player.ts" />
-    <None Remove="ClientApp\src\app\app.modules\price\price.ts" />
-    <None Remove="ClientApp\src\app\app.modules\session\session.ts" />
-    <None Remove="ClientApp\src\app\app.modules\shedule-club-open-booking\shedule-club-open-booking.ts" />
-    <None Remove="ClientApp\src\app\app.modules\shedule-club\shedule-club.ts" />
     <None Remove="ClientApp\src\app\authentication\register-user\register-user.component.ts" />
     <None Remove="ClientApp\src\app\exampledata.service.ts" />
     <None Remove="ClientApp\src\app\htmlpage.html" />
@@ -118,52 +105,7 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\app-routing.module.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\app.menu.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\app.modules\abonement\abonement.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="ClientApp\src\app\app.modules\admin\admin.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="ClientApp\src\app\app.modules\author\author.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="ClientApp\src\app\app.modules\coach\coach.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="ClientApp\src\app\app.modules\group\group.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="ClientApp\src\app\app.modules\manager\manager.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="ClientApp\src\app\app.modules\news\news.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="ClientApp\src\app\app.modules\parent\parent.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="ClientApp\src\app\app.modules\player\player.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="ClientApp\src\app\app.modules\price\price.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="ClientApp\src\app\app.modules\session\session.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="ClientApp\src\app\app.modules\shedule-club-open-booking\shedule-club-open-booking.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="ClientApp\src\app\app.modules\shedule-club\shedule-club.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\authentication\register-user\register-user.component.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\app.modules\club\club.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="ClientApp\src\app\app.modules\booking\booking.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\not-found.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\routes\app.routes.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shared\data.services\admin.data.service.ts">
@@ -220,24 +162,6 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\environment-url.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\repository.service.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\app.modules\user\user.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="ClientApp\src\app\app.modules\user\user-create\user-create.component.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="ClientApp\src\app\app.modules\user\user-detail\user-detail.component.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="ClientApp\src\app\app.modules\user\user-edit\user-edit.component.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="ClientApp\src\app\app.modules\user\user-form\user-form.component.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="ClientApp\src\app\app.modules\user\user-list\user-list.component.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\_interfaces\company.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\_interfaces\response\registrationResponseDto.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\_interfaces\user\userForRegistrationDto.model.ts" />

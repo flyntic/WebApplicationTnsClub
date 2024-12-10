@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 using WebApplicationTnsClub.Controllers;
+using WebApplicationTnsClub.Controllers.Models;
 using WebApplicationTnsClub.DB;
 
 namespace WebApplicationTnsClub.Controllers
@@ -18,96 +19,99 @@ namespace WebApplicationTnsClub.Controllers
         public NewsController(ApplicationContext context)
         {
             db = context;
-          //  if (!db.Users.Any())
-          //  {
-                //  db.Users.Add(new User { name = "iPhone X", last_name = "Apple", login = "79900" });
-                //  db.Users.Add(new User { name = "Galaxy S8", last_name = "Samsung", login = "49900 "});
-                //  db.Users.Add(new User { name = "Pixel 2", last_name = "Google", login = "52900" });
-                //  db.SaveChanges();
-          //  }
+          
         }
-     /*   [HttpGet]
-        public async Task<IEnumerable<ApiUser>> Get()
-        {
-           List<ApiUser> apiUsers = new List<ApiUser>();
-           try
+        [HttpGet]
+        public async Task<IEnumerable<NewsParameters>> Get()
+        { //todo
+            List<NewsParameters> newsParameters = new List<NewsParameters>();
+            try
             {
-                List<User> users = await db.Users.ToListAsync();
-                foreach (var user in users)
+
+                List<News> newses = await db.Set<News>().ToListAsync();
+                foreach (News item in newses)
                 {
-                    apiUsers.Add(user.toApiUser());
-                    
+                    newsParameters.Add( NewsParameters.FromNews(item));
+
                 }
-                return apiUsers;
+                return newsParameters;
             }
             catch (Exception ex)
             {
                 return null;
             }
         }
-    
+
         [HttpGet("{id}")]
-        public async Task<ApiUser> Get(long id)
+        public async Task<NewsParameters> Get(long id)
         {
-                User user = await db.Users.FirstOrDefaultAsync(x => x.Id == id);
-                    
-            return user.toApiUser();
+            News news= await db.Newses.FirstOrDefaultAsync(x => x.Id == id);
+            NewsParameters newsParameters = NewsParameters.FromNews(news);
+            return newsParameters;
         }
+
 
         [HttpPost]
-        public async Task<IActionResult> Post(ApiUser user)
+        public async Task<IActionResult> Post(NewsParameters newsParameters)
         {
             if (ModelState.IsValid)
             {
-                Console.WriteLine("add user" + user.ToString());
-                await db.Users.AddAsync(user);//.toNewUser()
-                Console.WriteLine("add");
-                db.SaveChanges();
-                Console.WriteLine("end add");
-
-        */      /*  if (user.Avatarfile!=null)
-                {   string bdfilename = "c://wwwroot/uploads/save" + user.Id + ".jpg";
-                    try
-                    {  // System.IO.File.Copy(user.Avatarfile, bdfilename);
-                      //  System.IO.File.Delete(user.Avatarfile);                       
-                        user.Avatarfile = bdfilename;
-                        db.Users.Update(user);
-                        db.SaveChanges();                        
-                    }
-                    catch (Exception ex) { 
-                      Console.WriteLine(ex.Message);
-                    }
-
-                } */
-          /*      
-                return Ok(user);
+                News news = new News();
+                try
+                {
+                    news=newsParameters.ToNews(news);
+                    await db.Newses.AddAsync(news);
+                    await db.SaveChangesAsync();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return BadRequest(ModelState);
+                }
+                return Ok(newsParameters);
             }
+
             return BadRequest(ModelState);
         }
+
+
 
         [HttpPut]
-        public async Task<IActionResult> Put(ApiUser user)
+        public async Task<IActionResult> Put(NewsParameters newsParameters)
         {
             if (ModelState.IsValid)
             {
-              //todo  db.Update(user.toUser());
-                await db.SaveChangesAsync();
-                return Ok(user);
+                News news = db.Newses.Where(news => news.Id == newsParameters.Id).First();
+
+                news = newsParameters.ToNews(news);
+                try
+                {
+                    db.Update(news);
+                    await db.SaveChangesAsync();
+                    return Ok(newsParameters);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return BadRequest(ModelState);
+                }
             }
             return BadRequest(ModelState);
         }
+
+
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(long id)
         {
-            User user = await db.Users.FirstOrDefaultAsync(x => x.Id.Equals(id));
-            if (user != null)
+            News news = await db.Newses.FirstOrDefaultAsync(x => x.Id.Equals(id));
+            if (news != null)
             {
-                user.IsDeleted = true;
-               // db.Users.Remove(user);
+                news.IsDeleted = true;
+                db.Newses.Remove(news);
                 await db.SaveChangesAsync();
             }
-            return Ok(user);
-        }*/
+            return Ok(id);
+        }
     }
 }

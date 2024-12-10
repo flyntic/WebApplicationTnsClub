@@ -10,8 +10,7 @@ namespace WebApplicationTnsClub.Controllers.Models
         public string? Time { get; set; }
         public int? Length { get; set; }
 
-        public string? Comment { get; set; }
-        public SessionParameters FromSession(Session session)
+        public static SessionParameters FromSession(Session session)
         {
             SessionParameters parameters = new SessionParameters()
             {
@@ -26,9 +25,10 @@ namespace WebApplicationTnsClub.Controllers.Models
 
             return parameters;
         }
-        public Session ToSession()
+        public Session ToSession(Session session)
         {
-            Session session = new Session() { };
+           //  = new Session() { };
+           // session.Id=this.Id;
             return session;
         }
     }

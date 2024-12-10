@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 using WebApplicationTnsClub.Controllers;
+using WebApplicationTnsClub.Controllers.Models;
 using WebApplicationTnsClub.DB;
 
 namespace WebApplicationTnsClub.Controllers
@@ -18,96 +19,99 @@ namespace WebApplicationTnsClub.Controllers
         public PriceController(ApplicationContext context)
         {
             db = context;
-            if (!db.Prices.Any())
-            {
-                //  db.Users.Add(new User { name = "iPhone X", last_name = "Apple", login = "79900" });
-                //  db.Users.Add(new User { name = "Galaxy S8", last_name = "Samsung", login = "49900 "});
-                //  db.Users.Add(new User { name = "Pixel 2", last_name = "Google", login = "52900" });
-                //  db.SaveChanges();
-            }
+           
         }
-   /*     [HttpGet]
-        public async Task<IEnumerable<ApiRate>> Get()
-        {
-           List<ApiRate> apiRates = new List<ApiRate>();
-           try
+        [HttpGet]
+        public async Task<IEnumerable<PriceParameters>> Get()
+        { //todo
+            List<PriceParameters> priceParameters = new List<PriceParameters>();
+            try
             {
-                List<Rate> rates = await db.Rates.ToListAsync();
-                foreach (var rate in rates)
+
+                List<Price> prices = await db.Set<Price>().ToListAsync();
+                foreach (Price item in prices)
                 {
-                    apiRates.Add(rate.toApi());
-                    
+                    priceParameters.Add(PriceParameters.FromPrice(item));
+
                 }
-                return apiRates;
+                return priceParameters;
             }
             catch (Exception ex)
             {
                 return null;
             }
         }
-    
+
         [HttpGet("{id}")]
-        public async Task<ApiRate> Get(long id)
+        public async Task<PriceParameters> Get(long id)
         {
-                Rate rate = await db.Rates.FirstOrDefaultAsync(x => x.Id == id);
-                    
-            return rate.toApi();
+            Price price = await db.Prices.FirstOrDefaultAsync(x => x.Id == id);
+            PriceParameters priceParameters = PriceParameters.FromPrice(price);
+            return priceParameters;
         }
+
 
         [HttpPost]
-        public async Task<IActionResult> Post(ApiRate rate)
+        public async Task<IActionResult> Post(PriceParameters priceParameters)
         {
             if (ModelState.IsValid)
             {
-               // Console.WriteLine("add user" + user.ToString());
-                await db.Rates.AddAsync(rate);//.toNewUser()
-              //  Console.WriteLine("add");
-                db.SaveChanges();
-               // Console.WriteLine("end add");
-
-        */      /*  if (user.Avatarfile!=null)
-                {   string bdfilename = "c://wwwroot/uploads/save" + user.Id + ".jpg";
-                    try
-                    {  // System.IO.File.Copy(user.Avatarfile, bdfilename);
-                      //  System.IO.File.Delete(user.Avatarfile);                       
-                        user.Avatarfile = bdfilename;
-                        db.Users.Update(user);
-                        db.SaveChanges();                        
-                    }
-                    catch (Exception ex) { 
-                      Console.WriteLine(ex.Message);
-                    }
-
-                } */
-       /*         
-                return Ok(rate);
+                Price price= new Price();
+                try
+                {
+                    price=priceParameters.ToPrice(price);
+                    await db.Prices.AddAsync(price);
+                    await db.SaveChangesAsync();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return BadRequest(ModelState);
+                }
+                return Ok(priceParameters);
             }
+
             return BadRequest(ModelState);
         }
+
+
 
         [HttpPut]
-        public async Task<IActionResult> Put(ApiRate rate)
+        public async Task<IActionResult> Put(PriceParameters priceParameters)
         {
             if (ModelState.IsValid)
             {
-              //todo  db.Update(user.toUser());
-                await db.SaveChangesAsync();
-                return Ok(rate);
+                Price price = db.Prices.Where(price => price.Id == priceParameters.Id).First();
+
+                price = priceParameters.ToPrice(price);
+                try
+                {
+                    db.Update(price);
+                    await db.SaveChangesAsync();
+                    return Ok(priceParameters);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return BadRequest(ModelState);
+                }
             }
             return BadRequest(ModelState);
         }
+
+
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(long id)
         {
-            Rate rate = await db.Rates.FirstOrDefaultAsync(x => x.Id.Equals(id));
-            if (rate != null)
+            Price price = await db.Prices.FirstOrDefaultAsync(x => x.Id.Equals(id));
+            if (price != null)
             {
-                rate.IsDeleted = true;
-               // db.Users.Remove(user);
+                price.IsDeleted = true;
+                db.Prices.Remove(price);
                 await db.SaveChangesAsync();
             }
-            return Ok(rate);
-        }*/
+            return Ok(id);
+        }
     }
 }

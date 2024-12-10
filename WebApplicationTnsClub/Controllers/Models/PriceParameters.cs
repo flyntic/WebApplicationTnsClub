@@ -16,13 +16,13 @@ namespace WebApplicationTnsClub.Controllers.Models
 
         public int? Price { get; set; }
 
-        public string? Comment { get; set; }
+        //public string? Comment { get; set; }
 
-        public PriceParameters FromPrices(Prices prices)
+        public static PriceParameters FromPrice(Price price)
         {
             PriceParameters parameters = new PriceParameters()
             {
-                Id = prices.Id,
+                Id = price.Id,
                 //ApiUser?[] Users { get; set; }
                 //ApiClub? Club { get; set; }
                 //ApiRate? Rate { get; set; }
@@ -33,10 +33,10 @@ namespace WebApplicationTnsClub.Controllers.Models
 
             return parameters;
         }
-        public Prices ToPrices()
+        public Price ToPrice(Price price)
         {
-            Prices prices = new Prices() { };
-            return prices;
+            // = new Prices() { };
+            return price;
         }
     }
 }

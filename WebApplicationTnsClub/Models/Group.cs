@@ -37,11 +37,11 @@ namespace WebApplicationTnsClub.Models
         [Column("club")]
         public Club? Club { get; set; }
 
-        [Column("shedule")]
+        [Column("sessions")]
         public Session?[] Sessions { get; set; }
 
-        [Column("rates")]
-        public Prices?[] Prices { get; set; }
+        [Column("prices")]
+        public Price?[] Prices { get; set; }
 
         [Column("players")]
         public User?[] Players { get; set; }

@@ -92,8 +92,6 @@ namespace WebApplicationTnsClub.Controllers
             {
                 User user = db.Users.Where(user =>  user.Id == userParameters.Id).First();
 
-
-
                 user=userParameters.ToUser(user);
                 try
                {

@@ -6,12 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 using WebApplicationTnsClub.Controllers;
+using WebApplicationTnsClub.Controllers.Models;
 using WebApplicationTnsClub.DB;
 
 namespace WebApplicationTnsClub.Controllers
 {
     [ApiController]
-    [Route("api/sheduleclubs")]
+    [Route("api/shedule-club")]
     public class SheduleClubController : Controller
     {
         ApplicationContext db;
@@ -19,88 +20,97 @@ namespace WebApplicationTnsClub.Controllers
         {
             db = context;
         }
-    /*    [HttpGet]
-        public async Task<IEnumerable<ApiUser>> Get()
-        {
-           List<ApiUser> apiUsers = new List<ApiUser>();
-           try
+        [HttpGet]
+        public async Task<IEnumerable<SheduleClubParameters>> Get()
+        { //todo
+            List<SheduleClubParameters> sheduleClubParameters = new List<SheduleClubParameters>();
+            try
             {
-                List<User> users = await db.Users.ToListAsync();
-                foreach (var user in users)
+
+                List<SheduleClub> sheduleClubs = await db.Set<SheduleClub>().ToListAsync();
+                foreach (SheduleClub item in sheduleClubs)
                 {
-                    apiUsers.Add(user.toApiUser());
-                    
+                    sheduleClubParameters.Add(SheduleClubParameters.FromSheduleClub(item));
+
                 }
-                return apiUsers;
+                return sheduleClubParameters;
             }
             catch (Exception ex)
             {
                 return null;
             }
         }
-    
+
         [HttpGet("{id}")]
-        public async Task<ApiUser> Get(long id)
+        public async Task<SheduleClubParameters> Get(long id)
         {
-                User user = await db.Users.FirstOrDefaultAsync(x => x.Id == id);
-                    
-            return user.toApiUser();
+            SheduleClub sheduleClub = await db.SheduleClubs.FirstOrDefaultAsync(x => x.Id == id);
+            SheduleClubParameters sheduleClubParameters = SheduleClubParameters.FromSheduleClub(sheduleClub);
+            return sheduleClubParameters;
         }
+
 
         [HttpPost]
-        public async Task<IActionResult> Post(ApiUser user)
+        public async Task<IActionResult> Post(SheduleClubParameters sheduleClubParameters)
         {
             if (ModelState.IsValid)
             {
-                Console.WriteLine("add user" + user.ToString());
-                await db.Users.AddAsync(user);//.toNewUser()
-                Console.WriteLine("add");
-                db.SaveChanges();
-                Console.WriteLine("end add");
-    */
-              /*  if (user.Avatarfile!=null)
-                {   string bdfilename = "c://wwwroot/uploads/save" + user.Id + ".jpg";
-                    try
-                    {  // System.IO.File.Copy(user.Avatarfile, bdfilename);
-                      //  System.IO.File.Delete(user.Avatarfile);                       
-                        user.Avatarfile = bdfilename;
-                        db.Users.Update(user);
-                        db.SaveChanges();                        
-                    }
-                    catch (Exception ex) { 
-                      Console.WriteLine(ex.Message);
-                    }
-
-                } */
-                
-    /*            return Ok(user);
+                SheduleClub sheduleClub = new SheduleClub();
+                try
+                {
+                    sheduleClub=sheduleClubParameters.ToSheduleClub(sheduleClub);
+                    await db.SheduleClubs.AddAsync(sheduleClub);
+                    await db.SaveChangesAsync();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return BadRequest(ModelState);
+                }
+                return Ok(sheduleClubParameters);
             }
+
             return BadRequest(ModelState);
         }
+
+
 
         [HttpPut]
-        public async Task<IActionResult> Put(ApiUser user)
+        public async Task<IActionResult> Put(SheduleClubParameters sheduleClubParameters)
         {
             if (ModelState.IsValid)
             {
-              //todo  db.Update(user.toUser());
-                await db.SaveChangesAsync();
-                return Ok(user);
+                SheduleClub sheduleClub = db.SheduleClubs.Where(sheduleClub => sheduleClub.Id == sheduleClubParameters.Id).First();
+
+                sheduleClub = sheduleClubParameters.ToSheduleClub(sheduleClub);
+                try
+                {
+                    db.Update(sheduleClub);
+                    await db.SaveChangesAsync();
+                    return Ok(sheduleClubParameters);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return BadRequest(ModelState);
+                }
             }
             return BadRequest(ModelState);
         }
+
+
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(long id)
         {
-            User user = await db.Users.FirstOrDefaultAsync(x => x.Id.Equals(id));
-            if (user != null)
+            SheduleClub sheduleClub = await db.SheduleClubs.FirstOrDefaultAsync(x => x.Id.Equals(id));
+            if (sheduleClub != null)
             {
-                user.IsDeleted = true;
-               // db.Users.Remove(user);
+                sheduleClub.IsDeleted = true;
+                db.SheduleClubs.Remove(sheduleClub   );
                 await db.SaveChangesAsync();
             }
-            return Ok(user);
-        }*/
+            return Ok(id);
+        }
     }
 }

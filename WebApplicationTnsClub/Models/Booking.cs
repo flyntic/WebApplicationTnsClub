@@ -60,12 +60,9 @@ namespace WebApplicationTnsClub.Models
         [Column("state")]
         public StateBooking? StateBooking { get; set; }
 
-        [Column("rate")]
-        public Prices? Rate { get; set; }
-  
         [Column("price")]
-        public int? Price { get; set; }
-
+        public Price? Price { get; set; }
+  
         [Column("next")]
         public Booking? Next { get; set; }
 

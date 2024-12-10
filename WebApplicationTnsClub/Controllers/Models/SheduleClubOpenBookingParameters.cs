@@ -9,7 +9,7 @@ namespace WebApplicationTnsClub.Controllers.Models
         public DateTime? Date { get; set; }
         public StateBooking? StateBooking { get; set; }
 
-        public SheduleClubOpenBookingParameters FromSheduleClubOpenBooking(SheduleClubOpenBooking item)
+        public static SheduleClubOpenBookingParameters FromSheduleClubOpenBooking(SheduleClubOpenBooking item)
         {
 
 
@@ -26,9 +26,9 @@ namespace WebApplicationTnsClub.Controllers.Models
 
             return apiItem;
         }
-        public SheduleClubOpenBooking ToSheduleClubOpenBooking()
+        public SheduleClubOpenBooking ToSheduleClubOpenBooking(SheduleClubOpenBooking s)
         {
-            SheduleClubOpenBooking s = new SheduleClubOpenBooking() { };
+            
             return s;
         }
     }

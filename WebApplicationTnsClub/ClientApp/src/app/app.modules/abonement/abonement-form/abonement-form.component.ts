@@ -12,7 +12,7 @@ import { AbonementDataService } from './../../../shared/data.services/abonement.
 
 export class AbonementFormComponent {
     @Input() item: Abonement;
-    constructor(public dataService: AbonementDataService, private http: HttpClient) { console.log(http); }
+    constructor(public dataService: AbonementDataService, private http: HttpClient) {  }
 
 }
 
