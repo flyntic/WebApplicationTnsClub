@@ -1,1 +1,0 @@
-{"ast":null,"code":"export class Session {\n  constructor(id, typeOfDay, time, length) {\n    this.id = id;\n    this.typeOfDay = typeOfDay;\n    this.time = time;\n    this.length = length;\n  }\n}","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}

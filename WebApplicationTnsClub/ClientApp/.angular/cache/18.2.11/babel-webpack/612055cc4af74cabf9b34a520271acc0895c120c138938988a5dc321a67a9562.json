@@ -1,1 +1,0 @@
-{"ast":null,"code":"export class GroupAbonement {\n  constructor(id, bookings, sessions, price, isAutorenewal) {\n    this.id = id;\n    this.bookings = bookings;\n    this.sessions = sessions;\n    this.price = price;\n    this.isAutorenewal = isAutorenewal;\n  }\n}","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}
