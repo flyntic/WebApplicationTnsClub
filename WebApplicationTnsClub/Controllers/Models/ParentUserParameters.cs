@@ -1,4 +1,5 @@
 ﻿using WebApplicationTnsClub.Models;
+using WebApplicationTnsClub.Models.Users;
 
 namespace WebApplicationTnsClub.Controllers.Models
 {
@@ -8,7 +9,7 @@ namespace WebApplicationTnsClub.Controllers.Models
 
         public UserParameters? User { get; set; }
 
-        public static ParentUserParameters FromParentUser(ParentUser user)
+        public static ParentUserParameters FromParentUser(Parent user)
         {
             ParentUserParameters parameters = new ParentUserParameters()
             {
@@ -17,7 +18,7 @@ namespace WebApplicationTnsClub.Controllers.Models
             };
             return parameters;
         }
-        public ParentUser ToParentUser(ParentUser parentUser)
+        public Parent ToParentUser(Parent parentUser)
         {
             parentUser.User = this.User.ToUser(new User());
             return parentUser;

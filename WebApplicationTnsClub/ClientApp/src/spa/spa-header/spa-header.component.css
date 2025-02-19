@@ -2,11 +2,19 @@
     background-color: #F0E68C;
 }
 
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+
+
 .title-bar {
-    flex-grow: 1;
     display: flex;
     min-height: 120px;
     padding: 10px 0;
+    justify-content: flex-start;
 }
 
     .title-bar img {
@@ -15,13 +23,13 @@
 
 .menu-area {
     display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+    flex-direction: row;
     padding-right: 20px;
+    text-align: right;
 }
 
 .title-bar-small {
-    flex-grow: 1;
+    flex-grow: 2;
     display: flex;
     min-height: 60px;
 }
@@ -49,3 +57,4 @@
 .small-image {
     height: 100px;
 }
+

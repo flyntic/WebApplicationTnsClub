@@ -1,4 +1,5 @@
 ﻿using WebApplicationTnsClub.Models;
+using WebApplicationTnsClub.Models.Users;
 
 namespace WebApplicationTnsClub.Controllers.Models
 {
@@ -8,7 +9,7 @@ namespace WebApplicationTnsClub.Controllers.Models
 
         public UserParameters? User { get; set; }
 
-        public static PlayerUserParameters FromPlayerUser(PlayerUser user)
+        public static PlayerUserParameters FromPlayerUser(Player user)
         {
             PlayerUserParameters parameters = new PlayerUserParameters()
             {
@@ -17,7 +18,7 @@ namespace WebApplicationTnsClub.Controllers.Models
             };
             return parameters;
         }
-        public PlayerUser ToPlayerUser(PlayerUser playerUser)
+        public Player ToPlayerUser(Player playerUser)
         {
             playerUser.User = this.User.ToUser(new User());
             return playerUser;

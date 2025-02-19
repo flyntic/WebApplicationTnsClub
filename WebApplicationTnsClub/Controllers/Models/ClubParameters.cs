@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 using System.Numerics;
 using System.Reflection.Metadata;
-using WebApplicationTnsClub.Models;
+using WebApplicationTnsClub.Models.AboutClub;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WebApplicationTnsClub.Controllers.Models

@@ -1,27 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { ScreenService } from '../services/screen.service';
-import { MenuService } from '../services/menu.service';
-import { AuthMenuService } from '../services/auth.menu.service';
-import { AuthService } from '../../app/auth.service';
-import { AuthenticatedComponent } from '../auth-menus/authenticated/authenticated.component';
-
-
+import {  Component, OnInit } from '@angular/core';
+import { Input } from '@angular/core';
 
 @Component({
     selector: 'spa-header',
     templateUrl: './spa-header.component.html',
-    styleUrls: ['./spa-header.component.css']
+    styleUrls: ['./spa-header.component.css'],
+ 
 })
+
 export class SpaHeaderComponent implements OnInit {
-   // isAuth = false;
-    constructor(private screenService: ScreenService,
-                public menuService: MenuService,
-               public authMenuService: AuthMenuService
-      //  private authenticated: AuthenticatedComponent
-        ) { }  //PUBLICpublic auth:AuthService,
+   
+    @Input() username$ : any;
+    constructor( ) { }
 
-    ngOnInit() {
-       // this.isAuth = this.authenticated.username.length!=0;
-    }
+    ngOnInit() {        console.log("headeer:" + this.username$);    }
 
+
+  
 }

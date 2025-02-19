@@ -1,9 +1,0 @@
-<p>club-edit works!</p>
-<div *ngIf="loaded" class="container">
-    <h2>Изменение данных о клубе</h2>
-    <a routerLink="/" class="nav-link">Назад к списку</a>
-    <club-form [(item)]="item"></club-form>
-    <div class="form-group">
-        <input type="button" value="Сохранить" (click)="save()" class="btn btn-success " />
-    </div>
-</div>

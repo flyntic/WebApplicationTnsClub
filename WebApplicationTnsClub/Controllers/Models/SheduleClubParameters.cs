@@ -1,4 +1,5 @@
 ﻿using WebApplicationTnsClub.Models;
+using WebApplicationTnsClub.Models.AboutClub;
 
 namespace WebApplicationTnsClub.Controllers.Models
 {

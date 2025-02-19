@@ -1,0 +1,12 @@
+<span class="horizontal-menu">
+    <span>
+        {{hitext}}{{i$ | async }} {{username3$ | async }}
+
+    </span>
+   
+    <span (click)="logout()">
+        <span class='icon'><img [src]='logoutpng' class='menu-icon'></span>
+        <span class='horizontal-menu'>{{logouttext}}</span>
+    </span>
+
+    <!--*ngIf="username"-->

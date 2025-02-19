@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using WebApplicationTnsClub.Models;
+using WebApplicationTnsClub.Models.AboutClub;
 
 namespace WebApplicationTnsClub.Controllers.Models
 {
@@ -18,7 +18,7 @@ namespace WebApplicationTnsClub.Controllers.Models
 
         //public string? Comment { get; set; }
 
-        public static PriceParameters FromPrice(Price price)
+        public static PriceParameters FromPrice(PriceSessions price)
         {
             PriceParameters parameters = new PriceParameters()
             {
@@ -33,7 +33,7 @@ namespace WebApplicationTnsClub.Controllers.Models
 
             return parameters;
         }
-        public Price ToPrice(Price price)
+        public PriceSessions ToPrice(PriceSessions price)
         {
             // = new Prices() { };
             return price;
