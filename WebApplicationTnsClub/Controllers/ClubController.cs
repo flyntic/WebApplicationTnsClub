@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApplicationTnsClub.Controllers.Models;
 using WebApplicationTnsClub.DB;
+using WebApplicationTnsClub.Models.AboutClub;
 
 namespace WebApplicationTnsClub.Controllers
 {

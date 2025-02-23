@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.FileProviders;
 using WebApplicationTnsClub.DB;
 using Microsoft.Extensions.DependencyInjection;
-using WebApplicationTnsClub.Models;
+using WebApplicationTnsClub.Models.Users;
 
 namespace WebApplicationTnsClub.Extensions
 {
@@ -47,10 +47,7 @@ namespace WebApplicationTnsClub.Extensions
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(_ => {  });
-        /*    app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });*/
+
 
             app.Use((ctx, next) =>
             {
@@ -61,7 +58,8 @@ namespace WebApplicationTnsClub.Extensions
                 }
                 return next();
             });
-            // app.UseSpa(x => { x.UseProxyToSpaDevelopmentServer("http://127.0.0.1:7094"); });
+
+          //  app.UseSpa(x => { x.UseProxyToSpaDevelopmentServer("http://127.0.0.1:7094"); });
 
             app.UseSpa(spa =>
             {
@@ -70,14 +68,15 @@ namespace WebApplicationTnsClub.Extensions
                 spa.Options.SourcePath = "ClientApp";
 
                 if (app.Environment.IsDevelopment())
-                { //
+                { 
                     spa.UseAngularCliServer(npmScript: "start");
-               }
+                 }
             });
 
             using var scope=app.Services.CreateScope();
             User admin = null;
             var userManager=scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+
             if (!userManager.Users.Any(x => x.UserName == "admin"))
             {
                 admin=new User() { UserName = "admin" };
@@ -87,28 +86,7 @@ namespace WebApplicationTnsClub.Extensions
 
         //    var database=scope.ServiceProvider.GetRequiredService<ApplicationContext>();
 
-       /*     if (!database.Projects.Any())
-            {
-                database.Projects.Add(new Project()
-                {
-                    Tasks = new List<WorkTask>()
-                    {
-                        new WorkTask() { Title = "Clean Dog" },
-                        new WorkTask() { Title = "Buy Food" },
-                    },
-                    Users=new List<ProjectUser>() { new ProjectUser() { UserId = admin.Id } }
-                });
-                database.Projects.Add(new Project()
-                {
-                    Tasks = new List<WorkTask>()
-                    {
-                        new WorkTask() { Title = "Refactor" },
-                        new WorkTask() { Title = "Inject" },
-                    }
-                });
-                database.SaveChanges();
-
-            }*/
+      
 
             return app;
 

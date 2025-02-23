@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 using System.Numerics;
 using System.Reflection.Metadata;
-using WebApplicationTnsClub.Models;
+using WebApplicationTnsClub.Models.Bookings;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WebApplicationTnsClub.Controllers.Models
@@ -45,9 +45,9 @@ namespace WebApplicationTnsClub.Controllers.Models
                 Date = booking.Date,
                 Time = booking.Time,
                 Length = booking.Length,
-                StateBooking = booking.StateBooking,
+                StateBooking = booking.StateBooking//,
         //        Price = new PriceParameters().FromPrices(booking.Price), //Next=booking.Next,
-                DateOfSale = booking.DateOfSale
+           //     DateOfSale = booking.DateOfSale
                 
             };
 
@@ -67,7 +67,7 @@ namespace WebApplicationTnsClub.Controllers.Models
             booking.Length = this.Length;
             booking.StateBooking = this.StateBooking;
             // Price = this.Price.ToPrices(), //Next=booking.Next,
-            booking.DateOfSale = this.DateOfSale;
+        //    booking.DateOfSale = this.DateOfSale;
            // };
 
             return booking;

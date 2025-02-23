@@ -1,60 +1,68 @@
-﻿import { Component, importProvidersFrom } from '@angular/core';
-import { UserDataService } from './shared/data.services/user.data.service';
-import { FileService } from './file.service';
-import { AuthService } from "./auth.service";
-
+﻿import { ChangeDetectionStrategy, Component, importProvidersFrom } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import { FileService } from './file.service';
+
+
 import { AppMenuItems } from './app.menu';
-import { AppAuthMenuItems } from './app.auth.menu';
+import { AppAuthMenuItems } from './../authenticated/auth-menus/app.auth.menu';
+import { UserDataService }                from './shared/data.services/user.data.services/user.data.service';
+import { IndividualAbonementDataService } from './shared/data.services/abonement.data.services/individualabonement.data.service';
+import { GroupAbonementDataService }      from './shared/data.services/abonement.data.services/groupabonement.data.service';
+import { AbonementDataService }           from './shared/data.services/abonement.data.services/abonement.data.service';
 
 import { MenuService } from '../spa/services/menu.service';
-import { AuthMenuService } from '../spa/services/auth.menu.service';
-//import { SpaConfigService, SpaConfigSettings, Icons } from '../spa/services/spa-config.service';
-import { AuthGuard } from './services/auth-guard.service';
+
+import { AuthMenuService }        from '../authenticated/auth.menu.service';
+//import { AuthGuard }              from './../authenticated/auth-guard.service';
+//import { AuthService }            from './../authenticated/auth.service';
+import { AuthenticatedComponent } from './../authenticated/auth-menus/authenticated/authenticated.component';
+import { OnInit } from '@angular/core';
+
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
-    providers: [
+     providers: [
         UserDataService,
+        AbonementDataService,
+        IndividualAbonementDataService,
+        AuthenticatedComponent,
+        GroupAbonementDataService,
         FileService,
-        AuthService,
-        AuthGuard]
+        //  AsyncPipe, ChangeDetectorRef as Provider
+    ],
 
 })
 
-export class AppComponent  {//implements OnInit
+export class AppComponent implements OnInit {//
     title = 'client';
 
-    constructor(/*private spaConfigService: SpaConfigService,*/ private menuService: MenuService, private authMenuService: AuthMenuService, private auth: AuthService, private http: HttpClient) {
-     /*   const config: SpaConfigSettings = {
-            socialIcons: [
-                { imageFile: '/images/imgs/telegram.png', alt: 'Telegram', url: 'http://telegram.com' },
-                { imageFile: '/images/imgs/vk.png', alt: 'Vkontakte', url: 'http://www.vkontakte.com' },
-                { imageFile: '/images/imgs/vk.png', alt: 'Vkontakte', url: 'http://www.vkontakte.com' },
-                { imageFile: '/images/imgs/whatsapp.png', alt: 'WhatsApp', url: 'http://www.whatsapp.com' }
-            ],
-            showUserControls: true
-        };
-        spaConfigService.configure(config);*/
+    constructor(private menuService: MenuService, private authMenuService: AuthMenuService,
+                /*private auth: AuthService,*/private http: HttpClient) {
+     
         console.log("app-component");
         menuService.items = AppMenuItems;
         authMenuService.items = AppAuthMenuItems;
     }
 
-   // username: string;
-   // user: any;
+    username$: string="";
+    user: any;
 
 
-    async ngOnInit() {
+    async  ngOnInit() {
         console.log("appcomponent-onInit");
-   //     this.user = await this.auth.loadUser().toPromise();
-   //     this.username = this.user['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
+
+   //     this.user = await this.auth.getUser().toPromise(); //await
+   //     this.username$ =     this.user['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
+
+        console.log("appcomponent-onInit2" + this.username$);
 
         
     }
+
+   
 /*
     async loadData() {
         try {
@@ -67,17 +75,6 @@ export class AppComponent  {//implements OnInit
 
     fetchData(): Promise<any> {
         return this.http.get('/api/user').toPromise();//  auth.loadUser();//.toPromise();  // Convert Observable to Promise
-    }
-*/
-
-/*
-    async ngOnInit() {
-        console.log("NGINIT0 ");
-        of(this.auth.loadUser()).to .subscribe(user => { this.user = user; this.username = user['username']; console.log(this.username); });
-        
-        //this.username = user['username'];
-       // console.log("NGINIT1 ");// console.log(this.user);
-        console.log("NGINIT2 ");
     }
    
     logout() {

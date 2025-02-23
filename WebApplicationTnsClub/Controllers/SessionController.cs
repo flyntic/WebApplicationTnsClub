@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using WebApplicationTnsClub.Controllers;
 using WebApplicationTnsClub.Controllers.Models;
 using WebApplicationTnsClub.DB;
+using WebApplicationTnsClub.Models.AboutClub;
 
 namespace WebApplicationTnsClub.Controllers
 {

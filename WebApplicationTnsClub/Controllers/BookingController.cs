@@ -5,6 +5,7 @@ using global::WebApplicationTnsClub.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApplicationTnsClub.DB;
+using WebApplicationTnsClub.Models.Bookings;
 
 namespace WebApplicationTnsClub.Controllers
 {

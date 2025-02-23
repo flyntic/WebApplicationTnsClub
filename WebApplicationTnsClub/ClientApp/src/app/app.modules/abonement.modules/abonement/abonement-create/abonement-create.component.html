@@ -1,0 +1,8 @@
+﻿<div class="container">
+    <h2>Добавление нового абонемента</h2>
+    <abonement-form [(abonement)]="abonement"></abonement-form>
+    <div class="form-group">
+        <input type="button" value="Сохранить" (click)="save()" class="btn btn-success " />
+        <a routerLink="/" class="btn btn-warning float-right">Отмена</a>
+    </div>
+</div>

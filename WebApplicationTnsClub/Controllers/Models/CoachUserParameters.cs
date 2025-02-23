@@ -1,4 +1,5 @@
 ﻿using WebApplicationTnsClub.Models;
+using WebApplicationTnsClub.Models.Users;
 
 namespace WebApplicationTnsClub.Controllers.Models
 {
@@ -8,7 +9,7 @@ namespace WebApplicationTnsClub.Controllers.Models
 
         public UserParameters? User { get; set; }
 
-        public static CoachUserParameters FromCoachUser(CoachUser user)
+        public static CoachUserParameters FromCoachUser(Coach user)
         {
             CoachUserParameters parameters = new CoachUserParameters()
             {
@@ -17,7 +18,7 @@ namespace WebApplicationTnsClub.Controllers.Models
             };
             return parameters;
         }
-        public CoachUser ToCoachUser(CoachUser coachUser)
+        public Coach ToCoachUser(Coach coachUser)
         {
             coachUser.User = this.User.ToUser(new User());
             return coachUser;

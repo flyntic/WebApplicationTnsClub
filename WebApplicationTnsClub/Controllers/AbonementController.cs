@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using WebApplicationTnsClub.Controllers.Models;
 using WebApplicationTnsClub.Controllers;
 using WebApplicationTnsClub.DB;
+using WebApplicationTnsClub.Models.Abonements;
 
 namespace WebApplicationTnsClub.Controllers
 {
@@ -26,12 +27,12 @@ namespace WebApplicationTnsClub.Controllers
            List<AbonementParameters> abonementParameters = new List<AbonementParameters>();
            try
             {
-                List<Abonement> abonements = await db.Abonements.ToListAsync();
+         /*       List<GroupAbonement> abonements = await db.Abonements.ToListAsync();
                 foreach (var item in abonements)
                 {
                     abonementParameters.Add(AbonementParameters.FromAbonement(item));
                     
-                }
+                }*/
                 return abonementParameters;
             }
             catch (Exception ex)
@@ -40,13 +41,13 @@ namespace WebApplicationTnsClub.Controllers
             }
         }
     
-        [HttpGet("{id}")]
+  /*      [HttpGet("{id}")]
         public async Task<AbonementParameters> Get(long id)
         {
-                Abonement abonement = await db.Abonements.FirstOrDefaultAsync(x => x.Id == id);
+        //   GroupAbonement abonement;// = await db.Abonements.FirstOrDefaultAsync(x => x.Id == id);
                     
-            return AbonementParameters.FromAbonement(abonement);
-        }
+         //   return AbonementParameters.FromAbonement(abonement);
+        }*/
 
         [HttpPost]
         public async Task<IActionResult> Post(AbonementParameters abonementParameters)
@@ -54,7 +55,7 @@ namespace WebApplicationTnsClub.Controllers
             if (ModelState.IsValid)
             {
               //  Console.WriteLine("add user" + user.ToString());
-                await db.Abonements.AddAsync(abonementParameters.ToAbonement(new Abonement()));//.toNewUser()
+//                await db.Abonements.AddAsync(abonementParameters.ToAbonement(new GroupAbonement()));//.toNewUser()
               //  Console.WriteLine("add");
                 db.SaveChanges();
              //   Console.WriteLine("end add");
@@ -91,17 +92,17 @@ namespace WebApplicationTnsClub.Controllers
             return BadRequest(ModelState);
         }
 
-        [HttpDelete("{id}")]
+  /*      [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(long id)
         {
-            Abonement abonement = await db.Abonements.FirstOrDefaultAsync(x => x.Id.Equals(id));
+            GroupAbonement abonement = await db.Abonements.FirstOrDefaultAsync(x => x.Id.Equals(id));
             if (abonement != null)
             {
                 abonement.IsDeleted = true;
                // db.Users.Remove(user);
                 await db.SaveChangesAsync();
             }
-            return Ok(abonement);
-        }
+            return Ok(abonement);  
+         }*/
     }
 }

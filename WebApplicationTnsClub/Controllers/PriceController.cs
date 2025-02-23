@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using WebApplicationTnsClub.Controllers;
 using WebApplicationTnsClub.Controllers.Models;
 using WebApplicationTnsClub.DB;
+using WebApplicationTnsClub.Models.AboutClub;
 
 namespace WebApplicationTnsClub.Controllers
 {
@@ -28,8 +29,8 @@ namespace WebApplicationTnsClub.Controllers
             try
             {
 
-                List<Price> prices = await db.Set<Price>().ToListAsync();
-                foreach (Price item in prices)
+                List<PriceSessions> prices = await db.Set<PriceSessions>().ToListAsync();
+                foreach (PriceSessions item in prices)
                 {
                     priceParameters.Add(PriceParameters.FromPrice(item));
 
@@ -45,7 +46,7 @@ namespace WebApplicationTnsClub.Controllers
         [HttpGet("{id}")]
         public async Task<PriceParameters> Get(long id)
         {
-            Price price = await db.Prices.FirstOrDefaultAsync(x => x.Id == id);
+            PriceSessions price = await db.PriceSessions.FirstOrDefaultAsync(x => x.Id == id);
             PriceParameters priceParameters = PriceParameters.FromPrice(price);
             return priceParameters;
         }
@@ -56,11 +57,11 @@ namespace WebApplicationTnsClub.Controllers
         {
             if (ModelState.IsValid)
             {
-                Price price= new Price();
+                PriceSessions price= new PriceSessions();
                 try
                 {
                     price=priceParameters.ToPrice(price);
-                    await db.Prices.AddAsync(price);
+                    await db.PriceSessions.AddAsync(price);
                     await db.SaveChangesAsync();
                 }
                 catch (Exception ex)
@@ -81,7 +82,7 @@ namespace WebApplicationTnsClub.Controllers
         {
             if (ModelState.IsValid)
             {
-                Price price = db.Prices.Where(price => price.Id == priceParameters.Id).First();
+                PriceSessions price = db.PriceSessions.Where(price => price.Id == priceParameters.Id).First();
 
                 price = priceParameters.ToPrice(price);
                 try
@@ -104,11 +105,11 @@ namespace WebApplicationTnsClub.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(long id)
         {
-            Price price = await db.Prices.FirstOrDefaultAsync(x => x.Id.Equals(id));
+            PriceSessions price = await db.PriceSessions.FirstOrDefaultAsync(x => x.Id.Equals(id));
             if (price != null)
             {
                 price.IsDeleted = true;
-                db.Prices.Remove(price);
+                db.PriceSessions.Remove(price);
                 await db.SaveChangesAsync();
             }
             return Ok(id);

@@ -1,0 +1,26 @@
+﻿
+<div>
+    <a routerLink="/individualabonement/create" class="nav-link" href="/individualabonement/create">Добавить</a>
+
+
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+         <td>Id</td>
+         <td></td>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        <tr *ngFor="let u of items">
+            <td>{{u?.id}}</td>
+            <td>
+                <a [routerLink]="['/individualabonement/edit', u.id]" class="btn btn-sm btn-primary">Изменить</a>
+                <button (click)="delete(u.id)" class="btn btn-sm btn-danger">Удалить</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
-using WebApplicationTnsClub.Models;
+using WebApplicationTnsClub.Models.Abonements;
 
 namespace WebApplicationTnsClub.Controllers.Models
 {
@@ -12,7 +12,7 @@ namespace WebApplicationTnsClub.Controllers.Models
         public bool? IsAutorenewal { get; set; }
         public string? State { get; set; }
 
-        public static AbonementParameters FromAbonement(Abonement abonement)
+        public static AbonementParameters FromAbonement(GroupAbonement abonement)
         {
 
             AbonementParameters parameters = new AbonementParameters()
@@ -20,22 +20,22 @@ namespace WebApplicationTnsClub.Controllers.Models
                  Id = abonement.Id,
                //  Bookings = abonement.Bookings?.ToArray<BookingParameters>().ForEach(a=>a.toBookingparameters),
                 // Sessions= abonement.Sessions.ToArray<Session>().ForEach(a=>a.toSessionparameters)            
-                Price = abonement.Price,
-                IsAutorenewal = abonement.IsAutorenewal,
-                State = abonement.State
+                Price = abonement.Price//,
+            //    IsAutorenewal = abonement.IsAutorenewal,
+            //    State = abonement.State
 
             };
             return parameters;
         }
-        public Abonement ToAbonement(Abonement item)
+        public GroupAbonement ToAbonement(GroupAbonement item)
         {
             // = new Abonement() {
             //    Id = this.Id,
             // Bookings = abonement.Bookings.ToArray<Booking>().ForEach(a=>a.toBookingparameters),
             // Sessions= abonement.Sessions.ToArray<Session>().ForEach(a=>a.toSessionparameters)            
             item.Price = this.Price;
-            item.IsAutorenewal = this.IsAutorenewal;
-            item.State = this.State;
+         //   item.IsAutorenewal = this.IsAutorenewal;
+         //   item.State = this.State;
 
            
             return item;

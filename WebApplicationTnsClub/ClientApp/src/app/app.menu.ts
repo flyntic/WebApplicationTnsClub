@@ -51,8 +51,21 @@ export const AppMenuItems: Array<MenuItem> = [
     {
         text: 'Абонементы',
         icon: 'images/imgs/tickets.png',
-        route: '/abonement/list',
-        submenu: null
+        route: null,
+        submenu: [
+            {
+                text: 'Групповые абоненты',
+                icon: 'images/imgs/tickets.png',
+                route: '/groupabonent/list',
+                submenu: null
+            },
+            {
+                text: 'Индивидуальные абоненты',
+                icon: 'images/imgs/tickets.png',
+                route: '/individualabonent/list',
+                submenu: null
+            },
+        ]
     },
     {
         text: 'Пользователи',
